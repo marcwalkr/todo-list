@@ -1,1 +1,1 @@
-A Todo List web app built as an assignment for The Odin Project JavaScript course.
+A Todo List web app. Create todo list items with a title, description, due date, priority, notes, and an optional sub-task checklist. Organize todos inside of projects. Part of The Odin Project JavaScript course.
