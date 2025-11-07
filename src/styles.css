@@ -18,6 +18,20 @@
   --clr-surface-30: #c8cdd1;
   --clr-surface-40: #bcc0c3;
   --clr-surface-50: #afb3b5;
+
+  --font-size-xs: 0.694rem;
+  --font-size-sm: 0.833rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.2rem;
+  --font-size-xl: 1.44rem;
+  --font-size-2xl: 1.728rem;
+  --font-size-3xl: 2.074rem;
+  --font-size-4xl: 2.488rem;
+
+  --space-xxs: 0.125rem;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
 }
 
 [data-theme="dark"] {
