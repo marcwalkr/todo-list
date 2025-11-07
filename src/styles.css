@@ -67,5 +67,36 @@ body {
 .sidebar {
   height: 100vh;
   width: clamp(220px, 20vw, 320px);
+  padding: var(--space-md);
   background-color: var(--clr-surface-10);
+}
+
+.sidebar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar__title {
+  font-size: var(--font-size-4xl);
+  color: var(--clr-primary-0);
+}
+
+.sidebar__toggle-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 0.5rem;
+  padding: var(--space-xxs);
+  background-color: transparent;
+}
+
+.sidebar__toggle-btn:hover {
+  background-color: var(--clr-surface-30);
+}
+
+.sidebar__toggle-icon {
+  width: 2rem;
+  fill: var(--clr-fg);
 }
