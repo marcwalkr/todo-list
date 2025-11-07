@@ -2,6 +2,41 @@
   "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
 );
 
+:root {
+  --clr-fg: #000000;
+
+  --clr-primary-0: #33a5e4;
+  --clr-primary-10: #3191c8;
+  --clr-primary-20: #2f7eac;
+  --clr-primary-30: #2c6b92;
+  --clr-primary-40: #285978;
+  --clr-primary-50: #23475f;
+
+  --clr-surface-0: #eef6fc;
+  --clr-surface-10: #e1e8ed;
+  --clr-surface-20: #d5dbdf;
+  --clr-surface-30: #c8cdd1;
+  --clr-surface-40: #bcc0c3;
+  --clr-surface-50: #afb3b5;
+}
+
+[data-theme="dark"] {
+  --clr-fg: #ffffff;
+
+  --clr-primary-10: #57afe7;
+  --clr-primary-20: #72b8ea;
+  --clr-primary-30: #89c2ed;
+  --clr-primary-40: #9fccf0;
+  --clr-primary-50: #b3d6f3;
+  
+  --clr-surface-0: #191f24;
+  --clr-surface-10: #2e3438;
+  --clr-surface-20: #454a4e;
+  --clr-surface-30: #5d6165;
+  --clr-surface-40: #76797d;
+  --clr-surface-50: #8f9395;
+}
+
 *,
 *::before,
 *::after {
