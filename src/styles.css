@@ -47,4 +47,11 @@
 
 body {
   font-family: "Inter", serif;
+  background-color: var(--clr-surface-0);
+}
+
+.sidebar {
+  height: 100vh;
+  width: clamp(220px, 20vw, 320px);
+  background-color: var(--clr-surface-10);
 }
