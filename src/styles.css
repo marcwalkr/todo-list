@@ -115,16 +115,25 @@ body {
 }
 
 .sidebar__nav-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
   width: 100%;
+  text-align: left;
   padding: var(--space-sm);
   border: none;
   border-radius: var(--border-radius);
   background-color: transparent;
   font-family: inherit;
   font-size: var(--font-size-md);
+}
+
+.sidebar__nav-item--icon {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.sidebar__projects {
+  font-size: var(--font-size-lg);
+  font-weight: bold;
 }
 
 .sidebar__toggle-btn:hover,
