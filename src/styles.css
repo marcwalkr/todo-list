@@ -72,6 +72,14 @@
   width: var(--icon-md);
 }
 
+.text-large {
+  font-size: var(--font-size-lg);
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
 .fill-fg {
   fill: var(--clr-fg);
 }
@@ -129,11 +137,6 @@ body {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-}
-
-.sidebar__projects {
-  font-size: var(--font-size-lg);
-  font-weight: bold;
 }
 
 .sidebar__toggle-btn:hover,
