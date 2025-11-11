@@ -36,7 +36,7 @@
   --space-sm: 0.5rem;
   --space-md: 1rem;
 
-  --border-radius: 0.5rem;
+  --border-radius-sm: 0.5rem;
 }
 
 [data-theme="dark"] {
@@ -88,6 +88,16 @@
   color: var(--clr-fg);
 }
 
+button {
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  background-color: transparent;
+  font-family: inherit;
+  transition: background-color 0.2s ease;
+}
+
 body {
   font-family: "Inter", serif;
   background-color: var(--clr-surface-0);
@@ -98,6 +108,10 @@ body {
   width: clamp(220px, 20vw, 320px);
   padding: var(--space-sm);
   background-color: var(--clr-surface-10);
+}
+
+.sidebar:hover .sidebar__toggle-projects-btn {
+  display: inline;
 }
 
 .sidebar__header {
@@ -113,33 +127,55 @@ body {
 }
 
 .sidebar__toggle-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: var(--space-xs) var(--space-xxs);
-  border: none;
-  border-radius: var(--border-radius);
-  background-color: transparent;
 }
 
-.sidebar__nav-item {
-  width: 100%;
-  text-align: left;
-  padding: var(--space-sm);
-  border: none;
-  border-radius: var(--border-radius);
-  background-color: transparent;
-  font-family: inherit;
-  font-size: var(--font-size-md);
+.sidebar__toggle-btn:hover {
+  background-color: var(--clr-surface-20);
 }
 
-.sidebar__nav-item--icon {
+.sidebar__item {
   display: flex;
   align-items: center;
+  width: 100%;
+  padding: var(--space-sm);
+  font-size: var(--font-size-md);
+  transition: background-color 0.2s ease;
+}
+
+.sidebar__item:hover {
+  background-color: var(--clr-surface-20);
+}
+
+.sidebar__item--icon {
   gap: var(--space-sm);
 }
 
-.sidebar__toggle-btn:hover,
-.sidebar__nav-item:hover {
+.sidebar__item--projects {
+  border-radius: var(--border-radius-sm);
+  padding: 0;
+}
+
+.sidebar__item--projects:hover .sidebar__add-project-btn {
+  display: inline;
+}
+
+.sidebar__projects-btn {
+  flex: 1;
+  text-align: left;
+  padding: var(--space-sm);
+}
+
+.sidebar__project-controls {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar__project-controls button {
+  display: none;
+  padding: var(--space-xxs);
+}
+
+.sidebar__project-controls button:hover {
   background-color: var(--clr-surface-30);
 }
