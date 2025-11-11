@@ -62,9 +62,29 @@
         </li>
       </ul>
 
-      <button class="sidebar__item">
-        <span class="text-large text-bold text-fg">Projects</span>
-      </button>
+      <div class="sidebar__item sidebar__item--projects">
+        <button class="sidebar__projects-btn">
+          <span class="text-large text-bold text-fg">Projects</span>
+        </button>
+
+        <div class="sidebar__project-controls">
+          <button class="sidebar__add-project-btn" aria-label="Add new project">
+            <svg class="icon-medium fill-fg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z">
+            </svg>
+          </button>
+  
+          <button 
+            class="sidebar__toggle-projects-btn" 
+            aria-label="Toggle list of projects" 
+            aria-expanded="true"
+            aria-controls="project-list">
+            <svg class="icon-medium fill-fg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z">
+            </svg>
+          </button>
+        </div>
+      </div>
     </nav>
   </aside>
 </body>
