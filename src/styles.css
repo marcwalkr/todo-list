@@ -93,7 +93,8 @@ button {
   border: none;
   border-radius: var(--border-radius-sm);
   background-color: transparent;
-  transition: background-color 0.2s ease;  
+  transition: background-color 0.2s ease;
+  cursor: pointer;
 }
 
 button svg {
