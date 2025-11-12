@@ -89,13 +89,15 @@
 }
 
 button {
-  display: inline-flex;
-  align-items: center;
+  font-family: inherit;
   border: none;
   border-radius: var(--border-radius-sm);
   background-color: transparent;
-  font-family: inherit;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;  
+}
+
+button svg {
+  display: block;
 }
 
 body {
@@ -134,29 +136,30 @@ body {
   background-color: var(--clr-surface-20);
 }
 
-.sidebar__item {
+.sidebar__row {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: var(--space-sm);
   font-size: var(--font-size-md);
-  transition: background-color 0.2s ease;
 }
 
-.sidebar__item:hover {
+.sidebar__row:hover {
   background-color: var(--clr-surface-20);
 }
 
-.sidebar__item--icon {
+.sidebar__row--icon {
   gap: var(--space-sm);
+  padding: var(--space-sm);
 }
 
-.sidebar__item--projects {
-  border-radius: var(--border-radius-sm);
+/* The projects row is not a <button> but should have the same radius and transition */
+.sidebar__row--projects {
   padding: 0;
+  border-radius: var(--border-radius-sm);
+  transition: background-color 0.2s ease;
 }
 
-.sidebar__item--projects:hover .sidebar__add-project-btn {
+.sidebar__row--projects:hover .sidebar__add-project-btn {
   display: inline;
 }
 
