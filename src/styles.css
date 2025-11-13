@@ -64,15 +64,19 @@
   box-sizing: border-box;
 }
 
-.icon-large {
+.icon-lg {
   width: var(--icon-lg);
 }
 
-.icon-medium {
+.icon-md {
   width: var(--icon-md);
 }
 
-.text-large {
+.text-md {
+  font-size: var(--font-size-md);
+}
+
+.text-lg {
   font-size: var(--font-size-lg);
 }
 
@@ -147,7 +151,6 @@ button svg {
   display: flex;
   align-items: center;
   width: 100%;
-  font-size: var(--font-size-md);
 }
 
 .sidebar__row:hover {
