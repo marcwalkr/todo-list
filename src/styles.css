@@ -88,6 +88,11 @@
   color: var(--clr-fg);
 }
 
+body {
+  font-family: "Inter", serif;
+  background-color: var(--clr-surface-0);
+}
+
 button {
   font-family: inherit;
   border: none;
@@ -99,11 +104,6 @@ button {
 
 button svg {
   display: block;
-}
-
-body {
-  font-family: "Inter", serif;
-  background-color: var(--clr-surface-0);
 }
 
 .sidebar {
