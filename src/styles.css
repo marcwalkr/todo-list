@@ -82,15 +82,18 @@
 
 .fill-fg {
   fill: var(--clr-fg);
+  transition: fill 0.4s ease;
 }
 
 .text-fg {
   color: var(--clr-fg);
+  transition: color 0.4s ease;
 }
 
 body {
   font-family: "Inter", serif;
   background-color: var(--clr-surface-0);
+  transition: background-color 0.4s ease;
 }
 
 button {
@@ -107,10 +110,13 @@ button svg {
 }
 
 .sidebar {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   width: clamp(220px, 20vw, 320px);
   padding: var(--space-sm);
   background-color: var(--clr-surface-10);
+  transition: background-color 0.4s ease;
 }
 
 .sidebar:hover .sidebar__toggle-projects-btn {
@@ -182,4 +188,14 @@ button svg {
 
 .sidebar__project-controls button:hover {
   background-color: var(--clr-surface-30);
+}
+
+.sidebar__theme-toggle-btn {
+  width: fit-content;
+  margin-top: auto;
+  padding: var(--space-xs);
+}
+
+.sidebar__theme-toggle-btn:hover {
+  background-color: var(--clr-surface-20);
 }
