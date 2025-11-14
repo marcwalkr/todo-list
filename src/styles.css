@@ -94,6 +94,10 @@
   transition: color 0.4s ease;
 }
 
+.visually-hidden {
+  display: none;
+}
+
 body {
   font-family: "Inter", serif;
   background-color: var(--clr-surface-0);
@@ -171,6 +175,11 @@ button svg {
 
 .sidebar__row--projects:hover .sidebar__add-project-btn {
   display: inline;
+}
+
+.sidebar__separator {
+  margin: var(--space-sm);
+  border-bottom: 1px solid var(--clr-surface-30);
 }
 
 .sidebar__projects-btn {
