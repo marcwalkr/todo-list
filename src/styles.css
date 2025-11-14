@@ -98,6 +98,10 @@
   display: none;
 }
 
+.rotate {
+  transform: rotate(-90deg);
+}
+
 body {
   font-family: "Inter", serif;
   background-color: var(--clr-surface-0);
@@ -200,6 +204,10 @@ button svg {
 
 .sidebar__project-controls button:hover {
   background-color: var(--clr-surface-30);
+}
+
+.sidebar__toggle-projects-btn svg {
+  transition: transform 0.2s ease;
 }
 
 .sidebar__theme-toggle-btn {
