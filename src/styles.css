@@ -70,6 +70,7 @@
 
 .icon-md {
   width: var(--icon-md);
+  flex-shrink: 0;
 }
 
 .text-md {
@@ -208,6 +209,17 @@ button svg {
 
 .sidebar__toggle-projects-btn svg {
   transition: transform 0.2s ease;
+}
+
+.sidebar__project-list {
+  overflow: hidden;
+  transition: height 0.2s ease;
+}
+
+.sidebar__project-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sidebar__theme-toggle-btn {
