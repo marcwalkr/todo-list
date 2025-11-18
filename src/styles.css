@@ -201,7 +201,7 @@ a {
 }
 
 .sidebar__toggle-projects-btn svg {
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, fill 0.4s ease;
 }
 
 .sidebar__project-list {
