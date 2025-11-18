@@ -185,6 +185,7 @@ button svg {
 .sidebar__separator {
   margin: var(--space-sm);
   border-bottom: 1px solid var(--clr-surface-30);
+  transition: border-color 0.4s ease;
 }
 
 .sidebar__projects-btn {
