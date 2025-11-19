@@ -9,17 +9,23 @@
   <aside class="sidebar">
     <header class="sidebar__header">
       <h1 class="sidebar__title">ToDo</h1>
-      <button class="sidebar__toggle-btn" aria-label="Expand or collapse sidebar">
+      <button 
+        class="sidebar__toggle-btn clickable-surface"
+        data-toggle-sidebar
+        aria-label="Expand or collapse sidebar" 
+        aria-expanded="true">
         <svg class="icon-lg fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="M6,2H18A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M6,8V16H10V8H6Z">
         </svg>
       </button>
     </header>
 
-    <section aria-labelledby="sidebar-actions-heading">
-      <h2 id="sidebar-actions-heading" class="visually-hidden">Actions</h2>
-
-      <button class="sidebar__row sidebar__row--icon" aria-haspopup="dialog" aria-controls="add-task-modal">
+    <div role="group" aria-label="Actions">
+      <button 
+        class="sidebar__row clickable-surface"
+        data-add-task 
+        aria-haspopup="dialog" 
+        aria-controls="add-task-modal">
         <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="
             M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12
@@ -28,7 +34,7 @@
         <span class="text-md text-bold text-fg">Add Task</span>
       </button>
 
-      <button class="sidebar__row sidebar__row--icon" aria-haspopup="dialog" aria-controls="search-modal">
+      <button class="sidebar__row clickable-surface" data-search aria-haspopup="dialog" aria-controls="search-modal">
         <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="
             M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5
@@ -37,25 +43,25 @@
         </svg>
         <span class="text-md text-bold text-fg">Search</span>
       </button>
-    </section>
+    </div>
 
     <div class="sidebar__separator"></div>
 
-    <nav aria-label="Sidebar navigation">
+    <nav aria-label="Task navigation">
       <ul>
         <li>
-          <button class="sidebar__row sidebar__row--icon">
+          <a class="sidebar__row clickable-surface" data-nav="today" href="#">
             <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="
                 M7,10H12V15H7M19,19H5V8H19M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19
                 A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z">
             </svg>
             <span class="text-md text-fg">Today</span>
-          </button>
+          </a>
         </li>
 
         <li>
-          <button class="sidebar__row sidebar__row--icon">
+          <a class="sidebar__row clickable-surface" data-nav="upcoming" href="#">
             <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="
                 M9,10V12H7V10H9M13,10V12H11V10H13M17,10V12H15V10H17M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5
@@ -63,45 +69,48 @@
                 H13M17,14V16H15V14H17Z">
             </svg>
             <span class="text-md text-fg">Upcoming</span>
-          </button>
+          </a>
         </li>
 
         <li>
-          <button class="sidebar__row sidebar__row--icon">
+          <a class="sidebar__row clickable-surface" data-nav="important" href="#">
             <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="
                 M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
             </svg>
             <span class="text-md text-fg">Important</span>
-          </button>
+          </a>
         </li>
 
         <li>
-          <button class="sidebar__row sidebar__row--icon">
+          <a class="sidebar__row clickable-surface" data-nav="completed" href="#">
             <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z">
             </svg>
             <span class="text-md text-fg">Completed</span>
-          </button>
+          </a>
         </li>
       </ul>
+    </nav>
 
-      <div class="sidebar__separator"></div>
+    <div class="sidebar__separator"></div>
 
-      <div class="sidebar__row sidebar__row--projects">
-        <button class="sidebar__projects-btn">
+    <nav aria-label="Project navigation">
+      <div class="sidebar__row sidebar__row--projects clickable-surface">
+        <a class="sidebar__projects-btn" data-nav="projects" href="#">
           <span class="text-lg text-bold text-fg">Projects</span>
-        </button>
+        </a>
 
         <div class="sidebar__project-controls">
-          <button class="sidebar__add-project-btn" aria-label="Add new project">
+          <button class="sidebar__add-project-btn clickable-surface" data-add-project aria-label="Add new project">
             <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z">
             </svg>
           </button>
   
           <button 
-            class="sidebar__toggle-projects-btn" 
+            class="sidebar__toggle-projects-btn clickable-surface" 
+            data-toggle-projects
             aria-label="Expand or collapse list of projects" 
             aria-expanded="true"
             aria-controls="project-list">
@@ -117,7 +126,7 @@
       </ul>
     </nav>
 
-    <button class="sidebar__theme-toggle-btn" aria-label="Switch to dark mode">
+    <button class="sidebar__theme-toggle-btn clickable-surface" data-toggle-theme aria-label="Switch to dark mode">
       <svg class="icon-lg fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="
           M7.5,2C5.71,3.15 4.5,5.18 4.5,7.5C4.5,9.82 5.71,11.85 7.53,13C4.46,13 2,10.54 2,7.5A5.5,5.5 0 0,1 7.5,2

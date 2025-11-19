@@ -95,12 +95,17 @@
   transition: color 0.4s ease;
 }
 
-.visually-hidden {
-  display: none;
-}
-
 .rotate {
   transform: rotate(-90deg);
+}
+
+.clickable-surface {
+  border-radius: var(--border-radius-sm);
+  transition: background-color 0.2s ease;
+}
+
+.clickable-surface:hover {
+  background-color: var(--clr-surface-20);
 }
 
 body {
@@ -110,16 +115,17 @@ body {
 }
 
 button {
-  font-family: inherit;
   border: none;
-  border-radius: var(--border-radius-sm);
   background-color: transparent;
-  transition: background-color 0.2s ease;
   cursor: pointer;
 }
 
 button svg {
   display: block;
+}
+
+a {
+  text-decoration: none;
 }
 
 .sidebar {
@@ -152,30 +158,16 @@ button svg {
   padding: var(--space-xs) var(--space-xxs);
 }
 
-.sidebar__toggle-btn:hover {
-  background-color: var(--clr-surface-20);
-}
-
 .sidebar__row {
   display: flex;
   align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
   width: 100%;
 }
 
-.sidebar__row:hover {
-  background-color: var(--clr-surface-20);
-}
-
-.sidebar__row--icon {
-  gap: var(--space-sm);
-  padding: var(--space-sm);
-}
-
-/* The projects row is not a <button> but should have the same radius and transition */
 .sidebar__row--projects {
   padding: 0;
-  border-radius: var(--border-radius-sm);
-  transition: background-color 0.2s ease;
 }
 
 .sidebar__row--projects:hover .sidebar__add-project-btn {
@@ -227,8 +219,4 @@ button svg {
   width: fit-content;
   margin-top: auto;
   padding: var(--space-xs);
-}
-
-.sidebar__theme-toggle-btn:hover {
-  background-color: var(--clr-surface-20);
 }

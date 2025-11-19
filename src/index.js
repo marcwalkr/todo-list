@@ -1,10 +1,10 @@
 import "./styles.css";
 
 const html = document.querySelector("html");
-const toggleProjectsBtn = document.querySelector(".sidebar__toggle-projects-btn");
-const toggleProjectsIcon = document.querySelector(".sidebar__toggle-projects-btn svg");
+const toggleProjectsBtn = document.querySelector("[data-toggle-projects]");
+const toggleProjectsIcon = document.querySelector("[data-toggle-projects] svg");
 const projectList = document.querySelector("#project-list");
-const themeToggleBtn = document.querySelector(".sidebar__theme-toggle-btn");
+const themeToggleBtn = document.querySelector("[data-toggle-theme]");
 
 toggleProjectsBtn.addEventListener("click", () => {
   const previousExpanded = toggleProjectsBtn.getAttribute("aria-expanded");
