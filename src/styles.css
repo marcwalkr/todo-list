@@ -180,7 +180,7 @@ a {
   transition: border-color 0.4s ease;
 }
 
-.sidebar__projects-btn {
+.sidebar__projects-link {
   flex: 1;
   text-align: left;
   padding: var(--space-sm);
