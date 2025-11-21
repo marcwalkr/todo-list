@@ -95,6 +95,10 @@
   transition: color 0.4s ease;
 }
 
+.hidden {
+  display: none;
+}
+
 .rotate {
   transform: rotate(-90deg);
 }
@@ -182,6 +186,7 @@ a {
 
 .sidebar__project-navigation {
   flex: 1;
+  overflow-x: hidden;
   overflow-y: auto;
   scrollbar-width: thin;
 }
@@ -219,6 +224,19 @@ a {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.sidebar__new-project-input {
+  font-size: inherit;
+  width: 100%;
+  padding: var(--space-xs) var(--space-sm);
+  outline: none;
+  border: 1px solid var(--clr-surface-30);
+  border-radius: var(--border-radius-sm);
+}
+
+.sidebar__new-project-input:focus {
+  border: 1px solid var(--clr-surface-50);
 }
 
 .sidebar__theme-toggle-btn {
