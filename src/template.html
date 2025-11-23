@@ -95,7 +95,7 @@
 
     <div class="sidebar__separator"></div>
 
-    <nav class="sidebar__project-navigation" aria-label="Project navigation">
+    <nav class="sidebar__project-navigation" data-project-navigation aria-label="Project navigation">
       <div class="sidebar__row sidebar__row--projects clickable-surface">
         <a class="sidebar__projects-link" data-nav="projects" href="#projects">
           <span class="text-lg text-bold text-fg">Projects</span>
@@ -125,9 +125,51 @@
         
       </ul>
 
-      <form class="hidden" id="new-project-form">
-        <input class="sidebar__new-project-input" id="new-project-input" type="text" placeholder="Project Name">
-      </form>
+      <div class="project-editor" data-new-project-editor>
+        <form class="project-editor__form hidden" id="new-project-form">
+          <button 
+            class="clickable-surface project-editor__edit-color-btn" 
+            data-edit-color 
+            type="button" 
+            aria-label="Edit project icon color">
+            <svg 
+              class="icon-sm"
+              data-selected-color
+              aria-hidden="true" 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox="6 6 12 12">
+              <circle cx="12" cy="12" r="6">
+            </svg>
+            <svg class="icon-sm fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="7 10 10 5">
+              <path d="M7,10L12,15L17,10H7Z">
+            </svg>
+          </button>
+          <input class="project-editor__name-input" id="project-name-input" type="text" placeholder="Project Name">
+        </form>
+
+        <div class="project-editor__color-popover hidden" data-color-popover tabindex="-1">
+          <button class="project-editor__color-swatch-btn" data-color="#b8255f" style="--color: #b8255f"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#cf473a" style="--color: #cf473a"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#c77100" style="--color: #c77100"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#b29104" style="--color: #b29104"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#949c31" style="--color: #949c31"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#65a33a" style="--color: #65a33a"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#369307" style="--color: #369307"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#42a393" style="--color: #42a393"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#148fad" style="--color: #148fad"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#319dc0" style="--color: #319dc0"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#6988a4" style="--color: #6988a4"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#2a67e2" style="--color: #2a67e2"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#692ec2" style="--color: #692ec2"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#ac30cc" style="--color: #ac30cc"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#a4698c" style="--color: #a4698c"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#e05095" style="--color: #e05095"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#b2635c" style="--color: #b2635c"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#808080" style="--color: #808080"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#999" style="--color: #999"></button>
+          <button class="project-editor__color-swatch-btn" data-color="#8f7a69" style="--color: #8f7a69"></button>
+        </div>
+      </div>
     </nav>
 
     <button class="sidebar__theme-toggle-btn clickable-surface" data-toggle-theme aria-label="Switch to dark mode">

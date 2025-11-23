@@ -28,6 +28,7 @@
   --font-size-3xl: 2.074rem;
   --font-size-4xl: 2.488rem;
 
+  --icon-sm: 0.75rem;
   --icon-md: 1.5rem;
   --icon-lg: 2rem;
 
@@ -66,10 +67,16 @@
 
 .icon-lg {
   width: var(--icon-lg);
+  flex-shrink: 0;
 }
 
 .icon-md {
   width: var(--icon-md);
+  flex-shrink: 0;
+}
+
+.icon-sm {
+  width: var(--icon-sm);
   flex-shrink: 0;
 }
 
@@ -96,7 +103,7 @@
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .rotate {
@@ -226,7 +233,22 @@ a {
   text-overflow: ellipsis;
 }
 
-.sidebar__new-project-input {
+.project-editor {
+  position: relative;
+}
+
+.project-editor__form {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.project-editor__edit-color-btn {
+  display: flex;
+  gap: var(--space-xs);
+  padding: var(--space-sm);
+}
+
+.project-editor__name-input {
   font-size: inherit;
   width: 100%;
   padding: var(--space-xs) var(--space-sm);
@@ -235,8 +257,34 @@ a {
   border-radius: var(--border-radius-sm);
 }
 
-.sidebar__new-project-input:focus {
+.project-editor__name-input:focus {
   border: 1px solid var(--clr-surface-50);
+}
+
+.project-editor__color-popover {
+  position: absolute;
+  top: 100%;
+  left: 10%;
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: var(--space-sm);
+  width: fit-content;
+  padding: var(--space-sm);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--clr-surface-40);
+}
+
+.project-editor__color-popover.above {
+  top: auto;
+  bottom: 100%;
+}
+
+.project-editor__color-swatch-btn {
+  width: var(--icon-md);
+  height: var(--icon-md);
+  border: 1px solid var(--clr-fg);
+  border-radius: 50%;
+  background: var(--color);
 }
 
 .sidebar__theme-toggle-btn {

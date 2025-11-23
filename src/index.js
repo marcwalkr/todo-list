@@ -1,15 +1,20 @@
 import "./styles.css";
 
 const html = document.querySelector("html");
+const projectNavigation = document.querySelector("[data-project-navigation]");
 const addProjectBtn = document.querySelector("[data-add-project]");
+const newProjectEditor = document.querySelector("[data-new-project-editor");
 const newProjectForm = document.querySelector("#new-project-form");
-const newProjectInput = document.querySelector("#new-project-input");
+const editColorBtn = document.querySelector("[data-edit-color]");
+const selectedColor = document.querySelector("[data-selected-color]");
+const colorPopover = document.querySelector("[data-color-popover]");
+const newProjectInput = document.querySelector("#project-name-input");
 const toggleProjectsBtn = document.querySelector("[data-toggle-projects]");
 const toggleProjectsIcon = document.querySelector("[data-toggle-projects] svg");
 const projectList = document.querySelector("#sidebar-project-list");
 const themeToggleBtn = document.querySelector("[data-toggle-theme]");
 
-const appendNewProject = (projectName, parent) => {
+const appendNewProject = (projectName, parent, color) => {
   const listElement = document.createElement("li");
 
   const link = document.createElement("a");
@@ -19,7 +24,7 @@ const appendNewProject = (projectName, parent) => {
 
   const svgNS = "http://www.w3.org/2000/svg";
   const dotIcon = document.createElementNS(svgNS, "svg");
-  dotIcon.classList.add("icon-md", "fill-fg");
+  dotIcon.classList.add("icon-md");
   dotIcon.setAttribute("aria-hidden", "true");
   dotIcon.setAttribute("viewBox", "0 0 24 24");
   link.appendChild(dotIcon);
@@ -28,6 +33,7 @@ const appendNewProject = (projectName, parent) => {
   circle.setAttribute("cx", "12");
   circle.setAttribute("cy", "12");
   circle.setAttribute("r", "6");
+  circle.style.fill = color;
   dotIcon.appendChild(circle);
 
   const nameLabel = document.createElement("span");
@@ -39,34 +45,11 @@ const appendNewProject = (projectName, parent) => {
 }
 
 addProjectBtn.addEventListener("click", () => {
+  const firstColor = colorPopover.querySelector("[data-color]").dataset.color;
+  selectedColor.style.fill = firstColor;
   newProjectInput.value = "";
   newProjectForm.classList.remove("hidden");
   newProjectInput.focus();
-});
-
-newProjectForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const projectName = newProjectInput.value;
-  if (projectName !== "") {
-    appendNewProject(projectName, projectList);
-  }
-
-  // Set the height to show the new project
-  projectList.style.height = `${projectList.scrollHeight}px`;
-
-  // Expand the list if it was collapsed
-  const expanded = toggleProjectsBtn.getAttribute("aria-expanded");
-  if (expanded === "false") {
-    toggleProjectsIcon.classList.toggle("rotate");
-    toggleProjectsBtn.setAttribute("aria-expanded", "true");
-  }
-
-  newProjectForm.classList.add("hidden");
-});
-
-newProjectInput.addEventListener("focusout", () => {
-  newProjectForm.classList.add("hidden");
 });
 
 toggleProjectsBtn.addEventListener("click", () => {
@@ -85,6 +68,56 @@ toggleProjectsBtn.addEventListener("click", () => {
   }
 
   toggleProjectsBtn.setAttribute("aria-expanded", newExpanded);
+});
+
+editColorBtn.addEventListener("click", () => {
+  colorPopover.classList.toggle("hidden");
+
+  const projectNavBottom = projectNavigation.getBoundingClientRect().bottom;
+  const colorPopoverBottom = colorPopover.getBoundingClientRect().bottom;
+  if (colorPopoverBottom > projectNavBottom) {
+    colorPopover.classList.add("above");
+  } else {
+    colorPopover.classList.remove("above");
+  }
+});
+
+colorPopover.addEventListener("click", (event) => {
+  if (!event.target.hasAttribute("data-color")) return;
+
+  const color = event.target.dataset.color;
+  selectedColor.style.fill = color;
+  newProjectInput.focus();
+  colorPopover.classList.add("hidden");
+});
+
+newProjectForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const projectName = newProjectInput.value;
+  if (projectName === "") return;
+
+  const color = selectedColor.style.fill;
+  appendNewProject(projectName, projectList, color);
+
+  // Set the height to show the new project
+  projectList.style.height = `${projectList.scrollHeight}px`;
+
+  // Expand the list if it was collapsed
+  const expanded = toggleProjectsBtn.getAttribute("aria-expanded");
+  if (expanded === "false") {
+    toggleProjectsIcon.classList.toggle("rotate");
+    toggleProjectsBtn.setAttribute("aria-expanded", "true");
+  }
+
+  newProjectForm.classList.add("hidden");
+});
+
+newProjectEditor.addEventListener("focusout", (event) => {
+  if (newProjectEditor.contains(event.relatedTarget)) return;
+
+  newProjectForm.classList.add("hidden");
+  colorPopover.classList.add("hidden");
 });
 
 themeToggleBtn.addEventListener("click", () => {
