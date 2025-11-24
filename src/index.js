@@ -14,7 +14,7 @@ const toggleProjectsIcon = document.querySelector("[data-toggle-projects] svg");
 const projectList = document.querySelector("#sidebar-project-list");
 const themeToggleBtn = document.querySelector("[data-toggle-theme]");
 
-const appendNewProject = (projectName, parent, color) => {
+const appendNewProject = (projectName, color, parent) => {
   const listElement = document.createElement("li");
 
   const link = document.createElement("a");
@@ -98,7 +98,7 @@ newProjectForm.addEventListener("submit", (event) => {
   if (projectName === "") return;
 
   const color = selectedColor.style.fill;
-  appendNewProject(projectName, projectList, color);
+  appendNewProject(projectName, color, projectList);
 
   // Set the height to show the new project
   projectList.style.height = `${projectList.scrollHeight}px`;
