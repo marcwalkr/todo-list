@@ -110,13 +110,17 @@ editColorBtn.addEventListener("click", () => {
   });
 });
 
-
 colorPopover.addEventListener("click", (event) => {
   if (!event.target.hasAttribute("data-color")) return;
 
-  const color = event.target.dataset.color;
-  selectedColor.style.fill = color;
+  selectedColor.style.fill = event.target.dataset.color;
   newProjectInput.focus();
+});
+
+newProjectEditor.addEventListener("focusout", (event) => {
+  if (newProjectEditor.contains(event.relatedTarget)) return;
+
+  newProjectForm.classList.add("hidden");
   colorPopover.classList.add("hidden");
 });
 
@@ -140,10 +144,7 @@ newProjectForm.addEventListener("submit", (event) => {
   newProjectForm.classList.add("hidden");
 });
 
-newProjectEditor.addEventListener("focusout", (event) => {
-  if (newProjectEditor.contains(event.relatedTarget)) return;
-
-  newProjectForm.classList.add("hidden");
+newProjectInput.addEventListener("focus", () => {
   colorPopover.classList.add("hidden");
 });
 
