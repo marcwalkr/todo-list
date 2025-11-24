@@ -90,16 +90,26 @@ toggleProjectsBtn.addEventListener("click", () => {
 });
 
 editColorBtn.addEventListener("click", () => {
+  // Toggle visible
   colorPopover.classList.toggle("hidden");
 
-  const projectNavBottom = projectNavigation.getBoundingClientRect().bottom;
-  const colorPopoverBottom = colorPopover.getBoundingClientRect().bottom;
-  if (colorPopoverBottom > projectNavBottom) {
-    colorPopover.classList.add("above");
-  } else {
-    colorPopover.classList.remove("above");
-  }
+  // If hiding, stop here
+  if (colorPopover.classList.contains("hidden")) return;
+
+  // Reset position (force below)
+  colorPopover.classList.remove("above");
+
+  // Move the popover above if it overflows
+  requestAnimationFrame(() => {
+    const navBottom = projectNavigation.getBoundingClientRect().bottom;
+    const popoverBottom = colorPopover.getBoundingClientRect().bottom;
+
+    if (popoverBottom > navBottom) {
+      colorPopover.classList.add("above");
+    }
+  });
 });
+
 
 colorPopover.addEventListener("click", (event) => {
   if (!event.target.hasAttribute("data-color")) return;
