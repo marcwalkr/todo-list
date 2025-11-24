@@ -192,10 +192,10 @@ a {
 }
 
 .sidebar__project-navigation {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   flex: 1;
-  overflow-x: hidden;
-  overflow-y: auto;
-  scrollbar-width: thin;
 }
 
 .sidebar__projects-link {
@@ -222,8 +222,12 @@ a {
   transition: transform 0.2s ease, fill 0.4s ease;
 }
 
+.sidebar__project-list-scroll-wrapper {
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
 .sidebar__project-list {
-  overflow: hidden;
   transition: height 0.2s ease;
 }
 
