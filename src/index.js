@@ -2,6 +2,7 @@ import "./styles.css";
 
 const html = document.querySelector("html");
 const projectNavigation = document.querySelector("[data-project-navigation]");
+const projectListScrollWrapper = document.querySelector("[data-project-list-scroll-wrapper]");
 const addProjectBtn = document.querySelector("[data-add-project]");
 const newProjectEditor = document.querySelector("[data-new-project-editor");
 const newProjectForm = document.querySelector("#new-project-form");
@@ -13,6 +14,22 @@ const toggleProjectsBtn = document.querySelector("[data-toggle-projects]");
 const toggleProjectsIcon = document.querySelector("[data-toggle-projects] svg");
 const projectList = document.querySelector("#sidebar-project-list");
 const themeToggleBtn = document.querySelector("[data-toggle-theme]");
+
+const animateListHeight = (callback) => {
+  // Disable scroll during animation
+  projectListScrollWrapper.classList.add("disable-scroll");
+
+  callback();
+
+  // Re-enable scroll after animation ends
+  projectList.addEventListener(
+    "transitionend", 
+    () => {
+      projectListScrollWrapper.classList.remove("disable-scroll");
+    }, 
+    { once: true }
+  );
+}
 
 const appendNewProject = (projectName, color, parent) => {
   const listElement = document.createElement("li");
@@ -53,21 +70,23 @@ addProjectBtn.addEventListener("click", () => {
 });
 
 toggleProjectsBtn.addEventListener("click", () => {
-  const previousExpanded = toggleProjectsBtn.getAttribute("aria-expanded");
-  const newExpanded = previousExpanded === "true" ? "false" : "true";
+  animateListHeight(() => {
+    const previousExpanded = toggleProjectsBtn.getAttribute("aria-expanded");
+    const newExpanded = previousExpanded === "true" ? "false" : "true";
 
-  toggleProjectsIcon.classList.toggle("rotate");
+    toggleProjectsIcon.classList.toggle("rotate");
 
-  projectList.style.height = `${projectList.scrollHeight}px`;
+    projectList.style.height = `${projectList.scrollHeight}px`;
 
-  // Force reflow to ensure the collapse animation works the first time
-  projectList.scrollHeight;
+    // Force reflow to ensure the collapse animation works the first time
+    projectList.scrollHeight;
 
-  if (newExpanded === "false") {
-    projectList.style.height = 0;
-  }
+    if (newExpanded === "false") {
+      projectList.style.height = 0;
+    }
 
-  toggleProjectsBtn.setAttribute("aria-expanded", newExpanded);
+    toggleProjectsBtn.setAttribute("aria-expanded", newExpanded);
+  });
 });
 
 editColorBtn.addEventListener("click", () => {
@@ -95,17 +114,15 @@ newProjectForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const projectName = newProjectInput.value;
-  if (projectName === "") return;
+  if (!projectName) return;
 
-  const color = selectedColor.style.fill;
-  appendNewProject(projectName, color, projectList);
+  animateListHeight(() => {
+    appendNewProject(projectName, selectedColor.style.fill, projectList);
+    projectList.style.height = `${projectList.scrollHeight}px`;
+  });
 
-  // Set the height to show the new project
-  projectList.style.height = `${projectList.scrollHeight}px`;
-
-  // Expand the list if it was collapsed
-  const expanded = toggleProjectsBtn.getAttribute("aria-expanded");
-  if (expanded === "false") {
+  // Ensure expanded state
+  if (toggleProjectsBtn.getAttribute("aria-expanded") === "false") {
     toggleProjectsIcon.classList.toggle("rotate");
     toggleProjectsBtn.setAttribute("aria-expanded", "true");
   }

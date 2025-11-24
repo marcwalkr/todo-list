@@ -227,6 +227,10 @@ a {
   scrollbar-width: thin;
 }
 
+.sidebar__project-list-scroll-wrapper.disable-scroll {
+  overflow: hidden !important;
+}
+
 .sidebar__project-list {
   transition: height 0.2s ease;
 }
