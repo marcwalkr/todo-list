@@ -279,7 +279,7 @@ a {
   width: fit-content;
   padding: var(--space-sm);
   border-radius: var(--border-radius-sm);
-  background-color: var(--clr-surface-40);
+  background-color: var(--clr-surface-30);
 }
 
 .project-editor__color-popover.above {
@@ -290,7 +290,6 @@ a {
 .project-editor__color-swatch-btn {
   width: var(--icon-md);
   height: var(--icon-md);
-  border: 1px solid var(--clr-fg);
   border-radius: 50%;
   background: var(--color);
 }
