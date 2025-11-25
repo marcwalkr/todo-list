@@ -9,7 +9,7 @@ const newProjectForm = document.querySelector("#new-project-form");
 const editColorBtn = document.querySelector("[data-edit-color]");
 const selectedColor = document.querySelector("[data-selected-color]");
 const colorPopover = document.querySelector("[data-color-popover]");
-const newProjectInput = document.querySelector("#project-name-input");
+const projectNameInput = document.querySelector("#project-name-input");
 const toggleProjectsBtn = document.querySelector("[data-toggle-projects]");
 const toggleProjectsIcon = document.querySelector("[data-toggle-projects] svg");
 const projectList = document.querySelector("#sidebar-project-list");
@@ -64,9 +64,9 @@ const appendNewProject = (projectName, color, parent) => {
 addProjectBtn.addEventListener("click", () => {
   const firstColor = colorPopover.querySelector("[data-color]").dataset.color;
   selectedColor.style.fill = firstColor;
-  newProjectInput.value = "";
+  projectNameInput.value = "";
   newProjectForm.classList.remove("hidden");
-  newProjectInput.focus();
+  projectNameInput.focus();
 });
 
 toggleProjectsBtn.addEventListener("click", () => {
@@ -114,7 +114,7 @@ colorPopover.addEventListener("click", (event) => {
   if (!event.target.hasAttribute("data-color")) return;
 
   selectedColor.style.fill = event.target.dataset.color;
-  newProjectInput.focus();
+  projectNameInput.focus();
 });
 
 newProjectEditor.addEventListener("focusout", (event) => {
@@ -127,7 +127,7 @@ newProjectEditor.addEventListener("focusout", (event) => {
 newProjectForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const projectName = newProjectInput.value;
+  const projectName = projectNameInput.value;
   if (!projectName) return;
 
   animateListHeight(() => {
@@ -144,7 +144,7 @@ newProjectForm.addEventListener("submit", (event) => {
   newProjectForm.classList.add("hidden");
 });
 
-newProjectInput.addEventListener("focus", () => {
+projectNameInput.addEventListener("focus", () => {
   colorPopover.classList.add("hidden");
 });
 
