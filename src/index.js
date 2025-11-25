@@ -2,17 +2,17 @@ import "./styles.css";
 
 const html = document.querySelector("html");
 const projectNavigation = document.querySelector("[data-project-navigation]");
-const projectListScrollWrapper = document.querySelector("[data-project-list-scroll-wrapper]");
 const addProjectBtn = document.querySelector("[data-add-project]");
+const toggleProjectsBtn = document.querySelector("[data-toggle-projects]");
+const toggleProjectsIcon = document.querySelector("[data-toggle-projects] svg");
+const projectListScrollWrapper = document.querySelector("[data-project-list-scroll-wrapper]");
+const projectList = document.querySelector("#sidebar-project-list");
 const newProjectEditor = document.querySelector("[data-new-project-editor");
 const newProjectForm = document.querySelector("#new-project-form");
 const editColorBtn = document.querySelector("[data-edit-color]");
 const selectedColor = document.querySelector("[data-selected-color]");
-const colorPopover = document.querySelector("[data-color-popover]");
 const projectNameInput = document.querySelector("#project-name-input");
-const toggleProjectsBtn = document.querySelector("[data-toggle-projects]");
-const toggleProjectsIcon = document.querySelector("[data-toggle-projects] svg");
-const projectList = document.querySelector("#sidebar-project-list");
+const colorPopover = document.querySelector("[data-color-popover]");
 const themeToggleBtn = document.querySelector("[data-toggle-theme]");
 
 const animateListHeight = (callback) => {
@@ -89,34 +89,6 @@ toggleProjectsBtn.addEventListener("click", () => {
   });
 });
 
-editColorBtn.addEventListener("click", () => {
-  // Toggle visible
-  colorPopover.classList.toggle("hidden");
-
-  // If hiding, stop here
-  if (colorPopover.classList.contains("hidden")) return;
-
-  // Reset position (force below)
-  colorPopover.classList.remove("above");
-
-  // Move the popover above if it overflows
-  requestAnimationFrame(() => {
-    const navBottom = projectNavigation.getBoundingClientRect().bottom;
-    const popoverBottom = colorPopover.getBoundingClientRect().bottom;
-
-    if (popoverBottom > navBottom) {
-      colorPopover.classList.add("above");
-    }
-  });
-});
-
-colorPopover.addEventListener("click", (event) => {
-  if (!event.target.hasAttribute("data-color")) return;
-
-  selectedColor.style.fill = event.target.dataset.color;
-  projectNameInput.focus();
-});
-
 newProjectEditor.addEventListener("focusout", (event) => {
   if (newProjectEditor.contains(event.relatedTarget)) return;
 
@@ -144,8 +116,36 @@ newProjectForm.addEventListener("submit", (event) => {
   newProjectForm.classList.add("hidden");
 });
 
+editColorBtn.addEventListener("click", () => {
+  // Toggle visible
+  colorPopover.classList.toggle("hidden");
+
+  // If hiding, stop here
+  if (colorPopover.classList.contains("hidden")) return;
+
+  // Reset position (force below)
+  colorPopover.classList.remove("above");
+
+  // Move the popover above if it overflows
+  requestAnimationFrame(() => {
+    const navBottom = projectNavigation.getBoundingClientRect().bottom;
+    const popoverBottom = colorPopover.getBoundingClientRect().bottom;
+
+    if (popoverBottom > navBottom) {
+      colorPopover.classList.add("above");
+    }
+  });
+});
+
 projectNameInput.addEventListener("focus", () => {
   colorPopover.classList.add("hidden");
+});
+
+colorPopover.addEventListener("click", (event) => {
+  if (!event.target.hasAttribute("data-color")) return;
+
+  selectedColor.style.fill = event.target.dataset.color;
+  projectNameInput.focus();
 });
 
 themeToggleBtn.addEventListener("click", () => {
