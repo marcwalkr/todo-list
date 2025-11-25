@@ -65,8 +65,8 @@
   box-sizing: border-box;
 }
 
-.icon-lg {
-  width: var(--icon-lg);
+.icon-sm {
+  width: var(--icon-sm);
   flex-shrink: 0;
 }
 
@@ -75,8 +75,8 @@
   flex-shrink: 0;
 }
 
-.icon-sm {
-  width: var(--icon-sm);
+.icon-lg {
+  width: var(--icon-lg);
   flex-shrink: 0;
 }
 
@@ -92,14 +92,14 @@
   font-weight: bold;
 }
 
-.fill-fg {
-  fill: var(--clr-fg);
-  transition: fill 0.4s ease;
-}
-
 .text-fg {
   color: var(--clr-fg);
   transition: color 0.4s ease;
+}
+
+.fill-fg {
+  fill: var(--clr-fg);
+  transition: fill 0.4s ease;
 }
 
 .hidden {
