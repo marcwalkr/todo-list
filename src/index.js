@@ -15,20 +15,8 @@ const projectNameInput = document.querySelector("#project-name-input");
 const colorPopover = document.querySelector("[data-color-popover]");
 const themeToggleBtn = document.querySelector("[data-toggle-theme]");
 
-const animateListHeight = (callback) => {
-  // Disable scroll during animation
-  projectListScrollWrapper.classList.add("disable-scroll");
-
-  callback();
-
-  // Re-enable scroll after animation ends
-  projectList.addEventListener(
-    "transitionend", 
-    () => {
-      projectListScrollWrapper.classList.remove("disable-scroll");
-    }, 
-    { once: true }
-  );
+const scrollProjectList = () => {
+  projectListScrollWrapper.scrollTop = projectListScrollWrapper.scrollHeight;
 }
 
 const appendNewProject = (projectName, color, parent) => {
@@ -64,29 +52,28 @@ const appendNewProject = (projectName, color, parent) => {
 addProjectBtn.addEventListener("click", () => {
   const firstColor = colorPopover.querySelector("[data-color]").dataset.color;
   selectedColor.style.fill = firstColor;
+
   projectNameInput.value = "";
   newProjectForm.classList.remove("hidden");
+  scrollProjectList();
   projectNameInput.focus();
 });
 
 toggleProjectsBtn.addEventListener("click", () => {
-  animateListHeight(() => {
-    const previousExpanded = toggleProjectsBtn.getAttribute("aria-expanded");
-    const newExpanded = previousExpanded === "true" ? "false" : "true";
+  const previousExpanded = toggleProjectsBtn.getAttribute("aria-expanded");
+  const newExpanded = previousExpanded === "true" ? "false" : "true";
 
-    toggleProjectsIcon.classList.toggle("rotate");
+  toggleProjectsBtn.setAttribute("aria-expanded", newExpanded);
+  toggleProjectsIcon.classList.toggle("rotate");
 
-    projectList.style.height = `${projectList.scrollHeight}px`;
+  projectList.classList.add("animate-height");
+  projectList.style.height = newExpanded === "true" ? `${projectList.scrollHeight}px` : 0;
+});
 
-    // Force reflow to ensure the collapse animation works the first time
-    projectList.scrollHeight;
-
-    if (newExpanded === "false") {
-      projectList.style.height = 0;
-    }
-
-    toggleProjectsBtn.setAttribute("aria-expanded", newExpanded);
-  });
+projectList.addEventListener("transitionend", (event) => {
+  if (!event.target.classList.contains("sidebar__project-list")) return;
+  projectList.classList.remove("animate-height");
+  scrollProjectList();
 });
 
 newProjectEditor.addEventListener("focusout", (event) => {
@@ -102,15 +89,13 @@ newProjectForm.addEventListener("submit", (event) => {
   const projectName = projectNameInput.value;
   if (!projectName) return;
 
-  animateListHeight(() => {
-    appendNewProject(projectName, selectedColor.style.fill, projectList);
-    projectList.style.height = `${projectList.scrollHeight}px`;
-  });
+  appendNewProject(projectName, selectedColor.style.fill, projectList);
 
-  // Ensure expanded state
   if (toggleProjectsBtn.getAttribute("aria-expanded") === "false") {
-    toggleProjectsIcon.classList.toggle("rotate");
-    toggleProjectsBtn.setAttribute("aria-expanded", "true");
+    toggleProjectsBtn.click();
+  } else {
+    projectList.style.height = `${projectList.scrollHeight}px`;
+    scrollProjectList();
   }
 
   newProjectForm.classList.add("hidden");
