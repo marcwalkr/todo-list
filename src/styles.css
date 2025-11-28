@@ -106,10 +106,6 @@
   display: none !important;
 }
 
-.rotate {
-  transform: rotate(-90deg);
-}
-
 .clickable-surface {
   border-radius: var(--border-radius-sm);
   transition: background-color 0.2s ease;
@@ -220,6 +216,10 @@ a {
 
 .sidebar__toggle-projects-btn svg {
   transition: transform 0.2s ease, fill 0.4s ease;
+}
+
+.sidebar__toggle-projects-btn svg.rotate {
+  transform: rotate(-90deg);
 }
 
 .sidebar__project-list-wrapper {
