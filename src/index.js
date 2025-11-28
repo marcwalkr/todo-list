@@ -5,7 +5,7 @@ const projectNavigation = document.querySelector("[data-project-navigation]");
 const addProjectBtn = document.querySelector("[data-add-project]");
 const toggleProjectsBtn = document.querySelector("[data-toggle-projects]");
 const toggleProjectsIcon = document.querySelector("[data-toggle-projects] svg");
-const projectListScrollWrapper = document.querySelector("[data-project-list-scroll-wrapper]");
+const projectListWrapper = document.querySelector("[data-project-list-wrapper]");
 const projectList = document.querySelector("#sidebar-project-list");
 const newProjectEditor = document.querySelector("[data-new-project-editor");
 const newProjectForm = document.querySelector("#new-project-form");
@@ -16,7 +16,7 @@ const colorPopover = document.querySelector("[data-color-popover]");
 const themeToggleBtn = document.querySelector("[data-toggle-theme]");
 
 const scrollProjectList = () => {
-  projectListScrollWrapper.scrollTop = projectListScrollWrapper.scrollHeight;
+  projectList.scrollTop = projectList.scrollHeight;
 }
 
 const appendNewProject = (projectName, color, parent) => {
@@ -66,14 +66,13 @@ toggleProjectsBtn.addEventListener("click", () => {
   toggleProjectsBtn.setAttribute("aria-expanded", newExpanded);
   toggleProjectsIcon.classList.toggle("rotate");
 
-  projectList.classList.add("animate-height");
-  projectList.style.height = newExpanded === "true" ? `${projectList.scrollHeight}px` : 0;
+  projectListWrapper.classList.add("animate-height");
+  projectListWrapper.style.height = newExpanded === "true" ? `${projectList.scrollHeight}px` : 0;
 });
 
-projectList.addEventListener("transitionend", (event) => {
-  if (!event.target.classList.contains("sidebar__project-list")) return;
-  projectList.classList.remove("animate-height");
-  scrollProjectList();
+projectListWrapper.addEventListener("transitionend", (event) => {
+  if (event.target !== projectListWrapper) return;
+  projectListWrapper.classList.remove("animate-height");
 });
 
 newProjectEditor.addEventListener("focusout", (event) => {
@@ -90,12 +89,13 @@ newProjectForm.addEventListener("submit", (event) => {
   if (!projectName) return;
 
   appendNewProject(projectName, selectedColor.style.fill, projectList);
+  scrollProjectList();
 
-  if (toggleProjectsBtn.getAttribute("aria-expanded") === "false") {
+  const isCollapsed = toggleProjectsBtn.getAttribute("aria-expanded") === "false";
+  if (isCollapsed) {
     toggleProjectsBtn.click();
   } else {
-    projectList.style.height = `${projectList.scrollHeight}px`;
-    scrollProjectList();
+    projectListWrapper.style.height = `${projectList.scrollHeight}px`;
   }
 
   newProjectForm.classList.add("hidden");
