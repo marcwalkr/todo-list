@@ -36,6 +36,7 @@ const appendNewProject = (name, color, parent) => {
   // Dot icon
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.classList.add("icon-md");
+  svg.setAttribute("aria-hidden", "true");
   svg.setAttribute("viewBox", "0 0 24 24");
 
   const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
