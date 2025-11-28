@@ -60,7 +60,7 @@ const appendNewProject = (name, color, parent) => {
 // Animate expand/collapse
 const setProjectListExpanded = (expanded) => {
   toggleProjectsBtn.setAttribute("aria-expanded", expanded.toString());
-  toggleProjectsIcon.classList.toggle("rotate", expanded);
+  toggleProjectsIcon.classList.toggle("rotate", !expanded);
 
   projectListWrapper.classList.add("animate-height");
   projectList.classList.add("disable-scroll");
