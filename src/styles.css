@@ -237,6 +237,10 @@ a {
   max-height: 100%;
 }
 
+.sidebar__project-list.disable-scroll {
+  overflow: hidden !important;
+}
+
 .sidebar__project-name {
   white-space: nowrap;
   overflow: hidden;

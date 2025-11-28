@@ -67,12 +67,14 @@ toggleProjectsBtn.addEventListener("click", () => {
   toggleProjectsIcon.classList.toggle("rotate");
 
   projectListWrapper.classList.add("animate-height");
+  projectList.classList.add("disable-scroll");
   projectListWrapper.style.height = newExpanded === "true" ? `${projectList.scrollHeight}px` : 0;
 });
 
 projectListWrapper.addEventListener("transitionend", (event) => {
   if (event.target !== projectListWrapper) return;
   projectListWrapper.classList.remove("animate-height");
+  projectList.classList.remove("disable-scroll");
 });
 
 newProjectEditor.addEventListener("focusout", (event) => {
