@@ -72,6 +72,7 @@ const setProjectListExpanded = (expanded) => {
 addProjectBtn.addEventListener("click", () => {
   const firstColor = colorPopover.querySelector("[data-color]").dataset.color;
   selectedColor.style.fill = firstColor;
+  selectedColor.dataset.color = firstColor;
 
   projectNameInput.value = "";
   newProjectForm.classList.remove("hidden");
@@ -109,7 +110,7 @@ newProjectForm.addEventListener("submit", (event) => {
   const name = projectNameInput.value.trim();
   if (!name) return;
 
-  appendNewProject(name, selectedColor.style.fill, projectList);
+  appendNewProject(name, selectedColor.dataset.color, projectList);
 
   // Always scroll instantly first
   scrollProjectList();
@@ -154,6 +155,7 @@ colorPopover.addEventListener("click", (event) => {
   if (!event.target.hasAttribute("data-color")) return;
 
   selectedColor.style.fill = event.target.dataset.color;
+  selectedColor.dataset.color = event.target.dataset.color;
   projectNameInput.focus();
 });
 
