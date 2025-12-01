@@ -267,8 +267,14 @@ a {
   width: 100%;
   padding: var(--space-xs) var(--space-sm);
   outline: none;
+  color: var(--clr-fg);
   border: 1px solid var(--clr-surface-30);
+  background-color: var(--clr-surface-10);
   border-radius: var(--border-radius-sm);
+}
+
+.project-editor__name-input::placeholder {
+  color: var(--clr-surface-50);
 }
 
 .project-editor__name-input:focus {
