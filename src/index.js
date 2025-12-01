@@ -1,4 +1,5 @@
 import "./styles.css";
+import ProjectStore from "./projectStore.js";
 
 const html = document.querySelector("html");
 
@@ -26,12 +27,12 @@ const scrollProjectList = () => {
 };
 
 // Create a new project <li>
-const appendNewProject = (name, color, parent) => {
+const appendProject = (project, parent) => {
   const li = document.createElement("li");
 
   const link = document.createElement("a");
   link.classList.add("sidebar__row", "clickable-surface");
-  link.href = "#";
+  link.href = `#project-${project.id}`;
 
   // Dot icon
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -43,13 +44,13 @@ const appendNewProject = (name, color, parent) => {
   circle.setAttribute("cx", "12");
   circle.setAttribute("cy", "12");
   circle.setAttribute("r", "6");
-  circle.style.fill = color;
+  circle.style.fill = project.color;
   svg.appendChild(circle);
 
   // Label
   const label = document.createElement("span");
   label.classList.add("text-md", "text-fg", "sidebar__project-name");
-  label.textContent = name;
+  label.textContent = project.name;
 
   link.appendChild(svg);
   link.appendChild(label);
@@ -110,7 +111,8 @@ newProjectForm.addEventListener("submit", (event) => {
   const name = projectNameInput.value.trim();
   if (!name) return;
 
-  appendNewProject(name, selectedColor.dataset.color, projectList);
+  const project = ProjectStore.create(name, selectedColor.dataset.color);
+  appendProject(project, projectList);
 
   // Always scroll instantly first
   scrollProjectList();
