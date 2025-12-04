@@ -116,6 +116,7 @@
 }
 
 body {
+  display: flex;
   font-family: "Inter", serif;
   background-color: var(--clr-surface-0);
   transition: background-color 0.4s ease;
@@ -310,4 +311,12 @@ a {
 .sidebar__theme-toggle-btn {
   width: fit-content;
   padding: var(--space-xs);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  background-color: var(--clr-surface-0);
+  transition: background-color 0.4s ease;
 }
