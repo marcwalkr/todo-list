@@ -10,11 +10,15 @@
     <header class="sidebar__header">
       <div class="sidebar__title">ToDo</div>
       <button 
-        class="sidebar__toggle-btn clickable-surface"
+        class="sidebar__toggle-btn transparent-button clickable-surface"
         data-toggle-sidebar
         aria-label="Expand or collapse sidebar" 
         aria-expanded="true">
-        <svg class="icon-lg fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <svg 
+          class="center-icon icon-lg fill-fg" 
+          aria-hidden="true" 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24">
           <path d="M6,2H18A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M6,8V16H10V8H6Z">
         </svg>
       </button>
@@ -22,7 +26,7 @@
 
     <div role="group" aria-label="Actions">
       <button 
-        class="sidebar__row clickable-surface"
+        class="sidebar__row transparent-button clickable-surface"
         data-add-task 
         aria-haspopup="dialog" 
         aria-controls="add-task-modal">
@@ -34,7 +38,10 @@
         <span class="text-md text-bold text-fg">Add Task</span>
       </button>
 
-      <button class="sidebar__row clickable-surface" data-search aria-haspopup="dialog" aria-controls="search-modal">
+      <button 
+        class="sidebar__row transparent-button clickable-surface" 
+        data-search aria-haspopup="dialog" 
+        aria-controls="search-modal">
         <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="
             M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5
@@ -45,7 +52,7 @@
       </button>
     </div>
 
-    <div class="sidebar__separator"></div>
+    <div class="separator"></div>
 
     <nav aria-label="Task navigation">
       <ul>
@@ -93,7 +100,7 @@
       </ul>
     </nav>
 
-    <div class="sidebar__separator"></div>
+    <div class="separator"></div>
 
     <nav class="sidebar__project-navigation" data-project-navigation aria-label="Project navigation">
       <div class="sidebar__row sidebar__row--projects clickable-surface">
@@ -102,19 +109,22 @@
         </a>
 
         <div class="sidebar__project-controls">
-          <button class="sidebar__add-project-btn clickable-surface" data-add-project aria-label="Add new project">
-            <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <button 
+            class="sidebar__add-project-btn clickable-surface transparent-button" 
+            data-add-project 
+            aria-label="Add new project">
+            <svg class="icon-md fill-fg center-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z">
             </svg>
           </button>
   
           <button 
-            class="sidebar__toggle-projects-btn clickable-surface" 
+            class="sidebar__toggle-projects-btn clickable-surface transparent-button" 
             data-toggle-projects
             aria-label="Expand or collapse list of projects" 
             aria-expanded="true"
             aria-controls="sidebar-project-list">
-            <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <svg class="icon-md fill-fg center-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z">
             </svg>
           </button>
@@ -128,7 +138,7 @@
       <div class="project-editor" data-new-project-editor>
         <form class="project-editor__form hidden" id="new-project-form" autocomplete="off">
           <button 
-            class="clickable-surface project-editor__edit-color-btn" 
+            class="project-editor__edit-color-btn clickable-surface transparent-button" 
             data-edit-color 
             type="button" 
             aria-label="Edit project icon color">
@@ -172,8 +182,14 @@
       </div>
     </nav>
 
-    <button class="sidebar__theme-toggle-btn clickable-surface" data-toggle-theme aria-label="Switch to dark mode">
-      <svg class="icon-lg fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <button 
+      class="sidebar__theme-toggle-btn transparent-button clickable-surface" 
+      data-toggle-theme aria-label="Switch to dark mode">
+      <svg 
+        class="center-icon icon-lg fill-fg" 
+        aria-hidden="true" 
+        xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 24 24">
         <path d="
           M7.5,2C5.71,3.15 4.5,5.18 4.5,7.5C4.5,9.82 5.71,11.85 7.53,13C4.46,13 2,10.54 2,7.5A5.5,5.5 0 0,1 7.5,2
           M19.07,3.5L20.5,4.93L4.93,20.5L3.5,19.07L19.07,3.5M12.89,5.93L11.41,5L9.97,6L10.39,4.3L9,3.24L10.75,3.12
@@ -191,5 +207,48 @@
       <h1 class="content__heading"></h1>
     </section>
   </main>
+
+  <dialog class="add-task-modal" id="add-task-modal" open>
+    <form class="add-task-modal__form" method="dialog" autocomplete="off">
+      <input class="add-task-modal__title-input" type="text" name="title" placeholder="Title" required>
+      <input class="add-task-modal__description-input" type="text" name="description" placeholder="Description">
+
+      <div class="add-task-modal__select-group">
+        <input class="add-task-modal__date-input" type="date">
+        <select class="add-task-modal__priority-select" name="priority">
+          <option value="" selected disabled hidden>Priority</option>
+          <option value="high">
+            <span aria-hidden="true">🔴</span>
+            <span>High</span>
+          </option>
+          <option value="medium">
+            <span aria-hidden="true">🟡</span>
+            <span>Medium</span>
+            </option>
+          <option value="low">
+            <span aria-hidden="true">🔵</span>
+            <span>Low</span>
+          </option>
+          <option value="default">
+            <span aria-hidden="true">⚪️</span>
+            <span>Default</span>
+          </option>
+        </select>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="add-task-modal__bottom">
+        <select class="add-task-modal__project-select" name="project">
+          <option value="" selected disabled hidden>Project</option>
+        </select>
+
+        <div class="add-task-modal__button-group">
+          <button class="add-task-modal__cancel-btn" value="cancel">Cancel</button>
+          <button class="add-task-modal__submit-btn" value="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+  </dialog>
 </body>
 </html>
