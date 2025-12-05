@@ -144,7 +144,7 @@ a {
   text-decoration: none;
 }
 
-.add-task-modal {
+.add-task-dialog {
   position: fixed;
   top: 20%;
   left: 50%;
@@ -158,13 +158,13 @@ a {
   transition: border-color 0.4s ease, background-color 0.4s ease;
 }
 
-.add-task-modal__form {
+.add-task-dialog__form {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
 }
 
-.add-task-modal__form input[type="text"] {
+.add-task-dialog__form input[type="text"] {
   border: none;
   outline: none;
   color: var(--clr-fg);
@@ -172,28 +172,28 @@ a {
   transition: color 0.4s ease, background-color 0.4s ease;
 }
 
-.add-task-modal__title-input {
+.add-task-dialog__title-input {
   font-size: var(--font-size-lg);
   font-weight: bold;
 }
 
-.add-task-modal__description-input {
+.add-task-dialog__description-input {
   font-size: var(--font-size-md);
 }
 
-.add-task-modal__select-group {
+.add-task-dialog__select-group {
   display: flex;
   gap: var(--space-sm);
   max-width: 70%;
 }
 
-.add-task-modal__select-group > * {
+.add-task-dialog__select-group > * {
   flex: 1;
 }
 
-.add-task-modal__date-input,
-.add-task-modal__priority-select,
-.add-task-modal__project-select {
+.add-task-dialog__date-input,
+.add-task-dialog__priority-select,
+.add-task-dialog__project-select {
   color: var(--clr-fg);
   border: 1px solid var(--clr-surface-50);
   background-color: var(--clr-surface-10);
@@ -202,22 +202,22 @@ a {
   transition: color 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
 }
 
-.add-task-modal__bottom {
+.add-task-dialog__bottom {
   display: flex;
   justify-content: space-between;
   gap: var(--space-md);
 }
 
-.add-task-modal__project-select {
+.add-task-dialog__project-select {
   flex: 1;
 }
 
-.add-task-modal__button-group {
+.add-task-dialog__button-group {
   display: flex;
   gap: var(--space-sm);
 }
 
-.add-task-modal__button-group button {
+.add-task-dialog__button-group button {
   font-family: inherit;
   font-size: var(--font-size-md);
   cursor: pointer;
@@ -226,13 +226,13 @@ a {
   transition: color 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
 }
 
-.add-task-modal__cancel-btn {
+.add-task-dialog__cancel-btn {
   color: var(--clr-fg);
   border: 1px solid var(--clr-surface-50);
   background-color: var(--clr-surface-0);
 }
 
-.add-task-modal__submit-btn {
+.add-task-dialog__submit-btn {
   color: black;
   border: 1px solid var(--clr-primary-20);
   background-color: var(--clr-primary-20);

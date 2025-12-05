@@ -29,7 +29,7 @@
         class="sidebar__row transparent-button clickable-surface"
         data-add-task 
         aria-haspopup="dialog" 
-        aria-controls="add-task-modal">
+        aria-controls="add-task-dialog">
         <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="
             M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12
@@ -288,14 +288,14 @@
     </section>
   </main>
 
-  <dialog class="add-task-modal" id="add-task-modal" open>
-    <form class="add-task-modal__form" method="dialog" autocomplete="off">
-      <input class="add-task-modal__title-input" type="text" name="title" placeholder="Title" required>
-      <input class="add-task-modal__description-input" type="text" name="description" placeholder="Description">
+  <dialog class="add-task-dialog" id="add-task-dialog">
+    <form class="add-task-dialog__form" method="dialog" autocomplete="off">
+      <input class="add-task-dialog__title-input" type="text" name="title" placeholder="Title" required>
+      <input class="add-task-dialog__description-input" type="text" name="description" placeholder="Description">
 
-      <div class="add-task-modal__select-group">
-        <input class="add-task-modal__date-input" type="date">
-        <select class="add-task-modal__priority-select" name="priority">
+      <div class="add-task-dialog__select-group">
+        <input class="add-task-dialog__date-input" type="date">
+        <select class="add-task-dialog__priority-select" name="priority">
           <option value="" selected disabled hidden>Priority</option>
           <option value="high">
             <span aria-hidden="true">🔴</span>
@@ -304,7 +304,7 @@
           <option value="medium">
             <span aria-hidden="true">🟡</span>
             <span>Medium</span>
-            </option>
+          </option>
           <option value="low">
             <span aria-hidden="true">🔵</span>
             <span>Low</span>
@@ -318,14 +318,14 @@
 
       <div class="separator"></div>
 
-      <div class="add-task-modal__bottom">
-        <select class="add-task-modal__project-select" name="project">
+      <div class="add-task-dialog__bottom">
+        <select class="add-task-dialog__project-select" name="project">
           <option value="" selected disabled hidden>Project</option>
         </select>
 
-        <div class="add-task-modal__button-group">
-          <button class="add-task-modal__cancel-btn" value="cancel">Cancel</button>
-          <button class="add-task-modal__submit-btn" value="submit">Submit</button>
+        <div class="add-task-dialog__button-group">
+          <button class="add-task-dialog__cancel-btn" value="cancel">Cancel</button>
+          <button class="add-task-dialog__submit-btn" value="submit">Submit</button>
         </div>
       </div>
     </form>
