@@ -3,6 +3,9 @@ import ProjectStore from "./projectStore.js";
 
 const html = document.querySelector("html");
 
+const addTaskBtn = document.querySelector("[data-add-task]");
+const addTaskDialog = document.querySelector("#add-task-dialog");
+
 const projectNav = document.querySelector("[data-project-navigation]");
 const addProjectBtn = document.querySelector("[data-add-project]");
 const toggleProjectsBtn = document.querySelector("[data-toggle-projects]");
@@ -68,6 +71,10 @@ const setProjectListExpanded = (expanded) => {
 
   projectListWrapper.style.height = expanded ? `${projectList.scrollHeight}px` : 0;
 };
+
+addTaskBtn.addEventListener("click", () => {
+  addTaskDialog.showModal();
+});
 
 // "Add Project" button
 addProjectBtn.addEventListener("click", () => {
