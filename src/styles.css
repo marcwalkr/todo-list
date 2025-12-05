@@ -149,7 +149,6 @@ a {
   top: 20%;
   left: 50%;
   translate: -50% -50%;
-  z-index: 10;
   width: 40rem;
   border: 1px solid var(--clr-surface-50);
   border-radius: var(--border-radius-sm);
