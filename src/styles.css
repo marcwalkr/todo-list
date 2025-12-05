@@ -97,22 +97,21 @@
   transition: border-color 0.4s ease;
 }
 
-.clickable-surface {
+.surface-interactive {
+  cursor: pointer;
+  border: none;
   border-radius: var(--border-radius-sm);
+  background-color: transparent;
   transition: background-color 0.2s ease;
 }
 
-.clickable-surface:hover { background-color: var(--clr-surface-20); }
+.surface-interactive:hover {
+  background-color: var(--clr-surface-20);
+}
 
 body {
   display: flex;
   font-family: "Inter", serif;
-}
-
-.transparent-button {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
 }
 
 .center-icon { display: block; }
@@ -372,8 +371,10 @@ a {
 .project-editor__color-swatch-btn {
   width: var(--icon-md);
   height: var(--icon-md);
+  border: none;
   border-radius: 50%;
   background: var(--color);
+  cursor: pointer;
 }
 
 .sidebar__theme-toggle-btn {
