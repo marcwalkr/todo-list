@@ -69,20 +69,11 @@
   box-sizing: border-box;
 }
 
-.icon-sm {
-  width: var(--icon-sm);
-  flex-shrink: 0;
-}
+.icon { flex-shrink: 0; }
 
-.icon-md {
-  width: var(--icon-md);
-  flex-shrink: 0;
-}
-
-.icon-lg {
-  width: var(--icon-lg);
-  flex-shrink: 0;
-}
+.icon--sm { width: var(--icon-sm); }
+.icon--md { width: var(--icon-md); }
+.icon--lg { width: var(--icon-lg); }
 
 .text-md {
   font-size: var(--font-size-md);
