@@ -39,7 +39,7 @@ const appendProject = (project, parent) => {
 
   // Dot icon
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.classList.add("icon-md");
+  svg.classList.add("icon", "icon--md");
   svg.setAttribute("aria-hidden", "true");
   svg.setAttribute("viewBox", "0 0 24 24");
 
