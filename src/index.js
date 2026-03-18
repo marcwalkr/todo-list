@@ -5,6 +5,7 @@ const html = document.querySelector("html");
 
 const addTaskBtn = document.querySelector("[data-add-task]");
 const addTaskDialog = document.querySelector("#add-task-dialog");
+const addTaskForm = document.querySelector("[data-add-task-form]");
 
 const projectNav = document.querySelector("[data-project-navigation]");
 const addProjectBtn = document.querySelector("[data-add-project]");
@@ -72,8 +73,14 @@ const setProjectListExpanded = (expanded) => {
   projectListWrapper.style.height = expanded ? `${projectList.scrollHeight}px` : 0;
 };
 
+// "Add Task" button
 addTaskBtn.addEventListener("click", () => {
   addTaskDialog.showModal();
+});
+
+// Clear add task form on close
+addTaskDialog.addEventListener("close", () => {
+  addTaskForm.reset();
 });
 
 // "Add Project" button
