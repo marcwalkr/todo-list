@@ -6,6 +6,7 @@ const html = document.querySelector("html");
 const addTaskBtn = document.querySelector("[data-add-task]");
 const addTaskDialog = document.querySelector("#add-task-dialog");
 const addTaskForm = document.querySelector("[data-add-task-form]");
+const projectSelect = document.querySelector("[data-project-select]");
 
 const projectNav = document.querySelector("[data-project-navigation]");
 const addProjectBtn = document.querySelector("[data-add-project]");
@@ -31,7 +32,7 @@ const scrollProjectList = () => {
 };
 
 // Create a new project <li>
-const appendProject = (project, parent) => {
+const appendProjectToSidebar = (project, parent) => {
   const li = document.createElement("li");
 
   const link = document.createElement("a");
@@ -61,6 +62,14 @@ const appendProject = (project, parent) => {
   li.appendChild(link);
   parent.appendChild(li);
 };
+
+// Add project to dropdown select
+const appendProjectToSelect = (project, parent) => {
+  const option = document.createElement("option");
+  option.dataset.projectId = project.id;
+  option.textContent = project.name;
+  parent.appendChild(option);
+}
 
 // Animate expand/collapse
 const setProjectListExpanded = (expanded) => {
@@ -126,7 +135,10 @@ newProjectForm.addEventListener("submit", (event) => {
   if (!name) return;
 
   const project = ProjectStore.create(name, selectedColor.dataset.color);
-  appendProject(project, projectList);
+  appendProjectToSidebar(project, projectList);
+
+  // Also add project to dropdown in Add Task form
+  appendProjectToSelect(project, projectSelect);
 
   // Always scroll instantly first
   scrollProjectList();
