@@ -31,7 +31,7 @@ const scrollProjectList = () => {
   projectList.scrollTop = projectList.scrollHeight;
 };
 
-// Create a new project <li>
+// Create a new project <li> for sidebar
 const appendProjectToSidebar = (project, parent) => {
   const li = document.createElement("li");
 
@@ -63,7 +63,7 @@ const appendProjectToSidebar = (project, parent) => {
   parent.appendChild(li);
 };
 
-// Add project to dropdown select
+// Create a new project <option> for Add Task modal select
 const appendProjectToSelect = (project, parent) => {
   const option = document.createElement("option");
   option.dataset.projectId = project.id;
