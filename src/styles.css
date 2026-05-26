@@ -185,6 +185,7 @@ a {
 
 .add-task-dialog__project-select {
   flex: 3;
+  min-width: 0;
 }
 
 .add-task-dialog__button-group {
