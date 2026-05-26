@@ -34,6 +34,7 @@ const scrollProjectList = () => {
 // Create a new project <li> for sidebar
 const appendProjectToSidebar = (project, parent) => {
   const li = document.createElement("li");
+  li.dataset.projectId = project.id;
 
   const link = document.createElement("a");
   link.classList.add("sidebar__row", "clickable-surface");
