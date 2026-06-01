@@ -130,7 +130,6 @@ a {
   border-radius: var(--border-radius-sm);
   background-color: var(--clr-surface-10);
   padding: var(--space-md);
-  transition: border-color 0.4s ease, background-color 0.4s ease;
 }
 
 .add-task-dialog__form {
@@ -144,7 +143,6 @@ a {
   outline: none;
   color: var(--clr-fg);
   background-color: var(--clr-surface-10);
-  transition: color 0.4s ease, background-color 0.4s ease;
 }
 
 .add-task-dialog__title-input {
@@ -169,12 +167,10 @@ a {
 .add-task-dialog__date-input,
 .add-task-dialog__priority-select,
 .add-task-dialog__project-select {
-  color: var(--clr-fg);
   border: 1px solid var(--clr-surface-50);
   background-color: var(--clr-surface-10);
   color-scheme: var(--input-scheme);
   padding: var(--space-sm);
-  transition: color 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
 }
 
 .add-task-dialog__bottom {
@@ -201,7 +197,6 @@ a {
   cursor: pointer;
   padding: var(--space-xs) var(--space-md);
   border-radius: var(--border-radius-sm);
-  transition: color 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
 }
 
 .add-task-dialog__cancel-btn {
