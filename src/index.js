@@ -8,6 +8,8 @@ const addTaskDialog = document.querySelector("#add-task-dialog");
 const addTaskForm = document.querySelector("[data-add-task-form]");
 const projectSelect = document.querySelector("[data-project-select]");
 
+const taskNav = document.querySelector("[data-task-navigation]");
+
 const projectNav = document.querySelector("[data-project-navigation]");
 const addProjectBtn = document.querySelector("[data-add-project]");
 const toggleProjectsBtn = document.querySelector("[data-toggle-projects]");
@@ -25,6 +27,8 @@ const colorPopover = document.querySelector("[data-color-popover]");
 const selectedColor = document.querySelector("[data-selected-color]");
 
 const themeToggleBtn = document.querySelector("[data-toggle-theme]");
+
+const contentHeading = document.querySelector("[data-content-heading]");
 
 // Scroll UL to bottom
 const scrollProjectList = () => {
@@ -83,6 +87,17 @@ const setProjectListExpanded = (expanded) => {
   projectListWrapper.style.height = expanded ? `${projectList.scrollHeight}px` : 0;
 };
 
+// Extract page name from sidebar click event, set main content heading
+const setContentHeading = (event) => {
+  const link = event.target.closest("a");
+  if (!link) return;
+
+  const pageName = link.dataset.nav;
+  if (!pageName) return;
+
+  contentHeading.textContent = pageName.charAt(0).toUpperCase() + pageName.slice(1);
+};
+
 // "Add Task" button
 addTaskBtn.addEventListener("click", () => {
   addTaskDialog.showModal();
@@ -91,6 +106,16 @@ addTaskBtn.addEventListener("click", () => {
 // Clear add task form on close
 addTaskDialog.addEventListener("close", () => {
   addTaskForm.reset();
+});
+
+// Task list navigation: Inbox, Today, Upcoming, Important, Completed
+taskNav.addEventListener("click", (event) => {
+  setContentHeading(event);
+});
+
+// Projects navigation: All projects, individual projects
+projectNav.addEventListener("click", (event) => {
+  setContentHeading(event);
 });
 
 // "Add Project" button

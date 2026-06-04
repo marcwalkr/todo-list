@@ -36,6 +36,7 @@
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
+  --space-lg: 3rem;
 
   --border-radius-sm: 0.5rem;
 
@@ -381,9 +382,20 @@ a {
 }
 
 main {
-  display: flex;
-  justify-content: center;
-  flex: 1;
+  width: 100%;
   background-color: var(--clr-surface-0);
   transition: background-color 0.4s ease;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.content__heading {
+  width: 100%;
+  max-width: 50rem;
 }
