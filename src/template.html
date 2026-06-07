@@ -11,7 +11,7 @@
       <div class="sidebar__title">ToDo</div>
       <button 
         class="sidebar__toggle-btn surface-interactive"
-        data-toggle-sidebar
+        id="toggle-sidebar-button"
         aria-label="Expand or collapse sidebar" 
         aria-expanded="true">
         <svg 
@@ -27,7 +27,7 @@
     <div role="group" aria-label="Actions">
       <button 
         class="sidebar__row surface-interactive"
-        data-add-task 
+        id="add-task-button"
         aria-haspopup="dialog" 
         aria-controls="add-task-dialog">
         <svg class="icon icon--md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -40,7 +40,8 @@
 
       <button 
         class="sidebar__row surface-interactive" 
-        data-search aria-haspopup="dialog" 
+        id="search-button" 
+        aria-haspopup="dialog" 
         aria-controls="search-modal">
         <svg class="icon icon--md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="
@@ -54,7 +55,7 @@
 
     <div class="separator"></div>
 
-    <nav aria-label="Task navigation" data-task-navigation>
+    <nav id="task-navigation" aria-label="Task navigation">
       <ul>
         <li>
           <a class="sidebar__row surface-interactive" data-nav="inbox" href="#inbox">
@@ -113,7 +114,7 @@
 
     <div class="separator"></div>
 
-    <nav class="sidebar__project-navigation" data-project-navigation aria-label="Project navigation">
+    <nav class="sidebar__project-navigation" id="project-navigation" aria-label="Project navigation">
       <div class="sidebar__row sidebar__row--projects surface-interactive">
         <a class="sidebar__projects-link" data-nav="projects" href="#projects">
           <span class="text-lg text-bold text-fg">Projects</span>
@@ -122,40 +123,49 @@
         <div class="sidebar__project-controls">
           <button 
             class="sidebar__add-project-btn surface-interactive" 
-            data-add-project 
+            id="add-project-button"
             aria-label="Add new project">
-            <svg class="icon icon--md fill-fg center-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <svg 
+              class="icon icon--md fill-fg center-icon" 
+              aria-hidden="true" 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 24 24">
               <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z">
             </svg>
           </button>
   
           <button 
             class="sidebar__toggle-projects-btn surface-interactive" 
-            data-toggle-projects
+            id="toggle-projects-button"
             aria-label="Expand or collapse list of projects" 
             aria-expanded="true"
             aria-controls="sidebar-project-list">
-            <svg class="icon icon--md fill-fg center-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <svg 
+              class="icon icon--md fill-fg center-icon"
+              id="toggle-projects-icon"
+              aria-hidden="true" 
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24">
               <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z">
             </svg>
           </button>
         </div>
       </div>
 
-      <div class="sidebar__project-list-wrapper" data-project-list-wrapper>
+      <div class="sidebar__project-list-wrapper" id="project-list-wrapper">
         <ul class="sidebar__project-list" id="sidebar-project-list"></ul>
       </div>
 
-      <div class="project-editor" data-new-project-editor>
+      <div class="project-editor" id="new-project-editor">
         <form class="project-editor__form hidden" id="new-project-form" autocomplete="off">
           <button 
             class="project-editor__edit-color-btn surface-interactive" 
-            data-edit-color 
+            id="edit-color-button"
             type="button" 
             aria-label="Edit project icon color">
             <svg 
               class="icon icon--xs"
-              data-selected-color
+              id="selected-color-icon"
               aria-hidden="true" 
               xmlns="http://www.w3.org/2000/svg" 
               viewBox="6 6 12 12">
@@ -168,7 +178,7 @@
           <input class="project-editor__name-input" id="project-name-input" type="text" placeholder="Project Name">
         </form>
 
-        <div class="project-editor__color-popover hidden" data-color-popover tabindex="-1">
+        <div class="project-editor__color-popover hidden" id="color-popover" tabindex="-1">
           <button 
             class="project-editor__color-swatch-btn" 
             data-color="#b8255f" 
@@ -274,8 +284,7 @@
     </nav>
 
     <button 
-      class="sidebar__theme-toggle-btn surface-interactive" 
-      data-toggle-theme aria-label="Switch to dark mode">
+      class="sidebar__theme-toggle-btn surface-interactive" id="theme-toggle-button" aria-label="Switch to dark mode">
       <svg 
         class="center-icon icon icon--lg fill-fg" 
         aria-hidden="true" 
@@ -295,13 +304,13 @@
 
   <main>
     <section class="content">
-      <h1 class="content__heading text-fg" data-content-heading></h1>
+      <h1 class="content__heading text-fg" id="main-content-heading"></h1>
       <ul class="content__task-list" id="task-list"></ul>
     </section>
   </main>
 
   <dialog class="add-task-dialog" id="add-task-dialog" closedby="any">
-    <form class="add-task-dialog__form" data-add-task-form method="dialog" autocomplete="off">
+    <form class="add-task-dialog__form" id="add-task-form" method="dialog" autocomplete="off">
       <input class="add-task-dialog__title-input" type="text" name="title" placeholder="Title" required>
       <input class="add-task-dialog__description-input" type="text" name="description" placeholder="Description">
 
@@ -331,7 +340,7 @@
       <div class="separator"></div>
 
       <div class="add-task-dialog__bottom">
-        <select class="add-task-dialog__project-select" data-project-select name="project">
+        <select class="add-task-dialog__project-select" id="project-select" name="project">
           <option value="" selected disabled hidden>Project</option>
         </select>
 
