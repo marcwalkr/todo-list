@@ -33,36 +33,18 @@ const scrollProjectList = () => {
   projectList.scrollTop = projectList.scrollHeight;
 };
 
-// Create a new project <li> for sidebar
+// Add a new project <li> in the sidebar
 const appendProjectToSidebar = (project, parent) => {
-  const li = document.createElement("li");
+  const template = document.getElementById("project-template");
+  const clone = template.content.cloneNode(true);
+
+  const li = clone.querySelector("li");
+  
   li.dataset.projectId = project.id;
+  clone.querySelector("a").href = `#project-${project.id}`;
+  clone.querySelector("circle").style.fill = project.color;
+  clone.querySelector(".sidebar__project-name").textContent = project.name;
 
-  const link = document.createElement("a");
-  link.classList.add("sidebar__row", "clickable-surface");
-  link.href = `#project-${project.id}`;
-
-  // Dot icon
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.classList.add("icon", "icon--md");
-  svg.setAttribute("aria-hidden", "true");
-  svg.setAttribute("viewBox", "0 0 24 24");
-
-  const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-  circle.setAttribute("cx", "12");
-  circle.setAttribute("cy", "12");
-  circle.setAttribute("r", "6");
-  circle.style.fill = project.color;
-  svg.appendChild(circle);
-
-  // Label
-  const label = document.createElement("span");
-  label.classList.add("text-md", "text-fg", "sidebar__project-name");
-  label.textContent = project.name;
-
-  link.appendChild(svg);
-  link.appendChild(label);
-  li.appendChild(link);
   parent.appendChild(li);
 };
 
