@@ -1,4 +1,3 @@
-import { setContentHeading } from "./content";
 import ProjectStore from "./projectStore.js";
 
 const html = document.querySelector("html");
@@ -39,9 +38,11 @@ const appendProjectToSidebar = (project, parent) => {
   const clone = template.content.cloneNode(true);
 
   const li = clone.querySelector("li");
+  const a = clone.querySelector("a");
   
   li.dataset.projectId = project.id;
-  clone.querySelector("a").href = `#project-${project.id}`;
+  a.href = `#project-${project.id}`;
+  a.dataset.page = project.name;
   clone.querySelector("circle").style.fill = project.color;
   clone.querySelector(".sidebar__project-name").textContent = project.name;
 
@@ -67,126 +68,129 @@ const setProjectListExpanded = (expanded) => {
   projectListWrapper.style.height = expanded ? `${projectList.scrollHeight}px` : 0;
 };
 
-// Open the dialog for adding a new task
-addTaskBtn.addEventListener("click", () => {
-  addTaskDialog.showModal();
-});
-
-// Clear the form when Add Task dialog closes
-addTaskDialog.addEventListener("close", () => {
-  addTaskForm.reset();
-});
-
-// Task lists: Inbox, Today, Upcoming, Important, Completed
-taskNav.addEventListener("click", (event) => {
-  setContentHeading(event);
-});
-
-// Project links: Projects (manage project list), individual projects
-projectNav.addEventListener("click", (event) => {
-  setContentHeading(event);
-});
-
-// Create a new project
-addProjectBtn.addEventListener("click", () => {
-  const firstColor = colorPopover.querySelector("[data-color]").dataset.color;
-  selectedColor.style.fill = firstColor;
-  selectedColor.dataset.color = firstColor;
-
-  projectNameInput.value = "";
-  newProjectForm.classList.remove("hidden");
-
-  scrollProjectList();
-  projectNameInput.focus();
-});
-
-// Expand/collapse toggle
-toggleProjectsBtn.addEventListener("click", () => {
-  const expanded = toggleProjectsBtn.getAttribute("aria-expanded") === "true";
-  setProjectListExpanded(!expanded);
-});
-
-// Height transition finished
-projectListWrapper.addEventListener("transitionend", (event) => {
-  if (event.target !== projectListWrapper) return;
-
-  projectListWrapper.classList.remove("animate-height");
-  projectList.classList.remove("disable-scroll");
-});
-
-// Hide new project UI when clicking outside
-newProjectEditor.addEventListener("focusout", (event) => {
-  if (newProjectEditor.contains(event.relatedTarget)) return;
-
-  newProjectForm.classList.add("hidden");
-  colorPopover.classList.add("hidden");
-});
-
-// Submit new project
-newProjectForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const name = projectNameInput.value.trim();
-  if (!name) return;
-
-  const project = ProjectStore.create(name, selectedColor.dataset.color);
-  appendProjectToSidebar(project, projectList);
-
-  // Also add project to dropdown in Add Task form
-  appendProjectToSelect(project, projectSelect);
-
-  // Always scroll instantly first
-  scrollProjectList();
-
-  const collapsed = toggleProjectsBtn.getAttribute("aria-expanded") === "false";
-  if (collapsed) {
-    toggleProjectsBtn.click(); // expands with animation
-  } else {
-    // Already expanded -> resize wrapper immediately
-    projectListWrapper.style.height = `${projectList.scrollHeight}px`;
-  }
-
-  newProjectForm.classList.add("hidden");
-});
-
-// Color button opens popover
-editColorBtn.addEventListener("click", () => {
-  colorPopover.classList.toggle("hidden");
-
-  if (colorPopover.classList.contains("hidden")) return;
-
-  // Reset to below, then check if it should move above
-  colorPopover.classList.remove("above");
-
-  requestAnimationFrame(() => {
-    const navBottom = projectNav.getBoundingClientRect().bottom;
-    const popoverBottom = colorPopover.getBoundingClientRect().bottom;
-
-    if (popoverBottom > navBottom) {
-      colorPopover.classList.add("above");
-    }
+export function initSidebar({ onLinkClicked }) {
+  // Open the dialog for adding a new task
+  addTaskBtn.addEventListener("click", () => {
+    addTaskDialog.showModal();
   });
-});
 
-// Focus input hides color popover
-projectNameInput.addEventListener("focus", () => {
-  colorPopover.classList.add("hidden");
-});
+  // Clear the form when Add Task dialog closes
+  addTaskDialog.addEventListener("close", () => {
+    addTaskForm.reset();
+  });
 
-// Pick color from popover
-colorPopover.addEventListener("click", (event) => {
-  if (!event.target.hasAttribute("data-color")) return;
+  // Task lists: Inbox, Today, Upcoming, Important, Completed
+  taskNav.addEventListener("click", (event) => {
+    onLinkClicked(event);
+  });
 
-  selectedColor.style.fill = event.target.dataset.color;
-  selectedColor.dataset.color = event.target.dataset.color;
-  projectNameInput.focus();
-});
+  // Project links: Projects (manage project list), individual projects
+  projectNav.addEventListener("click", (event) => {
+    onLinkClicked(event);
+    console.log("here");
+  });
 
-// Toggle between light and dark mode
-themeToggleBtn.addEventListener("click", () => {
-  const current = html.dataset.theme;
-  const next = current === "dark" ? "light" : "dark";
+  // Create a new project
+  addProjectBtn.addEventListener("click", () => {
+    const firstColor = colorPopover.querySelector("[data-color]").dataset.color;
+    selectedColor.style.fill = firstColor;
+    selectedColor.dataset.color = firstColor;
 
-  html.dataset.theme = next;
-  themeToggleBtn.setAttribute("aria-label", `Switch to ${current} mode`);
-});
+    projectNameInput.value = "";
+    newProjectForm.classList.remove("hidden");
+
+    scrollProjectList();
+    projectNameInput.focus();
+  });
+
+  // Expand/collapse toggle
+  toggleProjectsBtn.addEventListener("click", () => {
+    const expanded = toggleProjectsBtn.getAttribute("aria-expanded") === "true";
+    setProjectListExpanded(!expanded);
+  });
+
+  // Height transition finished
+  projectListWrapper.addEventListener("transitionend", (event) => {
+    if (event.target !== projectListWrapper) return;
+
+    projectListWrapper.classList.remove("animate-height");
+    projectList.classList.remove("disable-scroll");
+  });
+
+  // Hide new project UI when clicking outside
+  newProjectEditor.addEventListener("focusout", (event) => {
+    if (newProjectEditor.contains(event.relatedTarget)) return;
+
+    newProjectForm.classList.add("hidden");
+    colorPopover.classList.add("hidden");
+  });
+
+  // Submit new project
+  newProjectForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const name = projectNameInput.value.trim();
+    if (!name) return;
+
+    const project = ProjectStore.create(name, selectedColor.dataset.color);
+    appendProjectToSidebar(project, projectList);
+
+    // Also add project to dropdown in Add Task form
+    appendProjectToSelect(project, projectSelect);
+
+    // Always scroll instantly first
+    scrollProjectList();
+
+    const collapsed = toggleProjectsBtn.getAttribute("aria-expanded") === "false";
+    if (collapsed) {
+      toggleProjectsBtn.click(); // expands with animation
+    } else {
+      // Already expanded -> resize wrapper immediately
+      projectListWrapper.style.height = `${projectList.scrollHeight}px`;
+    }
+
+    newProjectForm.classList.add("hidden");
+  });
+
+  // Color button opens popover
+  editColorBtn.addEventListener("click", () => {
+    colorPopover.classList.toggle("hidden");
+
+    if (colorPopover.classList.contains("hidden")) return;
+
+    // Reset to below, then check if it should move above
+    colorPopover.classList.remove("above");
+
+    requestAnimationFrame(() => {
+      const navBottom = projectNav.getBoundingClientRect().bottom;
+      const popoverBottom = colorPopover.getBoundingClientRect().bottom;
+
+      if (popoverBottom > navBottom) {
+        colorPopover.classList.add("above");
+      }
+    });
+  });
+
+  // Focus input hides color popover
+  projectNameInput.addEventListener("focus", () => {
+    colorPopover.classList.add("hidden");
+  });
+
+  // Pick color from popover
+  colorPopover.addEventListener("click", (event) => {
+    if (!event.target.hasAttribute("data-color")) return;
+
+    selectedColor.style.fill = event.target.dataset.color;
+    selectedColor.dataset.color = event.target.dataset.color;
+    projectNameInput.focus();
+  });
+
+  // Toggle between light and dark mode
+  themeToggleBtn.addEventListener("click", () => {
+    const current = html.dataset.theme;
+    const next = current === "dark" ? "light" : "dark";
+
+    html.dataset.theme = next;
+    themeToggleBtn.setAttribute("aria-label", `Switch to ${current} mode`);
+  });
+}

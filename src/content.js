@@ -5,8 +5,8 @@ export const setContentHeading = (event) => {
   const link = event.target.closest("a");
   if (!link) return;
 
-  const pageName = link.dataset.nav;
+  const pageName = link.dataset.page;
   if (!pageName) return;
 
-  contentHeading.textContent = pageName.charAt(0).toUpperCase() + pageName.slice(1);
+  contentHeading.textContent = pageName;
 };

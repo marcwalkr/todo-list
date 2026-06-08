@@ -1,2 +1,7 @@
 import "./styles.css";
-import "./sidebar.js";
+import { initSidebar } from "./sidebar.js";
+import { setContentHeading } from "./content.js";
+
+initSidebar({
+  onLinkClicked: (event) => setContentHeading(event)
+});
