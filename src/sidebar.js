@@ -38,11 +38,9 @@ const appendProjectToSidebar = (project, parent) => {
   const clone = template.content.cloneNode(true);
 
   const li = clone.querySelector("li");
-  const a = clone.querySelector("a");
   
   li.dataset.projectId = project.id;
-  a.href = `#project-${project.id}`;
-  a.dataset.page = project.name;
+  clone.querySelector("a").href = `#project-${project.id}`;
   clone.querySelector("circle").style.fill = project.color;
   clone.querySelector(".sidebar__project-name").textContent = project.name;
 
@@ -68,7 +66,7 @@ const setProjectListExpanded = (expanded) => {
   projectListWrapper.style.height = expanded ? `${projectList.scrollHeight}px` : 0;
 };
 
-export function initSidebar({ onLinkClicked }) {
+export function initSidebar() {
   // Open the dialog for adding a new task
   addTaskBtn.addEventListener("click", () => {
     addTaskDialog.showModal();
@@ -77,17 +75,6 @@ export function initSidebar({ onLinkClicked }) {
   // Clear the form when Add Task dialog closes
   addTaskDialog.addEventListener("close", () => {
     addTaskForm.reset();
-  });
-
-  // Task lists: Inbox, Today, Upcoming, Important, Completed
-  taskNav.addEventListener("click", (event) => {
-    onLinkClicked(event);
-  });
-
-  // Project links: Projects (manage project list), individual projects
-  projectNav.addEventListener("click", (event) => {
-    onLinkClicked(event);
-    console.log("here");
   });
 
   // Create a new project

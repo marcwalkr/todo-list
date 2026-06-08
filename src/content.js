@@ -1,12 +1,13 @@
+import ProjectStore from "./projectStore.js";
+
 const contentHeading = document.getElementById("main-content-heading");
 
-// Extract the page name from the sidebar click event, set the main content heading
-export const setContentHeading = (event) => {
-  const link = event.target.closest("a");
-  if (!link) return;
-
-  const pageName = link.dataset.page;
-  if (!pageName) return;
-
-  contentHeading.textContent = pageName;
+export const setContentHeading = (hash) => {
+  if (hash.includes("project-")) {
+    const projectId = hash.split("-")[1];
+    const project = ProjectStore.get(projectId);
+    contentHeading.textContent = project.name;
+  } else {
+    contentHeading.textContent = hash.charAt(0).toUpperCase() + hash.slice(1);
+  }
 };

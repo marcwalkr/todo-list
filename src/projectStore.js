@@ -17,7 +17,9 @@ const ProjectStore = (() => {
     return project;
   };
 
-  return { create };
+  const get = (id) => projects.find(project => project.id === id);
+
+  return { create, get };
 })();
 
 export default ProjectStore;
