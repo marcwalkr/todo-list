@@ -50,7 +50,7 @@ const appendProjectToSidebar = (project, parent) => {
 // Create a new project <option> for Add Task modal select
 const appendProjectToSelect = (project, parent) => {
   const option = document.createElement("option");
-  option.dataset.projectId = project.id;
+  option.value= project.id;
   option.textContent = project.name;
   parent.appendChild(option);
 }
