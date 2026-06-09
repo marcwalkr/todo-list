@@ -4,10 +4,6 @@ const html = document.querySelector("html");
 
 const addTaskBtn = document.getElementById("add-task-button");
 const addTaskDialog = document.getElementById("add-task-dialog");
-const addTaskForm = document.getElementById("add-task-form");
-const projectSelect = document.getElementById("project-select");
-
-const taskNav = document.getElementById("task-navigation");
 
 const projectNav = document.getElementById("project-navigation");
 const addProjectBtn = document.getElementById("add-project-button");
@@ -33,7 +29,7 @@ const scrollProjectList = () => {
 };
 
 // Add a new project <li> in the sidebar
-const appendProjectToSidebar = (project, parent) => {
+const appendProjectToSidebar = (project) => {
   const template = document.getElementById("project-template");
   const clone = template.content.cloneNode(true);
 
@@ -44,16 +40,26 @@ const appendProjectToSidebar = (project, parent) => {
   clone.querySelector("circle").style.fill = project.color;
   clone.querySelector(".sidebar__project-name").textContent = project.name;
 
-  parent.appendChild(li);
+  projectList.appendChild(li);
+
+  // Always scroll instantly first
+  scrollProjectList();
+
+  const collapsed = toggleProjectsBtn.getAttribute("aria-expanded") === "false";
+  if (collapsed) {
+    toggleProjectsBtn.click(); // expands with animation
+  } else {
+    // Already expanded -> resize wrapper immediately
+    projectListWrapper.style.height = `${projectList.scrollHeight}px`;
+  }
 };
 
-// Create a new project <option> for Add Task modal select
-const appendProjectToSelect = (project, parent) => {
-  const option = document.createElement("option");
-  option.value= project.id;
-  option.textContent = project.name;
-  parent.appendChild(option);
-}
+// Add all projects to sidebar list
+const initProjects = () => {
+  for (const project of ProjectStore.getAll()) {
+    appendProjectToSidebar(project);
+  }
+};
 
 // Animate expand/collapse
 const setProjectListExpanded = (expanded) => {
@@ -70,11 +76,6 @@ export const initSidebar = ({ onProjectCreate }) => {
   // Open the dialog for adding a new task
   addTaskBtn.addEventListener("click", () => {
     addTaskDialog.showModal();
-  });
-
-  // Clear the form when Add Task dialog closes
-  addTaskDialog.addEventListener("close", () => {
-    addTaskForm.reset();
   });
 
   // Create a new project
@@ -119,22 +120,8 @@ export const initSidebar = ({ onProjectCreate }) => {
     const name = projectNameInput.value.trim();
     if (!name) return;
 
-    const project = ProjectStore.create(name, selectedColor.dataset.color);
-    appendProjectToSidebar(project, projectList);
-
-    // Also add project to dropdown in Add Task form
-    appendProjectToSelect(project, projectSelect);
-
-    // Always scroll instantly first
-    scrollProjectList();
-
-    const collapsed = toggleProjectsBtn.getAttribute("aria-expanded") === "false";
-    if (collapsed) {
-      toggleProjectsBtn.click(); // expands with animation
-    } else {
-      // Already expanded -> resize wrapper immediately
-      projectListWrapper.style.height = `${projectList.scrollHeight}px`;
-    }
+    const project = onProjectCreate(name, selectedColor.dataset.color);
+    appendProjectToSidebar(project);
 
     newProjectForm.classList.add("hidden");
   });
@@ -171,6 +158,9 @@ export const initSidebar = ({ onProjectCreate }) => {
     selectedColor.dataset.color = event.target.dataset.color;
     projectNameInput.focus();
   });
+
+  // Add all projects to the sidebar after reload from storage
+  initProjects();
 
   // Toggle between light and dark mode
   themeToggleBtn.addEventListener("click", () => {
