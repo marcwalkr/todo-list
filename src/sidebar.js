@@ -66,7 +66,7 @@ const setProjectListExpanded = (expanded) => {
   projectListWrapper.style.height = expanded ? `${projectList.scrollHeight}px` : 0;
 };
 
-export function initSidebar() {
+export const initSidebar = ({ onProjectCreate }) => {
   // Open the dialog for adding a new task
   addTaskBtn.addEventListener("click", () => {
     addTaskDialog.showModal();
@@ -180,4 +180,4 @@ export function initSidebar() {
     html.dataset.theme = next;
     themeToggleBtn.setAttribute("aria-label", `Switch to ${current} mode`);
   });
-}
+};

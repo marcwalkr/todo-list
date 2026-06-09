@@ -3,7 +3,7 @@ const upperAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const numbers = "1234567890";
 const chars = Array.from(lowerAlpha + upperAlpha + numbers);
 
-export function createUniqueId(length, existingIds) {
+export const createUniqueId = (length, existingIds) => {
   const createId = () => {
     const idArr = [];
     for (let i = 0; i < length; i++) {
@@ -20,4 +20,4 @@ export function createUniqueId(length, existingIds) {
   } while (existingIds.has(id))
 
   return id;
-}
+};

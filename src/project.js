@@ -1,3 +1,3 @@
-export function createProject(id, name, color) {
+export const createProject = (id, name, color) => {
   return { id, name, color };
-}
+};
