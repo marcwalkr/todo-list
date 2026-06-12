@@ -4,6 +4,17 @@ import { initSidebar } from "./sidebar.js";
 import { initModals, appendProjectToSelect } from "./modal.js";
 import { setContentHeading } from "./content.js";
 
+const getHeadingFromHash = () => {
+  const hash = window.location.hash;
+  if (hash.includes("project-")) {
+    const projectId = hash.split("-")[1];
+    const project = ProjectStore.get(projectId);
+    return project.name;
+  } else {
+    return hash.charAt(1).toUpperCase() + hash.slice(2);
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   ProjectStore.load();
 
@@ -16,9 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   initModals();
-  setContentHeading(window.location.hash.slice(1));
+  setContentHeading(getHeadingFromHash());
 });
 
 window.addEventListener("hashchange", () => {
-  setContentHeading(window.location.hash.slice(1));
+  setContentHeading(getHeadingFromHash());
 });
