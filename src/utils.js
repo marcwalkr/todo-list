@@ -21,3 +21,40 @@ export const createUniqueId = (length, existingIds) => {
 
   return id;
 };
+
+export const formatRelativeDate = (dateStr) => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const date = new Date(dateStr + "T00:00:00");
+  date.setHours(0, 0, 0, 0);
+
+  const diffDays = Math.round((date - today) / (1000 * 60 * 60 * 24));
+
+  if (diffDays === 0) return "Today";
+  if (diffDays === 1) return "Tomorrow";
+
+  if (diffDays > 1 && diffDays <= 7) {
+    return date.toLocaleDateString("en-US", { weekday: "long" });
+  }
+
+  const options = { month: "short", day: "numeric" };
+  if (date.getFullYear() !== today.getFullYear()) {
+    options.year = "numeric";
+  }
+  return new Intl.DateTimeFormat("en-US", options).format(date).replace(",", "");
+};
+
+export const isToday = (dateStr) => {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, "0");
+  const dd = String(today.getDate()).padStart(2, "0");
+
+  return dateStr === `${yyyy}-${mm}-${dd}`;
+};
+
+export const isDayOfWeek = (str) => {
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  return days.includes(str);
+};
