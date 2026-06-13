@@ -22,12 +22,35 @@ const getTaskListItem = (task) => {
   if (task.priority === "high") bubble.classList.add("task__bubble--high");
   if (task.priority === "medium") bubble.classList.add("task__bubble--medium");
   if (task.priority === "low") bubble.classList.add("task__bubble--low");
+
+  if (task.completed) {
+    bubble.checked = true;
+  }
+
+  bubble.addEventListener("change", () => {
+    if (bubble.checked) {
+      TaskStore.setCompleted(task.id, true);
+    } else {
+      TaskStore.setCompleted(task.id, false);
+    }
+    const child = taskList.querySelector(`[data-task-id="${task.id}"]`);
+    taskList.removeChild(child);
+  });
   
-  clone.querySelector(".task__title").textContent = task.title;
-  clone.querySelector(".task__description").textContent = task.description;
+  const title = clone.querySelector(".task__title");
+  if (task.completed) {
+    title.classList.add("task__title--completed");
+  }
+  title.textContent = task.title;
+
+  const description = clone.querySelector(".task__description");
+  if (task.completed) {
+    description.classList.add("hidden");
+  }
+  description.textContent = task.description;
 
   const dueDateRow = clone.querySelector(".task__due-date-row");
-  if (task.dueDate) {
+  if (task.dueDate && !task.completed) {
     const dateString = formatRelativeDate(task.dueDate);
     clone.querySelector(".task__due-date").textContent = dateString;
 

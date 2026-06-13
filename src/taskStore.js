@@ -23,6 +23,12 @@ const TaskStore = (() => {
     return task;
   };
 
+  const setCompleted = (taskId, completed) => {
+    const task = tasks.filter((t) => t.id === taskId)[0];
+    task.completed = completed;
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+
   const getByProjectId = (projectId) => {
     return tasks.filter(
       (task) => task.projectId === projectId && !task.completed
@@ -53,7 +59,7 @@ const TaskStore = (() => {
     );
   };
 
-  return { load, create, getByProjectId, getToday, getUpcoming, getImportant, getCompleted };
+  return { load, create, setCompleted, getByProjectId, getToday, getUpcoming, getImportant, getCompleted };
 })();
 
 export default TaskStore;

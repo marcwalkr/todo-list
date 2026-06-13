@@ -465,6 +465,8 @@ main {
 
 .task__title { grid-area: title; }
 
+.task__title--completed { text-decoration: line-through; }
+
 .task__description {
   grid-area: description;
   font-size: var(--font-size-sm);
