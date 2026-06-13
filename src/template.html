@@ -8,13 +8,17 @@
 <body>
   <aside class="sidebar">
     <header class="sidebar__header">
-      <h1 class="sidebar__title">ToDo</h1>
+      <div class="sidebar__title">ToDo</div>
       <button 
-        class="sidebar__toggle-btn clickable-surface"
-        data-toggle-sidebar
+        class="sidebar__toggle-btn surface-interactive"
+        id="toggle-sidebar-button"
         aria-label="Expand or collapse sidebar" 
         aria-expanded="true">
-        <svg class="icon-lg fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <svg 
+          class="center-icon icon icon--lg fill-fg" 
+          aria-hidden="true" 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24">
           <path d="M6,2H18A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M6,8V16H10V8H6Z">
         </svg>
       </button>
@@ -22,11 +26,11 @@
 
     <div role="group" aria-label="Actions">
       <button 
-        class="sidebar__row clickable-surface"
-        data-add-task 
+        class="sidebar__row surface-interactive"
+        id="add-task-button"
         aria-haspopup="dialog" 
-        aria-controls="add-task-modal">
-        <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        aria-controls="add-task-dialog">
+        <svg class="icon icon--md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="
             M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12
             A10,10 0 0,0 12,2Z">
@@ -34,8 +38,12 @@
         <span class="text-md text-bold text-fg">Add Task</span>
       </button>
 
-      <button class="sidebar__row clickable-surface" data-search aria-haspopup="dialog" aria-controls="search-modal">
-        <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <button 
+        class="sidebar__row surface-interactive" 
+        id="search-button" 
+        aria-haspopup="dialog" 
+        aria-controls="search-modal">
+        <svg class="icon icon--md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="
             M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5
             V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5
@@ -45,13 +53,24 @@
       </button>
     </div>
 
-    <div class="sidebar__separator"></div>
+    <div class="separator"></div>
 
-    <nav aria-label="Task navigation">
+    <nav id="task-navigation" aria-label="Task navigation">
       <ul>
         <li>
-          <a class="sidebar__row clickable-surface" data-nav="today" href="#today">
-            <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <a class="sidebar__row surface-interactive" href="#inbox">
+            <svg class="icon icon--md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="
+                M19,15H15A3,3 0 0,1 12,18A3,3 0 0,1 9,15H5V5H19M19,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19
+                A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z">
+            </svg>
+            <span class="text-md text-fg">Inbox</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="sidebar__row surface-interactive" href="#today">
+            <svg class="icon icon--md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="
                 M7,10H12V15H7M19,19H5V8H19M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19
                 A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z">
@@ -61,8 +80,8 @@
         </li>
 
         <li>
-          <a class="sidebar__row clickable-surface" data-nav="upcoming" href="#upcoming">
-            <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <a class="sidebar__row surface-interactive" href="#upcoming">
+            <svg class="icon icon--md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="
                 M9,10V12H7V10H9M13,10V12H11V10H13M17,10V12H15V10H17M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5
                 C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H6V1H8V3H16V1H18V3H19M19,19V8H5V19H19M9,14V16H7V14H9M13,14V16H11V14
@@ -73,8 +92,8 @@
         </li>
 
         <li>
-          <a class="sidebar__row clickable-surface" data-nav="important" href="#important">
-            <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <a class="sidebar__row surface-interactive" href="#important">
+            <svg class="icon icon--md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="
                 M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
             </svg>
@@ -83,8 +102,8 @@
         </li>
 
         <li>
-          <a class="sidebar__row clickable-surface" data-nav="completed" href="#completed">
-            <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <a class="sidebar__row surface-interactive" href="#completed">
+            <svg class="icon icon--md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z">
             </svg>
             <span class="text-md text-fg">Completed</span>
@@ -93,87 +112,184 @@
       </ul>
     </nav>
 
-    <div class="sidebar__separator"></div>
+    <div class="separator"></div>
 
-    <nav class="sidebar__project-navigation" data-project-navigation aria-label="Project navigation">
-      <div class="sidebar__row sidebar__row--projects clickable-surface">
-        <a class="sidebar__projects-link" data-nav="projects" href="#projects">
+    <nav class="sidebar__project-navigation" id="project-navigation" aria-label="Project navigation">
+      <div class="sidebar__row sidebar__row--projects surface-interactive">
+        <a class="sidebar__projects-link" href="#projects">
           <span class="text-lg text-bold text-fg">Projects</span>
         </a>
 
         <div class="sidebar__project-controls">
-          <button class="sidebar__add-project-btn clickable-surface" data-add-project aria-label="Add new project">
-            <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <button 
+            class="sidebar__add-project-btn surface-interactive" 
+            id="add-project-button"
+            aria-label="Add new project">
+            <svg 
+              class="icon icon--md fill-fg center-icon" 
+              aria-hidden="true" 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 24 24">
               <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z">
             </svg>
           </button>
   
           <button 
-            class="sidebar__toggle-projects-btn clickable-surface" 
-            data-toggle-projects
+            class="sidebar__toggle-projects-btn surface-interactive" 
+            id="toggle-projects-button"
             aria-label="Expand or collapse list of projects" 
             aria-expanded="true"
             aria-controls="sidebar-project-list">
-            <svg class="icon-md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <svg 
+              class="icon icon--md fill-fg center-icon"
+              id="toggle-projects-icon"
+              aria-hidden="true" 
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24">
               <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z">
             </svg>
           </button>
         </div>
       </div>
 
-      <div class="sidebar__project-list-wrapper" data-project-list-wrapper>
+      <div class="sidebar__project-list-wrapper" id="project-list-wrapper">
         <ul class="sidebar__project-list" id="sidebar-project-list"></ul>
       </div>
 
-      <div class="project-editor" data-new-project-editor>
+      <div class="project-editor" id="new-project-editor">
         <form class="project-editor__form hidden" id="new-project-form" autocomplete="off">
           <button 
-            class="clickable-surface project-editor__edit-color-btn" 
-            data-edit-color 
+            class="project-editor__edit-color-btn surface-interactive" 
+            id="edit-color-button"
             type="button" 
             aria-label="Edit project icon color">
             <svg 
-              class="icon-sm"
-              data-selected-color
+              class="icon icon--xs"
+              id="selected-color-icon"
               aria-hidden="true" 
               xmlns="http://www.w3.org/2000/svg" 
               viewBox="6 6 12 12">
               <circle cx="12" cy="12" r="6">
             </svg>
-            <svg class="icon-sm fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="7 10 10 5">
+            <svg class="icon icon--xs fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="7 10 10 5">
               <path d="M7,10L12,15L17,10H7Z">
             </svg>
           </button>
           <input class="project-editor__name-input" id="project-name-input" type="text" placeholder="Project Name">
         </form>
 
-        <div class="project-editor__color-popover hidden" data-color-popover tabindex="-1">
-          <button class="project-editor__color-swatch-btn" data-color="#b8255f" style="--color: #b8255f"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#cf473a" style="--color: #cf473a"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#c77100" style="--color: #c77100"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#b29104" style="--color: #b29104"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#949c31" style="--color: #949c31"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#65a33a" style="--color: #65a33a"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#369307" style="--color: #369307"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#42a393" style="--color: #42a393"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#148fad" style="--color: #148fad"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#319dc0" style="--color: #319dc0"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#6988a4" style="--color: #6988a4"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#2a67e2" style="--color: #2a67e2"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#692ec2" style="--color: #692ec2"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#ac30cc" style="--color: #ac30cc"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#a4698c" style="--color: #a4698c"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#e05095" style="--color: #e05095"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#b2635c" style="--color: #b2635c"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#808080" style="--color: #808080"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#999" style="--color: #999"></button>
-          <button class="project-editor__color-swatch-btn" data-color="#8f7a69" style="--color: #8f7a69"></button>
+        <div class="project-editor__color-popover hidden" id="color-popover" tabindex="-1">
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#b8255f" 
+            style="--color: #b8255f">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#cf473a" 
+            style="--color: #cf473a">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#c77100" 
+            style="--color: #c77100">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#b29104" 
+            style="--color: #b29104">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#949c31" 
+            style="--color: #949c31">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#65a33a" 
+            style="--color: #65a33a">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#369307" 
+            style="--color: #369307">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#42a393" 
+            style="--color: #42a393">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#148fad" 
+            style="--color: #148fad">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#319dc0" 
+            style="--color: #319dc0">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#6988a4" 
+            style="--color: #6988a4">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#2a67e2" 
+            style="--color: #2a67e2">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#692ec2" 
+            style="--color: #692ec2">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#ac30cc" 
+            style="--color: #ac30cc">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#a4698c" 
+            style="--color: #a4698c">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#e05095" 
+            style="--color: #e05095">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#b2635c" 
+            style="--color: #b2635c">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#808080" 
+            style="--color: #808080">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#999" 
+            style="--color: #999">
+          </button>
+          <button 
+            class="project-editor__color-swatch-btn" 
+            data-color="#8f7a69" 
+            style="--color: #8f7a69">
+          </button>
         </div>
       </div>
     </nav>
 
-    <button class="sidebar__theme-toggle-btn clickable-surface" data-toggle-theme aria-label="Switch to dark mode">
-      <svg class="icon-lg fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <button 
+      class="sidebar__theme-toggle-btn surface-interactive" id="theme-toggle-button" aria-label="Switch to dark mode">
+      <svg 
+        class="center-icon icon icon--lg fill-fg" 
+        aria-hidden="true" 
+        xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 24 24">
         <path d="
           M7.5,2C5.71,3.15 4.5,5.18 4.5,7.5C4.5,9.82 5.71,11.85 7.53,13C4.46,13 2,10.54 2,7.5A5.5,5.5 0 0,1 7.5,2
           M19.07,3.5L20.5,4.93L4.93,20.5L3.5,19.07L19.07,3.5M12.89,5.93L11.41,5L9.97,6L10.39,4.3L9,3.24L10.75,3.12
@@ -185,5 +301,83 @@
         </svg>
     </button>
   </aside>
+
+  <main>
+    <section class="content">
+      <h1 class="content__heading text-fg" id="main-content-heading"></h1>
+      <ul class="content__task-list" id="task-list"></ul>
+    </section>
+  </main>
+
+  <dialog class="add-task-dialog" id="add-task-dialog" closedby="any">
+    <form class="add-task-dialog__form" id="add-task-form" method="dialog" autocomplete="off">
+      <input class="add-task-dialog__title-input" type="text" name="title" placeholder="Title" required>
+      <input class="add-task-dialog__description-input" type="text" name="description" placeholder="Description">
+
+      <div class="add-task-dialog__select-group">
+        <input class="add-task-dialog__date-input" type="date" name="dueDate">
+        <select class="add-task-dialog__priority-select" name="priority">
+          <option value="" selected disabled hidden>Priority</option>
+          <option value="high">
+            <span aria-hidden="true">🔴</span>
+            <span>High</span>
+          </option>
+          <option value="medium">
+            <span aria-hidden="true">🟡</span>
+            <span>Medium</span>
+          </option>
+          <option value="low">
+            <span aria-hidden="true">🔵</span>
+            <span>Low</span>
+          </option>
+          <option value="default">
+            <span aria-hidden="true">🔘</span>
+            <span>Default</span>
+          </option>
+        </select>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="add-task-dialog__bottom">
+        <select class="add-task-dialog__project-select" id="project-select" name="project">
+          <option value="inbox" selected>Inbox</option>
+        </select>
+
+        <div class="add-task-dialog__button-group">
+          <button class="add-task-dialog__cancel-btn" value="cancel" formnovalidate>Cancel</button>
+          <button class="add-task-dialog__submit-btn" value="submit">Add Task</button>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <template id="project-template">
+    <li>
+      <a class="sidebar__row clickable-surface">
+        <svg class="icon icon--md" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="6"></circle>
+        </svg>
+        <span class="text-md text-fg sidebar__project-name"></span>
+      </a>
+    </li>
+  </template>
+
+  <template id="task-template">
+    <li class="task">
+      <input class="task__bubble" type="checkbox">
+      <div class="task__title text-fg"></div>
+      <div class="task__description"></div>
+      <div class="task__due-date-row">
+        <svg class="icon icon--sm" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="
+            M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5
+            C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z">
+        </svg>
+        <div class="task__due-date text-sm"></div>
+      </div>
+      <div class="separator separator--task"></div>
+    </li>
+  </template>
 </body>
 </html>
