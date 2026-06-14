@@ -353,15 +353,45 @@
   </dialog>
 
   <template id="project-template">
-    <li>
-      <a class="sidebar__row surface-interactive">
+    <li class="project sidebar__row surface-interactive">
+      <a class="project__link">
         <svg class="icon icon--md" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="6"></circle>
         </svg>
-        <span class="text-md text-fg sidebar__project-name"></span>
+        <span class="text-md text-fg project__name"></span>
       </a>
+
+      <button 
+        class="project__options-btn surface-interactive"
+        popovertarget="project-menu"
+        aria-label="Project options">
+        <svg 
+          class="icon icon--md fill-fg center-icon"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24">
+          <path d="
+            M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10
+            A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14
+            A2,2 0 0,1 4,12Z">
+        </svg>
+      </button>
     </li>
   </template>
+
+  <div class="project-menu-backdrop" id="project-menu-backdrop"></div>
+  <div popover class="project-menu" id="project-menu">
+    <button class="project-menu__delete-btn">
+      <svg 
+        class="project-menu__delete-btn-icon icon icon--md center-icon"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 24 24">
+        <path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z">
+      </svg>
+      <span>Delete</span>
+    </button>
+  </div>
 
   <template id="task-template">
     <li class="task">

@@ -17,6 +17,9 @@ const newProjectEditor = document.getElementById("new-project-editor");
 const newProjectForm = document.getElementById("new-project-form");
 const projectNameInput = document.getElementById("project-name-input");
 
+const projectMenuBackdrop = document.getElementById("project-menu-backdrop");
+const projectMenu = document.getElementById("project-menu");
+
 const editColorBtn = document.getElementById("edit-color-button");
 const colorPopover = document.getElementById("color-popover");
 const selectedColor = document.getElementById("selected-color-icon");
@@ -38,7 +41,15 @@ const appendProjectToSidebar = (project) => {
   li.dataset.projectId = project.id;
   clone.querySelector("a").href = `#project-${project.id}`;
   clone.querySelector("circle").style.fill = project.color;
-  clone.querySelector(".sidebar__project-name").textContent = project.name;
+  clone.querySelector(".project__name").textContent = project.name;
+
+  const optionsButton = clone.querySelector(".project__options-btn");
+  optionsButton.style.anchorName = `--${project.id}`;
+  optionsButton.addEventListener("click", () => {
+    li.classList.add("has-open-popover");
+    projectMenuBackdrop.classList.add("active");
+    projectMenu.style.positionAnchor = `--${project.id}`;
+  });
 
   projectList.appendChild(li);
 
@@ -157,6 +168,20 @@ export const initSidebar = ({ onProjectCreate }) => {
     selectedColor.style.fill = event.target.dataset.color;
     selectedColor.dataset.color = event.target.dataset.color;
     projectNameInput.focus();
+  });
+
+  // Hide the project menu popover when clicking anywhere outside
+  projectMenuBackdrop.addEventListener("click", () => {
+    projectMenu.hidePopover();
+  });
+
+  // When project menu popover closes, disable backdrop and remove the open popover class
+  projectMenu.addEventListener("toggle", (e) => {
+    if (e.newState === "closed") {
+      projectMenuBackdrop.classList.remove("active");
+      document.querySelectorAll(".project.has-open-popover")
+        .forEach(r => r.classList.remove("has-open-popover"));
+    }
   });
 
   // Add all projects to the sidebar after reload from storage

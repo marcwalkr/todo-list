@@ -261,11 +261,14 @@ a {
   width: 100%;
 }
 
-.sidebar__row--projects {
+.sidebar__row--projects,
+.project {
   padding: 0;
 }
 
-.sidebar__row--projects:hover .sidebar__add-project-btn {
+.sidebar__row--projects:hover .sidebar__add-project-btn,
+.project:hover .project__options-btn,
+.project.has-open-popover .project__options-btn {
   display: inline;
 }
 
@@ -276,7 +279,8 @@ a {
   flex: 1;
 }
 
-.sidebar__projects-link {
+.sidebar__projects-link,
+.project__link {
   flex: 1;
   text-align: left;
   padding: var(--space-sm);
@@ -287,12 +291,14 @@ a {
   align-items: center;
 }
 
-.sidebar__project-controls button {
+.sidebar__project-controls button,
+.project__options-btn {
   display: none;
   padding: var(--space-xxs);
 }
 
-.sidebar__project-controls button:hover {
+.sidebar__project-controls button:hover,
+.project__options-btn:hover {
   background-color: var(--clr-surface-30);
 }
 
@@ -321,12 +327,6 @@ a {
 
 .sidebar__project-list.disable-scroll {
   overflow: hidden !important;
-}
-
-.sidebar__project-name {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .project-editor {
@@ -384,6 +384,53 @@ a {
   border-radius: 50%;
   background: var(--color);
   cursor: pointer;
+}
+
+.project__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.project__name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.project-menu-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+}
+
+.project-menu-backdrop.active {
+  display: block;
+}
+
+.project-menu {
+  top: anchor(top);
+  left: anchor(right);
+  margin: 0 0 0 var(--space-sm);
+  z-index: 100;
+  background-color: var(--clr-surface-10);
+  border: 2px solid var(--clr-surface-20);
+}
+
+.project-menu__delete-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  cursor: pointer;
+  padding: var(--space-xs);
+  color: #d3563f;
+  background-color: transparent;
+  border: none;
+}
+
+.project-menu__delete-btn-icon {
+  fill: #d3563f;
 }
 
 .sidebar__theme-toggle-btn {
