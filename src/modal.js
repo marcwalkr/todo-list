@@ -28,9 +28,9 @@ export const initModals = ({ onTaskCreate, onProjectDelete }) => {
     if (addTaskDialog.returnValue === "submit") {
       const data = Object.fromEntries(new FormData(addTaskForm));
       onTaskCreate(data.project, data.title, data.description, data.dueDate, data.priority);
-      addTaskForm.reset();
     }
 
+    addTaskForm.reset();
     addTaskDialog.returnValue = "";
   });
 
