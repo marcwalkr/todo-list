@@ -1,7 +1,7 @@
 import "./styles.css";
 import ProjectStore from "./projectStore.js";
 import TaskStore from "./taskStore.js";
-import { initSidebar } from "./sidebar.js";
+import { initSidebar, removeProjectFromSidebar } from "./sidebar.js";
 import { initModals, appendProjectToSelect } from "./modal.js";
 import { setContentHeading, loadTasks } from "./content.js";
 
@@ -47,6 +47,16 @@ document.addEventListener("DOMContentLoaded", () => {
     onTaskCreate: (projectId, title, description, dueDate, priority) => {
       TaskStore.create(projectId, title, description, dueDate, priority);
       loadTasks(getViewFromHash());
+    },
+    onProjectDelete: (projectId) => {
+      // Redirect to inbox if current page is the deleted project
+      if (window.location.hash === `#project-${projectId}`) {
+        window.location.hash = "#inbox";
+      }
+
+      TaskStore.deleteByProjectId(projectId);
+      ProjectStore.deleteProject(projectId);
+      removeProjectFromSidebar(projectId);
     }
   });
 

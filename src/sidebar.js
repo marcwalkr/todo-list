@@ -11,7 +11,7 @@ const toggleProjectsBtn = document.getElementById("toggle-projects-button");
 const toggleProjectsIcon = document.getElementById("toggle-projects-icon");
 
 const projectListWrapper = document.getElementById("project-list-wrapper");
-const projectList = document.getElementById("sidebar-project-list");
+const projectList = document.getElementById("project-list");
 
 const newProjectEditor = document.getElementById("new-project-editor");
 const newProjectForm = document.getElementById("new-project-form");
@@ -19,6 +19,8 @@ const projectNameInput = document.getElementById("project-name-input");
 
 const projectMenuBackdrop = document.getElementById("project-menu-backdrop");
 const projectMenu = document.getElementById("project-menu");
+const deleteProjectBtn = document.getElementById("delete-project-button");
+const deleteProjectDialog = document.getElementById("delete-project-dialog");
 
 const editColorBtn = document.getElementById("edit-color-button");
 const colorPopover = document.getElementById("color-popover");
@@ -44,11 +46,10 @@ const appendProjectToSidebar = (project) => {
   clone.querySelector(".project__name").textContent = project.name;
 
   const optionsButton = clone.querySelector(".project__options-btn");
-  optionsButton.style.anchorName = `--${project.id}`;
   optionsButton.addEventListener("click", () => {
     li.classList.add("has-open-popover");
     projectMenuBackdrop.classList.add("active");
-    projectMenu.style.positionAnchor = `--${project.id}`;
+    deleteProjectDialog.dataset.projectId = project.id;
   });
 
   projectList.appendChild(li);
@@ -63,6 +64,11 @@ const appendProjectToSidebar = (project) => {
     // Already expanded -> resize wrapper immediately
     projectListWrapper.style.height = `${projectList.scrollHeight}px`;
   }
+};
+
+export const removeProjectFromSidebar = (projectId) => {
+  const projectItem = projectList.querySelector(`[data-project-id="${projectId}"]`);
+  projectList.removeChild(projectItem);
 };
 
 // Add all projects to sidebar list
@@ -182,6 +188,10 @@ export const initSidebar = ({ onProjectCreate }) => {
       document.querySelectorAll(".project.has-open-popover")
         .forEach(r => r.classList.remove("has-open-popover"));
     }
+  });
+
+  deleteProjectBtn.addEventListener("click", (e) => {
+    deleteProjectDialog.showModal();
   });
 
   // Add all projects to the sidebar after reload from storage

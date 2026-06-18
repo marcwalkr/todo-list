@@ -153,7 +153,7 @@
       </div>
 
       <div class="sidebar__project-list-wrapper" id="project-list-wrapper">
-        <ul class="sidebar__project-list" id="sidebar-project-list"></ul>
+        <ul class="sidebar__project-list" id="project-list"></ul>
       </div>
 
       <div class="project-editor" id="new-project-editor">
@@ -352,6 +352,21 @@
     </form>
   </dialog>
 
+  <dialog class="delete-project-dialog" id="delete-project-dialog" closedby="any">
+    <form class="delete-project-dialog__form" id="delete-project-form" method="dialog">
+      <p class="text-fg">Delete Project?</p>
+      <p class="text-fg">
+        The
+        <strong id="delete-dialog-project-name"></strong>
+        project and all its tasks will be permanently deleted. This action cannot be undone.
+      </p>
+      <div class="delete-project-dialog__button-group">
+        <button class="delete-project-dialog__cancel-btn" value="cancel">Cancel</button>
+        <button class="delete-project-dialog__delete-btn" value="delete">Delete</button>
+      </div>
+    </form>
+  </dialog>
+
   <template id="project-template">
     <li class="project sidebar__row surface-interactive">
       <a class="project__link">
@@ -381,7 +396,7 @@
 
   <div class="project-menu-backdrop" id="project-menu-backdrop"></div>
   <div popover class="project-menu" id="project-menu">
-    <button class="project-menu__delete-btn">
+    <button class="project-menu__delete-btn" id="delete-project-button">
       <svg 
         class="project-menu__delete-btn-icon icon icon--md center-icon"
         aria-hidden="true"

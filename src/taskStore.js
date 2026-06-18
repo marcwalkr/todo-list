@@ -59,7 +59,22 @@ const TaskStore = (() => {
     );
   };
 
-  return { load, create, setCompleted, getByProjectId, getToday, getUpcoming, getImportant, getCompleted };
+  const deleteByProjectId = (projectId) => {
+    tasks = tasks.filter((t) => t.projectId !== projectId);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+
+  return { 
+    load, 
+    create, 
+    setCompleted, 
+    getByProjectId, 
+    getToday, 
+    getUpcoming, 
+    getImportant, 
+    getCompleted, 
+    deleteByProjectId 
+  };
 })();
 
 export default TaskStore;

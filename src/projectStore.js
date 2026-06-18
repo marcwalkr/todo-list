@@ -27,7 +27,12 @@ const ProjectStore = (() => {
 
   const getAll = () => projects;
 
-  return { load, create, get, getAll };
+  const deleteProject = (projectId) => {
+    projects = projects.filter((p) => p.id !== projectId);
+    localStorage.setItem("projects", JSON.stringify(projects));
+  };
+
+  return { load, create, get, getAll, deleteProject };
 })();
 
 export default ProjectStore;

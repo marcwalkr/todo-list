@@ -23,6 +23,8 @@
   --clr-surface-40: #bcc0c3;
   --clr-surface-50: #afb3b5;
 
+  --clr-warning: #d3563f;
+
   --font-size-xs: 0.694rem;
   --font-size-sm: 0.833rem;
   --font-size-md: 1rem;
@@ -131,16 +133,20 @@ a {
   text-decoration: none;
 }
 
-.add-task-dialog {
+.add-task-dialog,
+.delete-project-dialog {
   position: fixed;
   top: 20%;
   left: 50%;
   translate: -50% -50%;
-  width: 40rem;
   border: 1px solid var(--clr-surface-50);
   border-radius: var(--border-radius-sm);
   background-color: var(--clr-surface-10);
   padding: var(--space-md);
+}
+
+.add-task-dialog {
+  width: 40rem;
 }
 
 .add-task-dialog__form {
@@ -220,6 +226,44 @@ a {
   color: black;
   border: 1px solid var(--clr-primary-20);
   background-color: var(--clr-primary-20);
+}
+
+.delete-project-dialog {
+  width: 25rem;
+}
+
+.delete-project-dialog__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.delete-project-dialog__button-group {
+  display: flex;
+  gap: var(--space-sm);
+  align-self: flex-end;
+  width: 10rem;
+}
+
+.delete-project-dialog__button-group button {
+  flex: 1;
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  cursor: pointer;
+  border-radius: var(--border-radius-sm);
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.delete-project-dialog__cancel-btn {
+  color: var(--clr-fg);
+  border: 1px solid var(--clr-surface-50);
+  background-color: var(--clr-surface-0);
+}
+
+.delete-project-dialog__delete-btn {
+  color: white;
+  border: 1px solid var(--clr-surface-50);
+  background-color: var(--clr-warning);
 }
 
 .sidebar {
@@ -424,13 +468,13 @@ a {
   gap: var(--space-xs);
   cursor: pointer;
   padding: var(--space-xs);
-  color: #d3563f;
+  color: var(--clr-warning);
   background-color: transparent;
   border: none;
 }
 
 .project-menu__delete-btn-icon {
-  fill: #d3563f;
+  fill: var(--clr-warning);
 }
 
 .sidebar__theme-toggle-btn {
