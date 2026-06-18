@@ -69,6 +69,9 @@ const appendProjectToSidebar = (project) => {
 export const removeProjectFromSidebar = (projectId) => {
   const projectItem = projectList.querySelector(`[data-project-id="${projectId}"]`);
   projectList.removeChild(projectItem);
+
+  // Resize the wrapper so the new project editor appears in the right place
+  projectListWrapper.style.height = `${projectList.scrollHeight}px`;
 };
 
 // Add all projects to sidebar list
