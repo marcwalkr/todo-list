@@ -30,11 +30,15 @@ export const initModals = ({ onTaskCreate, onProjectDelete }) => {
       onTaskCreate(data.project, data.title, data.description, data.dueDate, data.priority);
       addTaskForm.reset();
     }
+
+    addTaskDialog.returnValue = "";
   });
 
   deleteProjectDialog.addEventListener("close", (e) => {
     if (deleteProjectDialog.returnValue === "delete") {
       onProjectDelete(e.target.dataset.projectId);
     }
+
+    deleteProjectDialog.returnValue = "";
   });
 };
