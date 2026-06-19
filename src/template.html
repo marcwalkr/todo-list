@@ -367,6 +367,21 @@
     </form>
   </dialog>
 
+  <dialog class="delete-task-dialog" id="delete-task-dialog" closedby="any">
+    <form class="delete-task-dialog__form" id="delete-task-form" method="dialog">
+      <p class="text-fg">Delete Task?</p>
+      <p class="text-fg">
+        The
+        <strong id="delete-dialog-task-name"></strong>
+        task will be permanently deleted.
+      </p>
+      <div class="delete-task-dialog__button-group">
+        <button class="delete-task-dialog__cancel-btn" value="cancel">Cancel</button>
+        <button class="delete-task-dialog__delete-btn" value="delete">Delete</button>
+      </div>
+    </form>
+  </dialog>
+
   <div class="backdrop" id="backdrop"></div>
 
   <template id="project-template">

@@ -20,7 +20,9 @@ const projectNameInput = document.getElementById("project-name-input");
 const backdrop = document.getElementById("backdrop");
 const projectMenu = document.getElementById("project-menu");
 const deleteProjectBtn = document.getElementById("delete-project-button");
+
 const deleteProjectDialog = document.getElementById("delete-project-dialog");
+const deleteDialogProjectName = document.getElementById("delete-dialog-project-name");
 
 const editColorBtn = document.getElementById("edit-color-button");
 const colorPopover = document.getElementById("color-popover");
@@ -194,6 +196,8 @@ export const initSidebar = ({ onProjectCreate }) => {
   });
 
   deleteProjectBtn.addEventListener("click", (e) => {
+    const project = ProjectStore.get(deleteProjectDialog.dataset.projectId);
+    deleteDialogProjectName.textContent = project.name;
     deleteProjectDialog.showModal();
   });
 
