@@ -75,7 +75,7 @@ export const removeProjectFromSidebar = (projectId) => {
 };
 
 // Add all projects to sidebar list
-const initProjects = () => {
+const initProjectList = () => {
   for (const project of ProjectStore.getAll()) {
     appendProjectToSidebar(project);
   }
@@ -198,7 +198,7 @@ export const initSidebar = ({ onProjectCreate }) => {
   });
 
   // Add all projects to the sidebar after reload from storage
-  initProjects();
+  initProjectList();
 
   // Toggle between light and dark mode
   themeToggleBtn.addEventListener("click", () => {
