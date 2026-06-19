@@ -17,7 +17,7 @@ const newProjectEditor = document.getElementById("new-project-editor");
 const newProjectForm = document.getElementById("new-project-form");
 const projectNameInput = document.getElementById("project-name-input");
 
-const projectMenuBackdrop = document.getElementById("project-menu-backdrop");
+const backdrop = document.getElementById("backdrop");
 const projectMenu = document.getElementById("project-menu");
 const deleteProjectBtn = document.getElementById("delete-project-button");
 const deleteProjectDialog = document.getElementById("delete-project-dialog");
@@ -48,7 +48,7 @@ const appendProjectToSidebar = (project) => {
   const optionsButton = clone.querySelector(".project__options-btn");
   optionsButton.addEventListener("click", () => {
     li.classList.add("has-open-popover");
-    projectMenuBackdrop.classList.add("active");
+    backdrop.classList.add("active");
     deleteProjectDialog.dataset.projectId = project.id;
   });
 
@@ -180,14 +180,14 @@ export const initSidebar = ({ onProjectCreate }) => {
   });
 
   // Hide the project menu popover when clicking anywhere outside
-  projectMenuBackdrop.addEventListener("click", () => {
+  backdrop.addEventListener("click", () => {
     projectMenu.hidePopover();
   });
 
   // When project menu popover closes, disable backdrop and remove the open popover class
   projectMenu.addEventListener("toggle", (e) => {
     if (e.newState === "closed") {
-      projectMenuBackdrop.classList.remove("active");
+      backdrop.classList.remove("active");
       document.querySelectorAll(".project.has-open-popover")
         .forEach(r => r.classList.remove("has-open-popover"));
     }

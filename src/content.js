@@ -6,6 +6,9 @@ const contentHeading = document.getElementById("main-content-heading");
 const taskList = document.getElementById("task-list");
 const taskTemplate = document.getElementById("task-template");
 
+const backdrop = document.getElementById("backdrop");
+const taskMenu = document.getElementById("task-menu");
+
 const fetchTasksByStatus = (status) => {
   if (status === "today") return TaskStore.getToday();
   if (status === "upcoming") return TaskStore.getUpcoming();
@@ -61,6 +64,12 @@ const getTaskListItem = (task) => {
     dueDateRow.classList.add("hidden");
   }
 
+  const optionsButton = clone.querySelector(".task__options-btn");
+  optionsButton.addEventListener("click", () => {
+    li.classList.add("has-open-popover");
+    backdrop.classList.add("active");
+  });
+
   return li;
 };
 
@@ -83,3 +92,17 @@ export const loadTasks = (view) => {
   const listItems = tasks.map(getTaskListItem);
   taskList.replaceChildren(...listItems);
 };
+
+// Hide the task menu popover when clicking anywhere outside
+backdrop.addEventListener("click", () => {
+  taskMenu.hidePopover();
+});
+
+// When task menu popover closes, disable backdrop and remove the open popover class
+taskMenu.addEventListener("toggle", (e) => {
+  if (e.newState === "closed") {
+    backdrop.classList.remove("active");
+    document.querySelectorAll(".task.has-open-popover")
+      .forEach(r => r.classList.remove("has-open-popover"));
+  }
+});
