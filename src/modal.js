@@ -2,6 +2,7 @@ import ProjectStore from "./projectStore";
 
 const addTaskDialog = document.getElementById("add-task-dialog");
 const addTaskForm = document.getElementById("add-task-form");
+const dueDateInput = document.getElementById("due-date-input");
 const projectSelect = document.getElementById("project-select");
 
 const deleteTaskDialog = document.getElementById("delete-task-dialog");
@@ -22,6 +23,10 @@ const initProjectSelect = () => {
 };
 
 export const initModals = ({ onTaskCreate, onTaskDelete, onProjectDelete }) => {
+  // Disable selecting due dates in the past
+  const today = new Date().toISOString().split("T")[0];
+  dueDateInput.setAttribute("min", today);
+  
   // Add all projects to select dropdown after reload from storage
   initProjectSelect();
 
