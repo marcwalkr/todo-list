@@ -1,5 +1,5 @@
 import TaskStore from "./taskStore.js";
-import { formatRelativeDate, isDayOfWeek } from "./utils.js";
+import { formatRelativeDate, hasDatePassed, isDayOfWeek } from "./utils.js";
 
 const contentHeading = document.getElementById("main-content-heading");
 
@@ -64,6 +64,7 @@ const getTaskListItem = (task) => {
     if (dateString === "Today") dueDateRow.classList.add("task__due-date-row--today");
     if (dateString === "Tomorrow") dueDateRow.classList.add("task__due-date-row--tomorrow");
     if (isDayOfWeek(dateString)) dueDateRow.classList.add("task__due-date-row--weekday");
+    if (hasDatePassed(task.dueDate)) dueDateRow.classList.add("task__due-date-row--overdue");
   } else {
     dueDateRow.classList.add("hidden");
   }
