@@ -16,19 +16,15 @@ export const appendProjectToSelect = (project) => {
   projectSelect.appendChild(option);
 };
 
-const initProjectSelect = () => {
-  for (const project of ProjectStore.getAll()) {
-    appendProjectToSelect(project);
-  }
-};
-
 export const initModals = ({ onTaskCreate, onTaskDelete, onProjectDelete }) => {
   // Disable selecting due dates in the past
   const today = new Date().toISOString().split("T")[0];
   dueDateInput.setAttribute("min", today);
-  
+
   // Add all projects to select dropdown after reload from storage
-  initProjectSelect();
+  for (const project of ProjectStore.getAll()) {
+    appendProjectToSelect(project);
+  }
 
   addTaskDialog.addEventListener("close", () => {
     if (addTaskDialog.returnValue === "submit") {

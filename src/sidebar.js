@@ -76,13 +76,6 @@ export const removeProjectFromSidebar = (projectId) => {
   projectListWrapper.style.height = `${projectList.scrollHeight}px`;
 };
 
-// Add all projects to sidebar list
-const initProjectList = () => {
-  for (const project of ProjectStore.getAll()) {
-    appendProjectToSidebar(project);
-  }
-};
-
 // Animate expand/collapse
 const setProjectListExpanded = (expanded) => {
   toggleProjectsBtn.setAttribute("aria-expanded", expanded.toString());
@@ -95,6 +88,11 @@ const setProjectListExpanded = (expanded) => {
 };
 
 export const initSidebar = ({ onProjectCreate }) => {
+  // Add all projects to the sidebar after reload from storage
+  for (const project of ProjectStore.getAll()) {
+    appendProjectToSidebar(project);
+  }
+  
   // Open the dialog for adding a new task
   addTaskBtn.addEventListener("click", () => {
     addTaskDialog.showModal();
@@ -200,9 +198,6 @@ export const initSidebar = ({ onProjectCreate }) => {
     deleteDialogProjectName.textContent = project.name;
     deleteProjectDialog.showModal();
   });
-
-  // Add all projects to the sidebar after reload from storage
-  initProjectList();
 
   // Toggle between light and dark mode
   themeToggleBtn.addEventListener("click", () => {
