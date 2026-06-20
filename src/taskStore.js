@@ -29,6 +29,8 @@ const TaskStore = (() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   };
 
+  const get = (id) => tasks.find(task => task.id === id);
+
   const getByProjectId = (projectId) => {
     return tasks.filter(
       (task) => task.projectId === projectId && !task.completed
@@ -59,6 +61,11 @@ const TaskStore = (() => {
     );
   };
 
+  const deleteTask = (taskId) => {
+    tasks = tasks.filter((t) => t.id !== taskId);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+
   const deleteByProjectId = (projectId) => {
     tasks = tasks.filter((t) => t.projectId !== projectId);
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -68,11 +75,13 @@ const TaskStore = (() => {
     load, 
     create, 
     setCompleted, 
+    get,
     getByProjectId, 
     getToday, 
     getUpcoming, 
     getImportant, 
-    getCompleted, 
+    getCompleted,
+    deleteTask,
     deleteByProjectId 
   };
 })();

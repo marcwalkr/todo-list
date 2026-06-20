@@ -8,6 +8,10 @@ const taskTemplate = document.getElementById("task-template");
 
 const backdrop = document.getElementById("backdrop");
 const taskMenu = document.getElementById("task-menu");
+const deleteTaskBtn = document.getElementById("delete-task-button");
+
+const deleteTaskDialog = document.getElementById("delete-task-dialog");
+const deleteDialogTaskName = document.getElementById("delete-dialog-task-name");
 
 const fetchTasksByStatus = (status) => {
   if (status === "today") return TaskStore.getToday();
@@ -68,6 +72,7 @@ const getTaskListItem = (task) => {
   optionsButton.addEventListener("click", () => {
     li.classList.add("has-open-popover");
     backdrop.classList.add("active");
+    deleteTaskDialog.dataset.taskId = task.id;
   });
 
   return li;
@@ -93,6 +98,11 @@ export const loadTasks = (view) => {
   taskList.replaceChildren(...listItems);
 };
 
+export const removeTaskFromList = (taskId) => {
+  const taskItem = taskList.querySelector(`[data-task-id="${taskId}"]`);
+  taskList.removeChild(taskItem);
+};
+
 // Hide the task menu popover when clicking anywhere outside
 backdrop.addEventListener("click", () => {
   taskMenu.hidePopover();
@@ -105,4 +115,10 @@ taskMenu.addEventListener("toggle", (e) => {
     document.querySelectorAll(".task.has-open-popover")
       .forEach(r => r.classList.remove("has-open-popover"));
   }
+});
+
+deleteTaskBtn.addEventListener("click", (e) => {
+  const task = TaskStore.get(deleteTaskDialog.dataset.taskId);
+  deleteDialogTaskName.textContent = task.title;
+  deleteTaskDialog.showModal();
 });

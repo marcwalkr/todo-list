@@ -2,8 +2,9 @@ import ProjectStore from "./projectStore";
 
 const addTaskDialog = document.getElementById("add-task-dialog");
 const addTaskForm = document.getElementById("add-task-form");
-
 const projectSelect = document.getElementById("project-select");
+
+const deleteTaskDialog = document.getElementById("delete-task-dialog");
 
 const deleteProjectDialog = document.getElementById("delete-project-dialog");
 
@@ -20,7 +21,7 @@ const initProjectSelect = () => {
   }
 };
 
-export const initModals = ({ onTaskCreate, onProjectDelete }) => {
+export const initModals = ({ onTaskCreate, onTaskDelete, onProjectDelete }) => {
   // Add all projects to select dropdown after reload from storage
   initProjectSelect();
 
@@ -32,6 +33,14 @@ export const initModals = ({ onTaskCreate, onProjectDelete }) => {
 
     addTaskForm.reset();
     addTaskDialog.returnValue = "";
+  });
+
+  deleteTaskDialog.addEventListener("close", (e) => {
+    if (deleteTaskDialog.returnValue === "delete") {
+      onTaskDelete(e.target.dataset.taskId);
+    }
+
+    deleteTaskDialog.returnValue = "";
   });
 
   deleteProjectDialog.addEventListener("close", (e) => {

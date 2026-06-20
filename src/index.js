@@ -3,7 +3,7 @@ import ProjectStore from "./projectStore.js";
 import TaskStore from "./taskStore.js";
 import { initSidebar, removeProjectFromSidebar } from "./sidebar.js";
 import { initModals, appendProjectToSelect } from "./modal.js";
-import { setContentHeading, loadTasks } from "./content.js";
+import { setContentHeading, loadTasks, removeTaskFromList } from "./content.js";
 
 const getHeadingFromHash = () => {
   const hash = window.location.hash;
@@ -57,6 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
       TaskStore.deleteByProjectId(projectId);
       ProjectStore.deleteProject(projectId);
       removeProjectFromSidebar(projectId);
+    },
+    onTaskDelete: (taskId) => {
+      TaskStore.deleteTask(taskId);
+      removeTaskFromList(taskId);
     }
   });
 
