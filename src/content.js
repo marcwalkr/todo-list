@@ -35,13 +35,17 @@ const getTaskListItem = (task) => {
   }
 
   bubble.addEventListener("change", () => {
-    if (bubble.checked) {
-      TaskStore.setCompleted(task.id, true);
-    } else {
-      TaskStore.setCompleted(task.id, false);
-    }
     const child = taskList.querySelector(`[data-task-id="${task.id}"]`);
-    taskList.removeChild(child);
+    child.classList.add("completing");
+
+    setTimeout(() => {
+      if (bubble.checked) {
+        TaskStore.setCompleted(task.id, true);
+      } else {
+        TaskStore.setCompleted(task.id, false);
+      }
+      taskList.removeChild(child);
+    }, 300);
   });
   
   const title = clone.querySelector(".task__title");

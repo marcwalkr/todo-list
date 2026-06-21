@@ -518,7 +518,15 @@ main {
   max-width: 50rem;
 }
 
-.task { list-style-type: none; }
+.task { 
+  list-style-type: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.task.completing {
+  opacity: 0;
+  transform: translateX(10px);
+}
 
 .task__container { display: flex; }
 
