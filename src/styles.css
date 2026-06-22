@@ -458,6 +458,7 @@ a { text-decoration: none; }
   display: flex;
   align-items: center;
   gap: var(--space-xs);
+  min-width: 0;
 }
 
 .project__name {
@@ -585,7 +586,12 @@ main {
 
 .task__bubble:checked::after { opacity: 1; }
 
-.task__title { grid-area: title; }
+.task__title { 
+  grid-area: title;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .task__title--completed { text-decoration: line-through; }
 
