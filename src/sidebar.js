@@ -33,6 +33,26 @@ const selectedColor = document.getElementById("selected-color-icon");
 
 const themeToggleBtn = document.getElementById("theme-toggle-button");
 
+export const setSidebarExpanded = (expanded) => {
+  const isExpanded = sidebar.dataset.expanded === "true";
+  if (expanded === isExpanded) return;
+  
+  sidebar.classList.add("toggled");
+  toggleSidebarBtn.classList.add("toggled");
+
+  if (expanded) {
+    sidebar.dataset.expanded = "true";
+    sidebar.classList.remove("collapsed");
+    toggleSidebarBtn.classList.remove("collapsed");
+    toggleSidebarBtn.setAttribute("aria-expanded", "true");
+  } else {
+    sidebar.dataset.expanded = "false";
+    sidebar.classList.add("collapsed");
+    toggleSidebarBtn.classList.add("collapsed");
+    toggleSidebarBtn.setAttribute("aria-expanded", "false");
+  }
+};
+
 // Scroll UL to bottom
 const scrollProjectList = () => {
   projectList.scrollTop = projectList.scrollHeight;
@@ -97,24 +117,18 @@ export const initSidebar = ({ onProjectCreate }) => {
   }
 
   toggleSidebarBtn.addEventListener("click", () => {
-    sidebar.classList.add("toggled");
-    toggleSidebarBtn.classList.add("toggled");
-
-    const expanded = toggleSidebarBtn.getAttribute("aria-expanded") === "true";
-    if (expanded) {
-      sidebar.classList.add("collapsed");
-      toggleSidebarBtn.classList.add("collapsed");
-      toggleSidebarBtn.setAttribute("aria-expanded", "false");
+    if (sidebar.dataset.expanded === "true") {
+      setSidebarExpanded(false);
     } else {
-      sidebar.classList.remove("collapsed");
-      toggleSidebarBtn.classList.remove("collapsed");
-      toggleSidebarBtn.setAttribute("aria-expanded", "true");
+      setSidebarExpanded(true);
     }
   });
 
-  sidebar.addEventListener("transitionend", () => {
-    sidebar.classList.remove("toggled");
-    toggleSidebarBtn.classList.remove("toggled");
+  sidebar.addEventListener("transitionend", (e) => {
+    if (e.propertyName === "width") {
+      sidebar.classList.remove("toggled");
+      toggleSidebarBtn.classList.remove("toggled");
+    }
   });
   
   // Open the dialog for adding a new task

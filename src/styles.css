@@ -46,6 +46,7 @@
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 3rem;
+  --space-xl: 4rem;
 
   --border-radius-sm: 0.5rem;
 
@@ -531,7 +532,7 @@ main {
   flex-direction: column;
   align-items: center;
   gap: var(--space-md);
-  margin-top: var(--space-lg);
+  margin: var(--space-xl) var(--space-lg);
   overflow-y: auto;
 }
 
