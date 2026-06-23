@@ -58,7 +58,6 @@ export const hasDatePassed = (dateStr) => {
   const inputDate = new Date(dateStr + "T00:00:00");
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  console.log(dateStr);
   return inputDate < today;
 };
 
