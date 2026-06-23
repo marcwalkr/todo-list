@@ -2,6 +2,9 @@ import ProjectStore from "./projectStore.js";
 
 const html = document.querySelector("html");
 
+const sidebar = document.getElementById("sidebar");
+const toggleSidebarBtn = document.getElementById("toggle-sidebar-button");
+
 const addTaskBtn = document.getElementById("add-task-button");
 const addTaskDialog = document.getElementById("add-task-dialog");
 
@@ -92,6 +95,27 @@ export const initSidebar = ({ onProjectCreate }) => {
   for (const project of ProjectStore.getAll()) {
     appendProjectToSidebar(project);
   }
+
+  toggleSidebarBtn.addEventListener("click", () => {
+    sidebar.classList.add("toggled");
+    toggleSidebarBtn.classList.add("toggled");
+
+    const expanded = toggleSidebarBtn.getAttribute("aria-expanded") === "true";
+    if (expanded) {
+      sidebar.classList.add("collapsed");
+      toggleSidebarBtn.classList.add("collapsed");
+      toggleSidebarBtn.setAttribute("aria-expanded", "false");
+    } else {
+      sidebar.classList.remove("collapsed");
+      toggleSidebarBtn.classList.remove("collapsed");
+      toggleSidebarBtn.setAttribute("aria-expanded", "true");
+    }
+  });
+
+  sidebar.addEventListener("transitionend", () => {
+    sidebar.classList.remove("toggled");
+    toggleSidebarBtn.classList.remove("toggled");
+  });
   
   // Open the dialog for adding a new task
   addTaskBtn.addEventListener("click", () => {

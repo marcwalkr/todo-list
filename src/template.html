@@ -6,23 +6,8 @@
   <title>Todo List</title>
 </head>
 <body>
-  <aside class="sidebar">
-    <header class="sidebar__header">
-      <div class="sidebar__title">ToDo</div>
-      <button 
-        class="sidebar__toggle-btn surface-interactive"
-        id="toggle-sidebar-button"
-        aria-label="Expand or collapse sidebar" 
-        aria-expanded="true">
-        <svg 
-          class="center-icon icon icon--lg fill-fg" 
-          aria-hidden="true" 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 24 24">
-          <path d="M6,2H18A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M6,8V16H10V8H6Z">
-        </svg>
-      </button>
-    </header>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__title">ToDo</div>
 
     <div role="group" aria-label="Actions">
       <button 
@@ -301,6 +286,21 @@
         </svg>
     </button>
   </aside>
+
+  <button 
+    class="toggle-sidebar-btn surface-interactive"
+    id="toggle-sidebar-button"
+    aria-label="Expand or collapse sidebar" 
+    aria-expanded="true"
+    aria-controls="sidebar">
+    <svg 
+      class="center-icon icon icon--lg fill-fg" 
+      aria-hidden="true" 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24">
+      <path d="M6,2H18A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M6,8V16H10V8H6Z">
+    </svg>
+  </button>
 
   <main>
     <section class="content">
