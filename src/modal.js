@@ -16,6 +16,11 @@ export const appendProjectToSelect = (project) => {
   projectSelect.appendChild(option);
 };
 
+export const removeProjectFromSelect = (projectId) => {
+  const child = projectSelect.querySelector(`option[value="${projectId}"]`);
+  projectSelect.removeChild(child);
+};
+
 export const initModals = ({ onTaskCreate, onTaskDelete, onProjectDelete }) => {
   // Disable selecting due dates in the past
   const today = new Date().toISOString().split("T")[0];

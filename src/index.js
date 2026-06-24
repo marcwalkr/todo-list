@@ -2,7 +2,7 @@ import "./styles.css";
 import ProjectStore from "./projectStore.js";
 import TaskStore from "./taskStore.js";
 import { initSidebar, setSidebarExpanded, removeProjectFromSidebar, setTheme } from "./sidebar.js";
-import { initModals, appendProjectToSelect } from "./modal.js";
+import { initModals, appendProjectToSelect, removeProjectFromSelect } from "./modal.js";
 import { setContentHeading, loadTasks, removeTaskFromList } from "./content.js";
 
 const getHeadingFromHash = () => {
@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       TaskStore.deleteByProjectId(projectId);
       ProjectStore.deleteProject(projectId);
       removeProjectFromSidebar(projectId);
+      removeProjectFromSelect(projectId);
     },
     onTaskDelete: (taskId) => {
       TaskStore.deleteTask(taskId);
