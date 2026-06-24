@@ -1,7 +1,7 @@
 import "./styles.css";
 import ProjectStore from "./projectStore.js";
 import TaskStore from "./taskStore.js";
-import { initSidebar, setSidebarExpanded, removeProjectFromSidebar } from "./sidebar.js";
+import { initSidebar, setSidebarExpanded, removeProjectFromSidebar, setTheme } from "./sidebar.js";
 import { initModals, appendProjectToSelect } from "./modal.js";
 import { setContentHeading, loadTasks, removeTaskFromList } from "./content.js";
 
@@ -76,3 +76,6 @@ window.addEventListener("hashchange", () => {
 const mq = window.matchMedia("(min-width: 1025px)");
 mq.addEventListener("change", (e) => setSidebarExpanded(e.matches));
 setSidebarExpanded(mq.matches);
+
+const theme = localStorage.getItem("theme");
+setTheme(theme);

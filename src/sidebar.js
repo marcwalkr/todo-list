@@ -110,6 +110,16 @@ const setProjectListExpanded = (expanded) => {
   projectListWrapper.style.height = expanded ? `${projectList.scrollHeight}px` : 0;
 };
 
+export const setTheme = (theme) => {
+  const current = html.dataset.theme;
+  if (current === theme) return;
+  if (theme !== "light" && theme !== "dark") return;
+
+  themeToggleBtn.setAttribute("aria-label", `Switch to ${current} mode`);
+  html.dataset.theme = theme;
+  localStorage.setItem("theme", theme);
+};
+
 export const initSidebar = ({ onProjectCreate }) => {
   // Add all projects to the sidebar after reload from storage
   for (const project of ProjectStore.getAll()) {
@@ -242,7 +252,6 @@ export const initSidebar = ({ onProjectCreate }) => {
     const current = html.dataset.theme;
     const next = current === "dark" ? "light" : "dark";
 
-    html.dataset.theme = next;
-    themeToggleBtn.setAttribute("aria-label", `Switch to ${current} mode`);
+    setTheme(next);
   });
 };
