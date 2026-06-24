@@ -309,6 +309,8 @@
     </section>
   </main>
 
+  <div class="backdrop" id="backdrop"></div>
+
   <dialog class="add-task-dialog" id="add-task-dialog" closedby="any">
     <form class="add-task-dialog__form" id="add-task-form" method="dialog" autocomplete="off">
       <input class="add-task-dialog__title-input" type="text" name="title" placeholder="Title" required>
@@ -351,78 +353,6 @@
       </div>
     </form>
   </dialog>
-
-  <dialog class="delete-project-dialog" id="delete-project-dialog" closedby="any">
-    <form class="delete-project-dialog__form" id="delete-project-form" method="dialog">
-      <p class="text-fg">Delete Project?</p>
-      <p class="text-fg">
-        The
-        <strong id="delete-dialog-project-name"></strong>
-        project and all its tasks will be permanently deleted. This action cannot be undone.
-      </p>
-      <div class="delete-project-dialog__button-group">
-        <button class="delete-project-dialog__cancel-btn" value="cancel">Cancel</button>
-        <button class="delete-project-dialog__delete-btn" value="delete">Delete</button>
-      </div>
-    </form>
-  </dialog>
-
-  <dialog class="delete-task-dialog" id="delete-task-dialog" closedby="any">
-    <form class="delete-task-dialog__form" id="delete-task-form" method="dialog">
-      <p class="text-fg">Delete Task?</p>
-      <p class="text-fg">
-        The
-        <strong id="delete-dialog-task-name"></strong>
-        task will be permanently deleted.
-      </p>
-      <div class="delete-task-dialog__button-group">
-        <button class="delete-task-dialog__cancel-btn" value="cancel">Cancel</button>
-        <button class="delete-task-dialog__delete-btn" value="delete">Delete</button>
-      </div>
-    </form>
-  </dialog>
-
-  <div class="backdrop" id="backdrop"></div>
-
-  <template id="project-template">
-    <li class="project sidebar__row surface-interactive">
-      <a class="project__link">
-        <svg class="icon icon--md" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="6"></circle>
-        </svg>
-        <span class="text-md text-fg project__name"></span>
-      </a>
-
-      <button 
-        class="project__options-btn surface-interactive"
-        popovertarget="project-menu"
-        aria-label="Project options">
-        <svg 
-          class="icon icon--md fill-fg center-icon"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 24 24">
-          <path d="
-            M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10
-            A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14
-            A2,2 0 0,1 4,12Z">
-        </svg>
-      </button>
-    </li>
-  </template>
-
-  <div popover class="project-menu" id="project-menu">
-    <button class="project-menu__delete-btn" id="delete-project-button">
-      <svg 
-        class="project-menu__delete-btn-icon icon icon--md center-icon"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 24 24">
-        <path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z">
-      </svg>
-      <span>Delete</span>
-    </button>
-  </div>
 
   <template id="task-template">
     <li class="task">
@@ -473,5 +403,75 @@
       <span>Delete</span>
     </button>
   </div>
+
+  <dialog class="delete-task-dialog" id="delete-task-dialog" closedby="any">
+    <form class="delete-task-dialog__form" id="delete-task-form" method="dialog">
+      <p class="text-fg">Delete Task?</p>
+      <p class="text-fg">
+        The
+        <strong id="delete-dialog-task-name"></strong>
+        task will be permanently deleted.
+      </p>
+      <div class="delete-task-dialog__button-group">
+        <button class="delete-task-dialog__cancel-btn" value="cancel">Cancel</button>
+        <button class="delete-task-dialog__delete-btn" value="delete">Delete</button>
+      </div>
+    </form>
+  </dialog>
+
+  <template id="project-template">
+    <li class="project sidebar__row surface-interactive">
+      <a class="project__link">
+        <svg class="icon icon--md" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="6"></circle>
+        </svg>
+        <span class="text-md text-fg project__name"></span>
+      </a>
+
+      <button 
+        class="project__options-btn surface-interactive"
+        popovertarget="project-menu"
+        aria-label="Project options">
+        <svg 
+          class="icon icon--md fill-fg center-icon"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24">
+          <path d="
+            M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10
+            A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14
+            A2,2 0 0,1 4,12Z">
+        </svg>
+      </button>
+    </li>
+  </template>
+
+  <div popover class="project-menu" id="project-menu">
+    <button class="project-menu__delete-btn" id="delete-project-button">
+      <svg 
+        class="project-menu__delete-btn-icon icon icon--md center-icon"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 24 24">
+        <path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z">
+      </svg>
+      <span>Delete</span>
+    </button>
+  </div>
+
+  <dialog class="delete-project-dialog" id="delete-project-dialog" closedby="any">
+    <form class="delete-project-dialog__form" id="delete-project-form" method="dialog">
+      <p class="text-fg">Delete Project?</p>
+      <p class="text-fg">
+        The
+        <strong id="delete-dialog-project-name"></strong>
+        project and all its tasks will be permanently deleted. This action cannot be undone.
+      </p>
+      <div class="delete-project-dialog__button-group">
+        <button class="delete-project-dialog__cancel-btn" value="cancel">Cancel</button>
+        <button class="delete-project-dialog__delete-btn" value="delete">Delete</button>
+      </div>
+    </form>
+  </dialog>
 </body>
 </html>
