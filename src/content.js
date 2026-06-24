@@ -90,7 +90,10 @@ export const setContentHeading = (heading) => {
 };
 
 export const loadTasks = (view) => {
-  if (!view) return;
+  if (!view) {
+    taskList.replaceChildren();
+    return;
+  }
   
   let tasks;
   if (view.startsWith("status:")) {
