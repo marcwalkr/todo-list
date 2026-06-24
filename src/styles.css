@@ -651,4 +651,6 @@ main {
   fill: var(--clr-warning);
 }
 
+.task__options-btn { align-self: center; }
+
 .separator--task { grid-area: separator; }
