@@ -337,8 +337,7 @@ a { text-decoration: none; }
 
 .sidebar__row--projects:hover .sidebar__add-project-btn,
 .project:hover .project__options-btn,
-.project.has-open-popover .project__options-btn,
-.task.has-open-popover .task__options-btn {
+.project.has-open-popover .project__options-btn {
   display: inline;
 }
 
@@ -657,6 +656,9 @@ main {
   align-self: center; 
 }
 
-.task:hover .task__options-btn { visibility: visible; }
+.task:hover .task__options-btn,
+.task.has-open-popover .task__options-btn { 
+  visibility: visible; 
+}
 
 .separator--task { grid-area: separator; }
