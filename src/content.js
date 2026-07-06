@@ -35,7 +35,7 @@ const getTaskListItem = (task) => {
   }
 
   bubble.addEventListener("change", () => {
-    li.classList.add("completing");
+    li.classList.add("task--completing");
   });
 
   li.addEventListener("transitionend", (e) => {
@@ -45,7 +45,7 @@ const getTaskListItem = (task) => {
       } else {
         TaskStore.setCompleted(task.id, false);
       }
-      li.classList.remove("completing");
+      li.classList.remove("task--completing");
       taskList.removeChild(li);
     }
   });
@@ -78,7 +78,7 @@ const getTaskListItem = (task) => {
   const optionsButton = clone.querySelector(".task__options-btn");
   optionsButton.addEventListener("click", () => {
     li.classList.add("has-open-popover");
-    backdrop.classList.add("active");
+    backdrop.classList.add("backdrop--active");
     deleteTaskDialog.dataset.taskId = task.id;
   });
 
@@ -121,7 +121,7 @@ backdrop.addEventListener("click", () => {
 // When task menu popover closes, disable backdrop and remove the open popover class
 taskMenu.addEventListener("toggle", (e) => {
   if (e.newState === "closed") {
-    backdrop.classList.remove("active");
+    backdrop.classList.remove("backdrop--active");
     document.querySelectorAll(".task.has-open-popover")
       .forEach(r => r.classList.remove("has-open-popover"));
   }

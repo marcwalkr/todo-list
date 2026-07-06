@@ -13,7 +13,7 @@ const addProjectBtn = document.getElementById("add-project-button");
 const toggleProjectsBtn = document.getElementById("toggle-projects-button");
 const toggleProjectsIcon = document.getElementById("toggle-projects-icon");
 
-const projectListWrapper = document.getElementById("project-list-wrapper");
+const projectListWrapper = document.getElementById("projects-wrapper");
 const projectList = document.getElementById("project-list");
 
 const newProjectEditor = document.getElementById("new-project-editor");
@@ -37,18 +37,18 @@ export const setSidebarExpanded = (expanded) => {
   const isExpanded = sidebar.dataset.expanded === "true";
   if (expanded === isExpanded) return;
   
-  sidebar.classList.add("toggled");
-  toggleSidebarBtn.classList.add("toggled");
+  sidebar.classList.add("sidebar--toggled");
+  toggleSidebarBtn.classList.add("sidebar__toggle-btn--toggled");
 
   if (expanded) {
     sidebar.dataset.expanded = "true";
-    sidebar.classList.remove("collapsed");
-    toggleSidebarBtn.classList.remove("collapsed");
+    sidebar.classList.remove("sidebar--collapsed");
+    toggleSidebarBtn.classList.remove("sidebar__toggle-btn--collapsed");
     toggleSidebarBtn.setAttribute("aria-expanded", "true");
   } else {
     sidebar.dataset.expanded = "false";
-    sidebar.classList.add("collapsed");
-    toggleSidebarBtn.classList.add("collapsed");
+    sidebar.classList.add("sidebar--collapsed");
+    toggleSidebarBtn.classList.add("sidebar__toggle-btn--collapsed");
     toggleSidebarBtn.setAttribute("aria-expanded", "false");
   }
 };
@@ -72,8 +72,8 @@ const appendProjectToSidebar = (project) => {
 
   const optionsButton = clone.querySelector(".project__options-btn");
   optionsButton.addEventListener("click", () => {
-    li.classList.add("has-open-popover");
-    backdrop.classList.add("active");
+    li.classList.add("row-reveal-action--open-popover");
+    backdrop.classList.add("backdrop--active");
     deleteProjectDialog.dataset.projectId = project.id;
   });
 
@@ -102,10 +102,10 @@ export const removeProjectFromSidebar = (projectId) => {
 // Animate expand/collapse
 const setProjectListExpanded = (expanded) => {
   toggleProjectsBtn.setAttribute("aria-expanded", expanded.toString());
-  toggleProjectsIcon.classList.toggle("rotate", !expanded);
+  toggleProjectsIcon.classList.toggle("icon--rotate", !expanded);
 
-  projectListWrapper.classList.add("animate-height");
-  projectList.classList.add("disable-scroll");
+  projectListWrapper.classList.add("sidebar__projects-wrapper--animate-height");
+  projectList.classList.add("sidebar__project-list--disable-scroll");
 
   projectListWrapper.style.height = expanded ? `${projectList.scrollHeight}px` : 0;
 };
@@ -136,8 +136,8 @@ export const initSidebar = ({ onProjectCreate }) => {
 
   sidebar.addEventListener("transitionend", (e) => {
     if (e.propertyName === "width") {
-      sidebar.classList.remove("toggled");
-      toggleSidebarBtn.classList.remove("toggled");
+      sidebar.classList.remove("sidebar--toggled");
+      toggleSidebarBtn.classList.remove("sidebar__toggle-btn--toggled");
     }
   });
   
@@ -169,8 +169,8 @@ export const initSidebar = ({ onProjectCreate }) => {
   projectListWrapper.addEventListener("transitionend", (event) => {
     if (event.target !== projectListWrapper) return;
 
-    projectListWrapper.classList.remove("animate-height");
-    projectList.classList.remove("disable-scroll");
+    projectListWrapper.classList.remove("sidebar__projects-wrapper--animate-height");
+    projectList.classList.remove("sidebar__project-list--disable-scroll");
   });
 
   // Hide new project UI when clicking outside
@@ -235,9 +235,9 @@ export const initSidebar = ({ onProjectCreate }) => {
   // When project menu popover closes, disable backdrop and remove the open popover class
   projectMenu.addEventListener("toggle", (e) => {
     if (e.newState === "closed") {
-      backdrop.classList.remove("active");
-      document.querySelectorAll(".project.has-open-popover")
-        .forEach(r => r.classList.remove("has-open-popover"));
+      backdrop.classList.remove("backdrop--active");
+      document.querySelectorAll(".row-reveal-action--open-popover")
+        .forEach(r => r.classList.remove("row-reveal-action--open-popover"));
     }
   });
 

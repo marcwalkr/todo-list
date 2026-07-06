@@ -9,13 +9,13 @@
   <aside class="sidebar" id="sidebar" data-expanded="true">
     <div class="sidebar__title">ToDo</div>
 
-    <div role="group" aria-label="Actions">
+    <div class="sidebar__action-buttons" role="group" aria-label="Actions">
       <button 
         class="sidebar__row surface-interactive"
         id="add-task-button"
         aria-haspopup="dialog" 
         aria-controls="add-task-dialog">
-        <svg class="icon icon--md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <svg class="icon icon--md icon--color-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="
             M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12
             A10,10 0 0,0 12,2Z">
@@ -28,7 +28,7 @@
         id="search-button" 
         aria-haspopup="dialog" 
         aria-controls="search-modal">
-        <svg class="icon icon--md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <svg class="icon icon--md icon--color-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="
             M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5
             V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5
@@ -44,7 +44,7 @@
       <ul>
         <li>
           <a class="sidebar__row surface-interactive" href="#inbox">
-            <svg class="icon icon--md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <svg class="icon icon--md icon--color-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="
                 M19,15H15A3,3 0 0,1 12,18A3,3 0 0,1 9,15H5V5H19M19,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19
                 A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z">
@@ -55,7 +55,7 @@
 
         <li>
           <a class="sidebar__row surface-interactive" href="#today">
-            <svg class="icon icon--md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <svg class="icon icon--md icon--color-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="
                 M7,10H12V15H7M19,19H5V8H19M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19
                 A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3Z">
@@ -66,7 +66,7 @@
 
         <li>
           <a class="sidebar__row surface-interactive" href="#upcoming">
-            <svg class="icon icon--md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <svg class="icon icon--md icon--color-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="
                 M9,10V12H7V10H9M13,10V12H11V10H13M17,10V12H15V10H17M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5
                 C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H6V1H8V3H16V1H18V3H19M19,19V8H5V19H19M9,14V16H7V14H9M13,14V16H11V14
@@ -78,7 +78,7 @@
 
         <li>
           <a class="sidebar__row surface-interactive" href="#important">
-            <svg class="icon icon--md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <svg class="icon icon--md icon--color-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="
                 M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
             </svg>
@@ -88,7 +88,7 @@
 
         <li>
           <a class="sidebar__row surface-interactive" href="#completed">
-            <svg class="icon icon--md fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <svg class="icon icon--md icon--color-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z">
             </svg>
             <span class="text-md text-fg">Completed</span>
@@ -100,18 +100,19 @@
     <div class="separator"></div>
 
     <nav class="sidebar__project-navigation" id="project-navigation" aria-label="Project navigation">
-      <div class="sidebar__row sidebar__row--projects surface-interactive">
-        <a class="sidebar__projects-link" href="#projects">
+      <div class="sidebar__row surface-interactive row-reveal-action">
+        <a class="row-link" href="#projects">
           <span class="text-lg text-bold text-fg">Projects</span>
         </a>
 
         <div class="sidebar__project-controls">
           <button 
-            class="sidebar__add-project-btn surface-interactive" 
+            class="row-icon-btn surface-interactive" 
             id="add-project-button"
+            data-reveal
             aria-label="Add new project">
             <svg 
-              class="icon icon--md fill-fg center-icon" 
+              class="icon icon--md icon--color-fg" 
               aria-hidden="true" 
               xmlns="http://www.w3.org/2000/svg" 
               viewBox="0 0 24 24">
@@ -120,13 +121,13 @@
           </button>
   
           <button 
-            class="sidebar__toggle-projects-btn surface-interactive" 
+            class="sidebar__toggle-projects-btn row-icon-btn surface-interactive" 
             id="toggle-projects-button"
             aria-label="Expand or collapse list of projects" 
             aria-expanded="true"
             aria-controls="sidebar-project-list">
             <svg 
-              class="icon icon--md fill-fg center-icon"
+              class="icon icon--md icon--color-fg"
               id="toggle-projects-icon"
               aria-hidden="true" 
               xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +138,7 @@
         </div>
       </div>
 
-      <div class="sidebar__project-list-wrapper" id="project-list-wrapper">
+      <div class="sidebar__projects-wrapper" id="projects-wrapper">
         <ul class="sidebar__project-list" id="project-list"></ul>
       </div>
 
@@ -156,7 +157,7 @@
               viewBox="6 6 12 12">
               <circle cx="12" cy="12" r="6">
             </svg>
-            <svg class="icon icon--xs fill-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="7 10 10 5">
+            <svg class="icon icon--xs icon--color-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="7 10 10 5">
               <path d="M7,10L12,15L17,10H7Z">
             </svg>
           </button>
@@ -271,7 +272,7 @@
     <button 
       class="sidebar__theme-toggle-btn surface-interactive" id="theme-toggle-button" aria-label="Switch to dark mode">
       <svg 
-        class="center-icon icon icon--lg fill-fg" 
+        class="icon icon--lg icon--color-fg" 
         aria-hidden="true" 
         xmlns="http://www.w3.org/2000/svg" 
         viewBox="0 0 24 24">
@@ -288,13 +289,13 @@
   </aside>
 
   <button 
-    class="toggle-sidebar-btn surface-interactive"
+    class="sidebar__toggle-btn surface-interactive"
     id="toggle-sidebar-button"
     aria-label="Expand or collapse sidebar" 
     aria-expanded="true"
     aria-controls="sidebar">
     <svg 
-      class="center-icon icon icon--lg fill-fg" 
+      class="icon icon--lg icon--color-fg" 
       aria-hidden="true" 
       xmlns="http://www.w3.org/2000/svg" 
       viewBox="0 0 24 24">
@@ -311,14 +312,70 @@
 
   <div class="backdrop" id="backdrop"></div>
 
-  <dialog class="add-task-dialog" id="add-task-dialog" closedby="any">
-    <form class="add-task-dialog__form" id="add-task-form" method="dialog" autocomplete="off">
-      <input class="add-task-dialog__title-input" type="text" name="title" placeholder="Title" required>
-      <input class="add-task-dialog__description-input" type="text" name="description" placeholder="Description">
+  <template id="project-template">
+    <li class="sidebar__row row-reveal-action surface-interactive">
+      <a class="project__link row-link">
+        <svg class="icon icon--md" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="6"></circle>
+        </svg>
+        <span class="text-md text-fg project__name"></span>
+      </a>
 
-      <div class="add-task-dialog__select-group">
-        <input class="add-task-dialog__date-input" id="due-date-input" type="date" name="dueDate">
-        <select class="add-task-dialog__priority-select" name="priority">
+      <button 
+        class="project__options-btn row-icon-btn surface-interactive"
+        popovertarget="project-menu"
+        data-reveal
+        aria-label="Project options">
+        <svg 
+          class="icon icon--md icon--color-fg"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24">
+          <path d="
+            M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10
+            A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14
+            A2,2 0 0,1 4,12Z">
+        </svg>
+      </button>
+    </li>
+  </template>
+
+  <div popover class="menu" id="project-menu">
+    <button class="menu__delete-btn" id="delete-project-button">
+      <svg 
+        class="icon icon--md"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 24 24">
+        <path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z">
+      </svg>
+      <span>Delete</span>
+    </button>
+  </div>
+
+  <dialog class="dialog dialog--sm" id="delete-project-dialog" closedby="any">
+    <form class="dialog__form" id="delete-project-form" method="dialog">
+      <p class="text-fg">Delete Project?</p>
+      <p class="text-fg">
+        The
+        <strong class="dialog__subject-name" id="delete-dialog-project-name"></strong>
+        project and all its tasks will be permanently deleted. This action cannot be undone.
+      </p>
+      <div class="dialog__button-group dialog__button-group--delete">
+        <button class="dialog__button dialog__button--sm dialog__button--cancel" value="cancel">Cancel</button>
+        <button class="dialog__button dialog__button--sm dialog__button--delete" value="delete">Delete</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="dialog dialog--lg" id="add-task-dialog" closedby="any">
+    <form class="dialog__form" id="add-task-form" method="dialog" autocomplete="off">
+      <input class="dialog__title-input" type="text" name="title" placeholder="Title" required>
+      <input class="dialog__description-input" type="text" name="description" placeholder="Description">
+
+      <div class="dialog__select-group">
+        <input class="dialog__date-input" id="due-date-input" type="date" name="dueDate">
+        <select class="dialog__select" name="priority">
           <option value="" selected disabled hidden>Priority</option>
           <option value="high">
             <span aria-hidden="true">🔴</span>
@@ -341,14 +398,14 @@
 
       <div class="separator"></div>
 
-      <div class="add-task-dialog__bottom">
-        <select class="add-task-dialog__project-select" id="project-select" name="project">
+      <div class="dialog__bottom">
+        <select class="dialog__select dialog__select--project" id="project-select" name="project">
           <option value="inbox" selected>Inbox</option>
         </select>
 
-        <div class="add-task-dialog__button-group">
-          <button class="add-task-dialog__submit-btn" value="submit">Add Task</button>
-          <button class="add-task-dialog__cancel-btn" value="cancel" formnovalidate>Cancel</button>
+        <div class="dialog__button-group dialog__button-group--add-task">
+          <button class="dialog__button dialog__button--lg dialog__button--add-task" value="submit">Add Task</button>
+          <button class="dialog__button dialog__button--lg dialog__button--cancel" value="cancel" formnovalidate>Cancel</button>
         </div>
       </div>
     </form>
@@ -376,7 +433,7 @@
           popovertarget="task-menu"
           aria-label="Task options">
           <svg 
-            class="icon icon--md fill-fg center-icon"
+            class="icon icon--md icon--color-fg"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg" 
             viewBox="0 0 24 24">
@@ -391,10 +448,10 @@
     </li>
   </template>
 
-  <div popover class="task-menu" id="task-menu">
-    <button class="task-menu__delete-btn" id="delete-task-button">
+  <div popover class="menu" id="task-menu">
+    <button class="menu__delete-btn" id="delete-task-button">
       <svg 
-        class="task-menu__delete-btn-icon icon icon--md center-icon"
+        class="icon icon--md"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg" 
         viewBox="0 0 24 24">
@@ -404,72 +461,17 @@
     </button>
   </div>
 
-  <dialog class="delete-task-dialog" id="delete-task-dialog" closedby="any">
-    <form class="delete-task-dialog__form" id="delete-task-form" method="dialog">
+  <dialog class="dialog dialog--sm" id="delete-task-dialog" closedby="any">
+    <form class="dialog__form" id="delete-task-form" method="dialog">
       <p class="text-fg">Delete Task?</p>
       <p class="text-fg">
         The
-        <strong id="delete-dialog-task-name"></strong>
+        <strong class="dialog__subject-name" id="delete-dialog-task-name"></strong>
         task will be permanently deleted.
       </p>
-      <div class="delete-task-dialog__button-group">
-        <button class="delete-task-dialog__cancel-btn" value="cancel">Cancel</button>
-        <button class="delete-task-dialog__delete-btn" value="delete">Delete</button>
-      </div>
-    </form>
-  </dialog>
-
-  <template id="project-template">
-    <li class="project sidebar__row surface-interactive">
-      <a class="project__link">
-        <svg class="icon icon--md" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="6"></circle>
-        </svg>
-        <span class="text-md text-fg project__name"></span>
-      </a>
-
-      <button 
-        class="project__options-btn surface-interactive"
-        popovertarget="project-menu"
-        aria-label="Project options">
-        <svg 
-          class="icon icon--md fill-fg center-icon"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 24 24">
-          <path d="
-            M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10
-            A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14
-            A2,2 0 0,1 4,12Z">
-        </svg>
-      </button>
-    </li>
-  </template>
-
-  <div popover class="project-menu" id="project-menu">
-    <button class="project-menu__delete-btn" id="delete-project-button">
-      <svg 
-        class="project-menu__delete-btn-icon icon icon--md center-icon"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 24 24">
-        <path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z">
-      </svg>
-      <span>Delete</span>
-    </button>
-  </div>
-
-  <dialog class="delete-project-dialog" id="delete-project-dialog" closedby="any">
-    <form class="delete-project-dialog__form" id="delete-project-form" method="dialog">
-      <p class="text-fg">Delete Project?</p>
-      <p class="text-fg">
-        The
-        <strong id="delete-dialog-project-name"></strong>
-        project and all its tasks will be permanently deleted. This action cannot be undone.
-      </p>
-      <div class="delete-project-dialog__button-group">
-        <button class="delete-project-dialog__cancel-btn" value="cancel">Cancel</button>
-        <button class="delete-project-dialog__delete-btn" value="delete">Delete</button>
+      <div class="dialog__button-group dialog__button-group--delete">
+        <button class="dialog__button dialog__button--sm dialog__button--cancel" value="cancel">Cancel</button>
+        <button class="dialog__button dialog__button--sm dialog__button--delete" value="delete">Delete</button>
       </div>
     </form>
   </dialog>
