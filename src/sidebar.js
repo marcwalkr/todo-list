@@ -6,7 +6,7 @@ const sidebar = document.getElementById("sidebar");
 const toggleSidebarBtn = document.getElementById("toggle-sidebar-button");
 
 const addTaskBtn = document.getElementById("add-task-button");
-const addTaskDialog = document.getElementById("add-task-dialog");
+const editTaskDialog = document.getElementById("edit-task-dialog");
 
 const projectNav = document.getElementById("project-navigation");
 const addProjectBtn = document.getElementById("add-project-button");
@@ -143,7 +143,7 @@ export const initSidebar = ({ onProjectCreate }) => {
   
   // Open the dialog for adding a new task
   addTaskBtn.addEventListener("click", () => {
-    addTaskDialog.showModal();
+    editTaskDialog.showModal();
   });
 
   // Create a new project

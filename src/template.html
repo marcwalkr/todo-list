@@ -14,7 +14,7 @@
         class="sidebar__row surface-interactive"
         id="add-task-button"
         aria-haspopup="dialog" 
-        aria-controls="add-task-dialog">
+        aria-controls="edit-task-dialog">
         <svg class="icon icon--md icon--color-fg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="
             M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12
@@ -368,8 +368,8 @@
     </form>
   </dialog>
 
-  <dialog class="dialog dialog--lg" id="add-task-dialog" closedby="any">
-    <form class="dialog__form" id="add-task-form" method="dialog" autocomplete="off">
+  <dialog class="dialog dialog--lg" id="edit-task-dialog" closedby="any">
+    <form class="dialog__form" id="edit-task-form" method="dialog" autocomplete="off">
       <input class="dialog__title-input" type="text" name="title" placeholder="Title" required>
       <input class="dialog__description-input" type="text" name="description" placeholder="Description">
 
@@ -403,9 +403,17 @@
           <option value="inbox" selected>Inbox</option>
         </select>
 
-        <div class="dialog__button-group dialog__button-group--add-task">
-          <button class="dialog__button dialog__button--lg dialog__button--add-task" value="submit">Add Task</button>
-          <button class="dialog__button dialog__button--lg dialog__button--cancel" value="cancel" formnovalidate>Cancel</button>
+        <div class="dialog__button-group dialog__button-group--edit-task">
+          <button 
+            class="dialog__button dialog__button--lg dialog__button--edit-task"
+            value="add">
+            Add Task
+          </button>
+          <button
+            class="dialog__button dialog__button--lg dialog__button--cancel" 
+            value="cancel" formnovalidate>
+            Cancel
+          </button>
         </div>
       </div>
     </form>

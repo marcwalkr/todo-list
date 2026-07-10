@@ -535,7 +535,7 @@ main {
   gap: var(--space-sm);
 }
 
-.dialog__button-group--add-task {
+.dialog__button-group--edit-task {
   flex-direction: row-reverse;
   flex: 2;
 }
@@ -562,7 +562,7 @@ main {
   background-color: var(--clr-surface-0);
 }
 
-.dialog__button--add-task {
+.dialog__button--edit-task {
   color: black;
   border: 1px solid var(--clr-primary-20);
   background-color: var(--clr-primary-20);

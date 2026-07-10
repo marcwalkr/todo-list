@@ -1,7 +1,7 @@
 import ProjectStore from "./projectStore";
 
-const addTaskDialog = document.getElementById("add-task-dialog");
-const addTaskForm = document.getElementById("add-task-form");
+const editTaskDialog = document.getElementById("edit-task-dialog");
+const editTaskForm = document.getElementById("edit-task-form");
 const dueDateInput = document.getElementById("due-date-input");
 const projectSelect = document.getElementById("project-select");
 
@@ -31,14 +31,14 @@ export const initModals = ({ onTaskCreate, onTaskDelete, onProjectDelete }) => {
     appendProjectToSelect(project);
   }
 
-  addTaskDialog.addEventListener("close", () => {
-    if (addTaskDialog.returnValue === "submit") {
-      const data = Object.fromEntries(new FormData(addTaskForm));
+  editTaskDialog.addEventListener("close", () => {
+    if (editTaskDialog.returnValue === "add") {
+      const data = Object.fromEntries(new FormData(editTaskForm));
       onTaskCreate(data.project, data.title, data.description, data.dueDate, data.priority);
     }
 
-    addTaskForm.reset();
-    addTaskDialog.returnValue = "";
+    editTaskForm.reset();
+    editTaskDialog.returnValue = "";
   });
 
   deleteTaskDialog.addEventListener("close", (e) => {
