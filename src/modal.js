@@ -4,6 +4,7 @@ const editTaskDialog = document.getElementById("edit-task-dialog");
 const editTaskForm = document.getElementById("edit-task-form");
 const dueDateInput = document.getElementById("due-date-input");
 const projectSelect = document.getElementById("project-select");
+const submitButton = document.getElementById("edit-task-submit-button");
 
 const deleteTaskDialog = document.getElementById("delete-task-dialog");
 
@@ -19,6 +20,13 @@ export const appendProjectToSelect = (project) => {
 export const removeProjectFromSelect = (projectId) => {
   const child = projectSelect.querySelector(`option[value="${projectId}"]`);
   projectSelect.removeChild(child);
+};
+
+export const openAddTaskDialog = () => {
+  submitButton.value = "add";
+  submitButton.textContent = "Add Task";
+
+  editTaskDialog.showModal();
 };
 
 export const initModals = ({ onTaskCreate, onTaskDelete, onProjectDelete }) => {

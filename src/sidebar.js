@@ -6,7 +6,6 @@ const sidebar = document.getElementById("sidebar");
 const toggleSidebarBtn = document.getElementById("toggle-sidebar-button");
 
 const addTaskBtn = document.getElementById("add-task-button");
-const editTaskDialog = document.getElementById("edit-task-dialog");
 
 const projectNav = document.getElementById("project-navigation");
 const addProjectBtn = document.getElementById("add-project-button");
@@ -120,7 +119,7 @@ export const setTheme = (theme) => {
   localStorage.setItem("theme", theme);
 };
 
-export const initSidebar = ({ onProjectCreate }) => {
+export const initSidebar = ({ onProjectCreate, onAddTaskClick }) => {
   // Add all projects to the sidebar after reload from storage
   for (const project of ProjectStore.getAll()) {
     appendProjectToSidebar(project);
@@ -143,7 +142,7 @@ export const initSidebar = ({ onProjectCreate }) => {
   
   // Open the dialog for adding a new task
   addTaskBtn.addEventListener("click", () => {
-    editTaskDialog.showModal();
+    onAddTaskClick();
   });
 
   // Create a new project
