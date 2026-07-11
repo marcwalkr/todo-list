@@ -3,13 +3,14 @@ import ProjectStore from "./projectStore.js";
 import TaskStore from "./taskStore.js";
 import { initSidebar, setSidebarExpanded, removeProjectFromSidebar, setTheme } from "./sidebar.js";
 import { 
-  initModals, 
-  appendProjectToSelect, 
-  removeProjectFromSelect, 
-  openAddTaskDialog, 
-  openDeleteProjectDialog 
+  initModals,
+  appendProjectToSelect,
+  removeProjectFromSelect,
+  openAddTaskDialog,
+  openDeleteProjectDialog,
+  openDeleteTaskDialog
 } from "./modal.js";
-import { setContentHeading, loadTasks, removeTaskFromList } from "./content.js";
+import { setContentHeading, loadTasks, removeTaskFromList, initContent } from "./content.js";
 
 const getHeadingFromHash = () => {
   const hash = window.location.hash;
@@ -77,6 +78,13 @@ document.addEventListener("DOMContentLoaded", () => {
     onTaskDelete: (taskId) => {
       TaskStore.deleteTask(taskId);
       removeTaskFromList(taskId);
+    }
+  });
+
+  initContent({
+    onDeleteClick: (taskId) => {
+      const taskName = TaskStore.get(taskId).title;
+      openDeleteTaskDialog(taskId, taskName);
     }
   });
 

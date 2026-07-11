@@ -7,6 +7,7 @@ const projectSelect = document.getElementById("project-select");
 const submitButton = document.getElementById("edit-task-submit-button");
 
 const deleteTaskDialog = document.getElementById("delete-task-dialog");
+const deleteDialogTaskName = document.getElementById("delete-dialog-task-name");
 
 const deleteProjectDialog = document.getElementById("delete-project-dialog");
 const deleteDialogProjectName = document.getElementById("delete-dialog-project-name");
@@ -35,6 +36,12 @@ export const openDeleteProjectDialog = (projectId, projectName) => {
   deleteDialogProjectName.textContent = projectName;
   deleteProjectDialog.showModal();
 };
+
+export const openDeleteTaskDialog = (taskId, taskName) => {
+  deleteTaskDialog.dataset.taskId = taskId;
+  deleteDialogTaskName.textContent = taskName;
+  deleteTaskDialog.showModal();
+}
 
 export const initModals = ({ onTaskCreate, onTaskDelete, onProjectDelete }) => {
   // Disable selecting due dates in the past

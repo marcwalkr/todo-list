@@ -10,9 +10,6 @@ const backdrop = document.getElementById("backdrop");
 const taskMenu = document.getElementById("task-menu");
 const deleteTaskBtn = document.getElementById("delete-task-button");
 
-const deleteTaskDialog = document.getElementById("delete-task-dialog");
-const deleteDialogTaskName = document.getElementById("delete-dialog-task-name");
-
 const fetchTasksByStatus = (status) => {
   if (status === "today") return TaskStore.getToday();
   if (status === "upcoming") return TaskStore.getUpcoming();
@@ -79,7 +76,7 @@ const getTaskListItem = (task) => {
   optionsButton.addEventListener("click", () => {
     li.classList.add("has-open-popover");
     backdrop.classList.add("backdrop--active");
-    deleteTaskDialog.dataset.taskId = task.id;
+    deleteTaskBtn.dataset.taskId = task.id;
   });
 
   return li;
@@ -113,22 +110,22 @@ export const removeTaskFromList = (taskId) => {
   taskList.removeChild(taskItem);
 };
 
-// Hide the task menu popover when clicking anywhere outside
-backdrop.addEventListener("click", () => {
-  taskMenu.hidePopover();
-});
+export const initContent = ({ onDeleteClick }) => {
+  // Hide the task menu popover when clicking anywhere outside
+  backdrop.addEventListener("click", () => {
+    taskMenu.hidePopover();
+  });
 
-// When task menu popover closes, disable backdrop and remove the open popover class
-taskMenu.addEventListener("toggle", (e) => {
-  if (e.newState === "closed") {
-    backdrop.classList.remove("backdrop--active");
-    document.querySelectorAll(".task.has-open-popover")
-      .forEach(r => r.classList.remove("has-open-popover"));
-  }
-});
+  // When task menu popover closes, disable backdrop and remove the open popover class
+  taskMenu.addEventListener("toggle", (e) => {
+    if (e.newState === "closed") {
+      backdrop.classList.remove("backdrop--active");
+      document.querySelectorAll(".task.has-open-popover")
+        .forEach(r => r.classList.remove("has-open-popover"));
+    }
+  });
 
-deleteTaskBtn.addEventListener("click", (e) => {
-  const task = TaskStore.get(deleteTaskDialog.dataset.taskId);
-  deleteDialogTaskName.textContent = task.title;
-  deleteTaskDialog.showModal();
-});
+  deleteTaskBtn.addEventListener("click", () => {
+    onDeleteClick(deleteTaskBtn.dataset.taskId);
+  });
+};
