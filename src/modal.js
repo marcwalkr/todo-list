@@ -9,6 +9,7 @@ const submitButton = document.getElementById("edit-task-submit-button");
 const deleteTaskDialog = document.getElementById("delete-task-dialog");
 
 const deleteProjectDialog = document.getElementById("delete-project-dialog");
+const deleteDialogProjectName = document.getElementById("delete-dialog-project-name");
 
 export const appendProjectToSelect = (project) => {
   const option = document.createElement("option");
@@ -27,6 +28,12 @@ export const openAddTaskDialog = () => {
   submitButton.textContent = "Add Task";
 
   editTaskDialog.showModal();
+};
+
+export const openDeleteProjectDialog = (projectId, projectName) => {
+  deleteProjectDialog.dataset.projectId = projectId;
+  deleteDialogProjectName.textContent = projectName;
+  deleteProjectDialog.showModal();
 };
 
 export const initModals = ({ onTaskCreate, onTaskDelete, onProjectDelete }) => {

@@ -2,7 +2,13 @@ import "./styles.css";
 import ProjectStore from "./projectStore.js";
 import TaskStore from "./taskStore.js";
 import { initSidebar, setSidebarExpanded, removeProjectFromSidebar, setTheme } from "./sidebar.js";
-import { initModals, appendProjectToSelect, removeProjectFromSelect, openAddTaskDialog } from "./modal.js";
+import { 
+  initModals, 
+  appendProjectToSelect, 
+  removeProjectFromSelect, 
+  openAddTaskDialog, 
+  openDeleteProjectDialog 
+} from "./modal.js";
 import { setContentHeading, loadTasks, removeTaskFromList } from "./content.js";
 
 const getHeadingFromHash = () => {
@@ -41,7 +47,13 @@ document.addEventListener("DOMContentLoaded", () => {
       appendProjectToSelect(project);
       return project;
     },
-    onAddTaskClick: () => openAddTaskDialog()
+
+    onAddTaskClick: () => openAddTaskDialog(),
+
+    onDeleteClick: (projectId) => {
+      const projectName = ProjectStore.get(projectId).name;
+      openDeleteProjectDialog(projectId, projectName);
+    }
   });
 
   initModals({
@@ -49,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
       TaskStore.create(projectId, title, description, dueDate, priority);
       loadTasks(getViewFromHash());
     },
+
     onProjectDelete: (projectId) => {
       // Redirect to inbox if current page is the deleted project
       if (window.location.hash === `#project-${projectId}`) {
@@ -60,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       removeProjectFromSidebar(projectId);
       removeProjectFromSelect(projectId);
     },
+
     onTaskDelete: (taskId) => {
       TaskStore.deleteTask(taskId);
       removeTaskFromList(taskId);

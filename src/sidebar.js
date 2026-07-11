@@ -23,9 +23,6 @@ const backdrop = document.getElementById("backdrop");
 const projectMenu = document.getElementById("project-menu");
 const deleteProjectBtn = document.getElementById("delete-project-button");
 
-const deleteProjectDialog = document.getElementById("delete-project-dialog");
-const deleteDialogProjectName = document.getElementById("delete-dialog-project-name");
-
 const editColorBtn = document.getElementById("edit-color-button");
 const colorPopover = document.getElementById("color-popover");
 const selectedColor = document.getElementById("selected-color-icon");
@@ -73,7 +70,7 @@ const appendProjectToSidebar = (project) => {
   optionsButton.addEventListener("click", () => {
     li.classList.add("row-reveal-action--open-popover");
     backdrop.classList.add("backdrop--active");
-    deleteProjectDialog.dataset.projectId = project.id;
+    deleteProjectBtn.dataset.projectId = project.id;
   });
 
   projectList.appendChild(li);
@@ -119,7 +116,7 @@ export const setTheme = (theme) => {
   localStorage.setItem("theme", theme);
 };
 
-export const initSidebar = ({ onProjectCreate, onAddTaskClick }) => {
+export const initSidebar = ({ onProjectCreate, onAddTaskClick, onDeleteClick }) => {
   // Add all projects to the sidebar after reload from storage
   for (const project of ProjectStore.getAll()) {
     appendProjectToSidebar(project);
@@ -240,10 +237,8 @@ export const initSidebar = ({ onProjectCreate, onAddTaskClick }) => {
     }
   });
 
-  deleteProjectBtn.addEventListener("click", (e) => {
-    const project = ProjectStore.get(deleteProjectDialog.dataset.projectId);
-    deleteDialogProjectName.textContent = project.name;
-    deleteProjectDialog.showModal();
+  deleteProjectBtn.addEventListener("click", () => {
+    onDeleteClick(deleteProjectBtn.dataset.projectId);
   });
 
   // Toggle between light and dark mode
