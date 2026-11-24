@@ -23,6 +23,36 @@ const TaskStore = (() => {
     return task;
   };
 
+  const setProjectId = (taskId, projectId) => {
+    const task = tasks.filter((t) => t.id === taskId)[0];
+    task.projectId = projectId;
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+
+  const setTitle = (taskId, title) => {
+    const task = tasks.filter((t) => t.id === taskId)[0];
+    task.title = title;
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+
+  const setDescription = (taskId, description) => {
+    const task = tasks.filter((t) => t.id === taskId)[0];
+    task.description = description;
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+
+  const setDueDate = (taskId, dueDate) => {
+    const task = tasks.filter((t) => t.id === taskId)[0];
+    task.dueDate = dueDate;
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+
+  const setPriority = (taskId, priority) => {
+    const task = tasks.filter((t) => t.id === taskId)[0];
+    task.priority = priority;
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+
   const setCompleted = (taskId, completed) => {
     const task = tasks.filter((t) => t.id === taskId)[0];
     task.completed = completed;
@@ -73,8 +103,13 @@ const TaskStore = (() => {
 
   return { 
     load, 
-    create, 
-    setCompleted, 
+    create,
+    setProjectId,
+    setTitle,
+    setDescription,
+    setDueDate,
+    setPriority,
+    setCompleted,
     get,
     getByProjectId, 
     getToday, 

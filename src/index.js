@@ -7,6 +7,7 @@ import {
   appendProjectToSelect,
   removeProjectFromSelect,
   openAddTaskDialog,
+  openEditTaskDialog,
   openDeleteProjectDialog,
   openDeleteTaskDialog
 } from "./modal.js";
@@ -32,6 +33,10 @@ const getViewFromHash = () => {
   if (hash === "#inbox") return "project:inbox";
   if (hash.startsWith("#project-")) return "project:" + hash.slice(9);
   return null;
+};
+
+const onTaskClick = (taskId) => {
+  openEditTaskDialog(taskId);
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -60,7 +65,21 @@ document.addEventListener("DOMContentLoaded", () => {
   initModals({
     onTaskCreate: (projectId, title, description, dueDate, priority) => {
       TaskStore.create(projectId, title, description, dueDate, priority);
-      loadTasks(getViewFromHash());
+      loadTasks(getViewFromHash(), onTaskClick);
+    },
+
+    onTaskDelete: (taskId) => {
+      TaskStore.deleteTask(taskId);
+      removeTaskFromList(taskId);
+    },
+
+    onTaskEdit: (taskId, projectId, title, description, dueDate, priority) => {
+      TaskStore.setProjectId(taskId, projectId);
+      TaskStore.setTitle(taskId, title);
+      TaskStore.setDescription(taskId, description);
+      TaskStore.setDueDate(taskId, dueDate);
+      TaskStore.setPriority(taskId, priority);
+      loadTasks(getViewFromHash(), onTaskClick);
     },
 
     onProjectDelete: (projectId) => {
@@ -73,11 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ProjectStore.deleteProject(projectId);
       removeProjectFromSidebar(projectId);
       removeProjectFromSelect(projectId);
-    },
-
-    onTaskDelete: (taskId) => {
-      TaskStore.deleteTask(taskId);
-      removeTaskFromList(taskId);
     }
   });
 
@@ -89,12 +103,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   setContentHeading(getHeadingFromHash());
-  loadTasks(getViewFromHash());
+  loadTasks(getViewFromHash(), onTaskClick);
 });
 
 window.addEventListener("hashchange", () => {
   setContentHeading(getHeadingFromHash());
-  loadTasks(getViewFromHash());
+  loadTasks(getViewFromHash(), onTaskClick);
 });
 
 const mq = window.matchMedia("(min-width: 1025px)");

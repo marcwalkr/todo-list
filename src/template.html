@@ -370,12 +370,17 @@
 
   <dialog class="dialog dialog--lg" id="edit-task-dialog" closedby="any">
     <form class="dialog__form" id="edit-task-form" method="dialog" autocomplete="off">
-      <input class="dialog__title-input" type="text" name="title" placeholder="Title" required>
-      <input class="dialog__description-input" type="text" name="description" placeholder="Description">
+      <input class="dialog__title-input" id="title-input" type="text" name="title" placeholder="Title" required>
+      <input 
+        class="dialog__description-input"
+        id="description-input"
+        type="text"
+        name="description"
+        placeholder="Description">
 
       <div class="dialog__select-group">
         <input class="dialog__date-input" id="due-date-input" type="date" name="dueDate">
-        <select class="dialog__select" name="priority">
+        <select class="dialog__select" id="priority-select" name="priority">
           <option value="" selected disabled hidden>Priority</option>
           <option value="high">
             <span aria-hidden="true">🔴</span>

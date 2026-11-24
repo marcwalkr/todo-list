@@ -17,10 +17,15 @@ const fetchTasksByStatus = (status) => {
   if (status === "completed") return TaskStore.getCompleted();
 };
 
-const getTaskListItem = (task) => { 
+const getTaskListItem = (task, onTaskClick) => { 
   const clone = taskTemplate.content.cloneNode(true);
   const li = clone.querySelector("li");
   li.dataset.taskId = task.id;
+
+  const link = clone.querySelector(".task__link");
+  link.addEventListener("click", () => {
+    onTaskClick(task.id);
+  });
 
   const bubble = clone.querySelector(".task__bubble");
   if (task.priority === "high") bubble.classList.add("task__bubble--high");
@@ -86,7 +91,7 @@ export const setContentHeading = (heading) => {
   contentHeading.textContent = heading;
 };
 
-export const loadTasks = (view) => {
+export const loadTasks = (view, onTaskClick) => {
   if (!view) {
     taskList.replaceChildren();
     return;
@@ -101,7 +106,7 @@ export const loadTasks = (view) => {
     tasks = TaskStore.getByProjectId(projectId);
   }
 
-  const listItems = tasks.map(getTaskListItem);
+  const listItems = tasks.map((t) => getTaskListItem(t, onTaskClick));
   taskList.replaceChildren(...listItems);
 };
 
